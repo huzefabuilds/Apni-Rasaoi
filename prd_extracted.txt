@@ -1,0 +1,817 @@
+APNI RASOI
+Product Requirements Document (PRD) — Revised Version 3.0
+Phase-wise implementation plan • Anonymous, verified student feedback • AI insights • Menu voting
+Core principle: Students give feedback in seconds. AI turns it into useful information. Managers understand it in minutes. Feedback stays anonymous to the provider, and only real diners can give it.
+What's New in Version 3.0   v3 NEW
+Version 3.0 only adds to version 2.0. No existing feature was removed or redesigned. The few places where existing wording had to be adjusted to fit an addition are listed in the note under this table. Version 3.0 changes are marked in green (v3); version 2.0 changes keep their orange NEW / blue UPDATED tags.
+#
+Addition
+What it adds
+1
+Pilot and rollout plan
+One-hostel pilot with a defined subset of existing features, onboarding steps, owners, and go / no-go criteria. (Section 24)
+2
+Participation features
+Response rate shown next to every average (Phase 1), daily digest to the manager (Phase 2), and “You Said → We Did” promoted to a core feature (Phase 4).
+3
+QR fallback and override
+QR scan log, no-scan alert, and a warden / committee rating-window override so the provider cannot suppress feedback by not showing the QR. (Section 8.6)
+4
+Outcome metrics
+Response rate, rating change after action, issue resolution time and repeat-issue rate. (Section 18)
+5
+Edge cases and dispute process
+Shared phones / no smartphone, guests, missed windows, device changes, and how the provider can dispute ratings. (Section 25)
+6
+Technical and cost considerations
+Decisions to make before build: stack, hosting, AI cost, notifications, security, maintenance. (Section 26)
+7
+Suggested defaults for open decisions
+A proposed default for each open decision, for you to confirm. (Section 23.3)
+Wording adjusted to fit the additions: (a) “Optional” was removed from “You Said → We Did” in Phase 4 because it is now core; (b) the Warden / Committee role is still read-only for all data, with the rating-window override as its only action (roles table, Section 10.2, FR-24, dashboard, business rules); (c) the three items now in scope were removed from the backlog list in Section 23.2.
+Earlier Additions (Version 2.0)
+Five additions were made to the original PRD in version 2.0. Sections marked NEW or UPDATED (orange / blue tags) contain these changes.
+#
+Addition
+What it changes
+1
+Anonymous student identity
+Students verify once, then feedback is tied to a pseudonymous ID. The manager, provider and warden never see names or room numbers. (Section 7)
+2
+Feedback validity
+Ratings are accepted only during the meal's rating window and after scanning that meal's QR code at the mess. (Section 8)
+3
+Reason chips
+One extra tap after the star rating captures why (taste, quantity, hygiene, etc.), giving structured themes in Phase 1 without AI. (Section 9)
+4
+Provider value and read-only oversight
+Defines why the provider benefits, and adds a read-only Warden / Mess Committee role. (Section 10)
+5
+Weekly menu upload
+Manager publishes a weekly menu and meal timings, which power “current meal” detection and rating windows. (Section 11)
+Product Identity
+Product Name: Apni Rasoi
+Apni Rasoi is the official name of the hostel mess feedback and menu planning website. All UI screens, navigation labels, dashboard references, documentation and future development should use “Apni Rasoi” as the product/website name unless a different name is explicitly requested.
+1. Product Overview   UPDATED
+A hostel mess serves approximately 300 students three times a day. Feedback currently arrives through shouting, scattered messages, and long comments that a mess manager does not have enough time to read and organize. The proposed system provides a fast student feedback experience and converts the collected data into concise, actionable insights for the mess manager.
+Product Goal
+Create a simple web platform that captures structured, anonymous and verified meal feedback, analyzes optional comments with AI, shows trends, generates weekly reports, alerts the manager to important issues, and allows students to vote on upcoming meals from provider-approved options.
+2. Problem Statement   UPDATED
+A hostel mess serves around 300 students three times a day. Feedback comes as shouting, scattered messages and long comments that the manager has no time to read.
+Critical Constraints
+A student should be able to leave feedback in under 10 seconds (timer starts when the rating page opens).
+The manager should be able to understand the day's feedback in about 2 minutes.
+The interface should minimize typing and unnecessary steps.
+The system should prevent repeated ratings for the same student and meal.
+AI should summarize and organize feedback rather than create unnecessary complexity.
+Anonymity: students must be able to give honest feedback without the cook, manager or provider being able to identify them.
+Validity: only students who were actually at the meal can rate it, and only during its rating window.
+Provider trust: the provider should see the tool as a fair performance record, not a complaint machine.
+3. Product Objectives   UPDATED
+Make meal feedback extremely fast and simple.
+Convert unstructured comments into clear themes such as taste, quantity, hygiene and delays.
+Give the manager a compact daily view of what needs attention.
+Show rating trends by meal and by day.
+Generate a weekly report containing recurring issues and suggested actions.
+Allow students to participate in upcoming menu planning through controlled polls.
+Create a feedback loop so students can see that recurring issues are being addressed.
+NEW: Protect student identity so feedback is honest.
+NEW: Keep the data trustworthy by accepting feedback only from real diners during the meal window.
+NEW: Give the provider clear benefits and give the warden / mess committee transparent read-only oversight.
+4. User Roles   UPDATED   v3 UPDATED
+Role
+Main Responsibilities
+Student
+Verify once, rate meals, tap reason chips, optionally add comments in any language, vote in upcoming meal polls, view own feedback/history.
+Mess Manager / Provider
+Set meal timings, upload and publish the weekly menu, view dashboard, review AI summaries, monitor trends, create polls, view voting results, record actions and context notes. Never sees student identities.
+Warden / Mess Committee (NEW)
+Read-only access to aggregated ratings, themes, issue status and weekly reports. Cannot edit anything and never sees student identities. Only action: rating-window / QR override (v3, Section 8.6).
+Platform Admin (NEW)
+Runs student verification, keeps the identity mapping secure, handles abuse escalations under a documented process. Typically hostel office or the technical owner; not the mess provider.
+System / AI
+Generate meal sessions and QR tokens, classify comments, redact personal details, summarize themes, detect trends, identify important issues, generate weekly insights and suggested actions.
+5. Core User Journeys   UPDATED
+5.0 Weekly Menu Setup (Manager)   NEW
+Open Menu → Copy last week or enter dishes for each day and meal → Review → Publish → Students automatically see the menu, and “current meal” works.
+Target: under 10 minutes per week.
+5.1 Student Feedback Journey   UPDATED
+Scan the meal QR at the mess → Current meal and today's dishes appear → Tap a star rating → Reason chips appear (tap up to 3, or skip) → Optional short comment → Submit → Confirmation.
+First-time use: one-time verification (see Section 7); after that the student stays signed in on their phone.
+Target completion time: under 10 seconds from the moment the rating page opens.
+5.2 Manager Daily Journey
+Open dashboard → See today's response count and rating → Read AI summary and top reasons → Check top themes/issues → Review alert if any → Take/record action.
+Target review time: about 2 minutes per day.
+5.3 Warden / Mess Committee Journey   NEW
+Open read-only dashboard → See response counts, ratings, top themes and issue status → Open weekly report. No editing and no identity information at any point.
+5.4 Upcoming Meal Voting Journey
+Manager creates poll with eligible options → Students select one option → One vote per student → Poll closes → Results are shown as counts/percentages → Provider uses preference as one input for menu planning.
+6. Phase-wise Feature Plan   UPDATED   v3 UPDATED
+PHASE 1 — MVP: Fast, Anonymous, Verified Feedback
+Goal: Solve the basic feedback problem while strictly respecting the 10-second constraint and protecting student identity.
+NEW  One-time student verification and pseudonymous ID (Section 7).
+NEW  Meal schedule setup: meal types, start/end times, closed days.
+NEW  Weekly menu upload and publishing by the manager (Section 11).
+NEW  Meal-session QR and rating window (Section 8).
+Current meal selection/automatic meal identification (breakfast, lunch, dinner), driven by the meal schedule.
+One-tap star rating.
+NEW  Reason chips after the rating (Section 9).
+Optional short comment, in any language.
+One student can submit only one rating for the same meal/date.
+Submission confirmation and basic student feedback history.
+Basic manager dashboard: response count, average rating, top reason chips and recent comments.
+NEW  Basic read-only Warden / Mess Committee dashboard.
+v3  Response rate shown next to every average and count (for example “42 of about 300 students rated”), so the manager and warden can judge how reliable the numbers are.
+v3  QR scan log with a no-scan alert, and a warden / committee rating-window override (Section 8.6).
+v3  Rollout toggles so a pilot can run a defined subset of these features (Section 24).
+PHASE 2 — AI Feedback Intelligence
+Goal: Remove the need for the manager to read individual comments. Reason chips already give structured themes; AI now handles the free-text comments and combines both.
+AI language handling for multilingual comments.
+Theme/category detection in comments: taste, quantity, hygiene, food quality, temperature, delays/service and other.
+NEW  Automatic redaction of names, room numbers and phone numbers in comments before they are displayed or summarized.
+Daily AI summary combining chip data and comment themes.
+Top positive and negative themes.
+Concise natural-language daily summary.
+Basic issue prioritization based on volume and recurrence.
+Manager-facing 'Needs Attention' section.
+v3  Daily digest: the daily summary and top reasons are pushed to the manager (email, SMS or WhatsApp; channel is an open decision) so the manager does not have to open the dashboard every day. Before Phase 2 is live, the digest can carry counts and top reason chips only.
+PHASE 3 — Analytics & Trends
+Goal: Help the manager identify patterns instead of only seeing today's complaints.
+Rating trend by day and by meal (breakfast, lunch, dinner).
+Theme/issue trend over time.
+Comparison of recent meals/days.
+Repeated-issue detection.
+Real-time/important issue alerts when feedback becomes unusually negative or a major issue is detected.
+NEW  Flagged/suspicious ratings (Section 8) are shown separately from the trusted trend data.
+PHASE 4 — Weekly Reports & Action Tracking
+Goal: Turn collected feedback into practical weekly improvement actions.
+Automatic weekly report: overall weekly rating, top recurring issues, most affected meals/time periods, suggested actions.
+Manager can mark an issue as New, In Progress, or Resolved.
+'You Said → We Did' section showing feedback and the action taken (promoted from optional to a core feature in v3.0).
+NEW  Weekly report is available to the Warden / Mess Committee in the read-only view, together with the provider's action notes.
+v3  Students see a “You Said → We Did” feed on their dashboard and are notified when a resolved issue is published. Published text is at theme level and never identifies any student.
+v3  Outcome tracking: rating change for a theme before and after an action, issue resolution time, and repeat-issue rate (Section 18).
+PHASE 5 — Student Menu Voting
+Goal: Allow students to participate in planning future meals without making the menu process uncontrolled.
+Manager/provider creates a poll for a future meal, such as day-after-tomorrow's lunch or dinner.
+Provider defines eligible meal options, for example Pav Bhaji, Pasta, Chole Rice.
+Student selects one option; one student = one vote per poll (counted by pseudonymous ID).
+Poll has an opening/closing time. Live or final vote percentages can be shown depending on the provider's choice.
+Final result displays vote count and percentage for each option.
+The most preferred option is presented as the student preference, not an automatic mandatory decision.
+Provider can consider budget, ingredient availability, nutrition, kitchen capacity and other constraints before finalizing the menu.
+7. Identity, Anonymity & Trust   NEW
+7.1 Principle
+Duplicates must be prevented, so the system must know a rating came from a verified student. But students will only be honest if they are sure the cook, manager and provider cannot tell who complained. The solution is a pseudonymous ID: the system knows the feedback comes from one verified student, but the people running the mess do not know which one.
+7.2 How It Works
+One-time verification: the student verifies with a hostel-issued identifier (for example college email or roll number) plus an OTP. The exact method is an open decision (Section 23).
+Pseudonymous ID: after verification the system creates a random anonymous ID for the student. All ratings, chips, comments and votes are stored against this ID, never against the name or room.
+Separate storage: the mapping between real identity and anonymous ID is stored separately with restricted, logged access.
+Stay signed in: the session persists on the student's phone so the 10-second constraint is not broken by repeated logins.
+7.3 Who Can See What
+Data
+Student
+Manager / Provider
+Warden / Committee
+Platform Admin
+Real name, roll number, room
+Own account
+Never
+Never
+Verification records only
+Ratings, chips, comments
+Own history
+Yes, without identity
+Aggregated themes and counts
+Only during abuse review
+Link between identity and feedback
+—
+Never
+Never
+Only via documented abuse process; every access logged
+Poll votes
+Own vote
+Totals only
+Totals only
+Same as feedback link
+7.4 Additional Safeguards
+Small-group suppression: theme breakdowns and filters are hidden or merged when fewer than a minimum number of responses (default 5, configurable), so a single student cannot be singled out.
+Comment redaction: names, room numbers and phone numbers are removed from comments before the manager sees them.
+Coarse timestamps: comments show meal and date only, not the exact minute they were posted.
+Abuse handling: the manager can flag an abusive or threatening comment. The Platform Admin reviews it and can warn or suspend the anonymous ID without revealing the student to the provider.
+Honest disclosure: at first login students see a plain-language note: feedback is anonymous to the mess staff and provider, the hostel's Platform Admin can link an ID to a person only for abuse review, and what data is stored and for how long.
+8. Feedback Validity: QR and Rating Window   NEW   v3 UPDATED
+8.1 Goal
+Make sure ratings come from students who were actually at that meal, and stop casual fake ratings, revenge ratings and coordinated bombing.
+8.2 Meal Sessions and Rating Window
+For every meal in the schedule, the system creates a Meal Session with a start time, an end time and a rating window.
+Default rating window: from meal start until 60 minutes after meal end (configurable per meal).
+Ratings submitted outside the window are rejected with a clear message.
+No session is created for closed days or meals marked “mess closed”.
+8.3 Meal QR
+Each Meal Session has its own QR code containing a token unique to that meal.
+The QR is displayed at the mess (printed daily sheet or a screen at the counter). Delivery method is an open decision (Section 23).
+Scanning the QR opens the rating page for that meal and confirms the student was present.
+The token expires when the rating window closes, so a photo of yesterday's QR is useless.
+Optional hardening: a short rotating code shown at the counter for extra checking, if abuse is observed.
+8.4 Abuse Controls
+One rating per anonymous ID per meal/date; duplicate attempts are rejected.
+Rate limits per device and connection.
+Automatic flags for suspicious patterns: a burst of very low ratings in a short time, many identical comments, or many submissions from one device.
+Flagged ratings are shown separately and excluded from averages until reviewed (configurable). Nothing is silently deleted.
+Poll votes can only be cast by verified, active students, one per poll.
+8.5 Impact on the 10-Second Target
+The physical QR scan takes a couple of seconds and is treated as arriving at the rating page. The 10-second target is measured from the moment the rating page opens to the confirmation screen.
+8.6 QR Scan Log & Rating-Window Override   v3 NEW
+Because the provider controls the mess counter, the provider must not be able to suppress feedback simply by not displaying the QR.
+Scan log: the system records the first scan time and the total number of scans for each meal session (counts only, no student identity).
+No-scan alert: if a meal has no scans within a configurable time after it starts (default 30 minutes), the manager and the warden / committee are alerted.
+Window override: a designated Warden / Committee member can open or extend the rating window for a meal, or issue a temporary meal code, with a mandatory reason. The maximum extension is configurable.
+Transparency: every override is logged (who, when, why) and shown to the manager and the Platform Admin.
+Limited scope: the override only affects when and how students can rate. It cannot edit, delete or view any rating or student identity.
+9. Reason Chips   NEW
+9.1 Flow
+Student taps a star rating (1 to 5). Immediately below, a row of large tappable chips appears. The student can tap up to three chips or skip. The comment box stays optional. Submitting never requires a chip.
+9.2 Chip Design
+Default chips: Taste, Quantity, Hygiene, Food quality, Temperature, Delay / Service. These match the theme list already used in the PRD.
+Adapts to the rating: 1–3 stars shows “What went wrong?”. 4–5 stars shows “What was good?”. The same chips are used, and the star value gives the direction (positive or negative).
+Configurable: the chip list can be changed by admin/provider without a code change.
+Mobile friendly: large tap targets, icon plus label, and optional Hindi labels.
+9.3 Why It Matters
+The manager gets structured reasons from day one, for example “Low-rated lunch: Taste 18, Temperature 11”.
+Reliability does not depend on AI or on language understanding.
+AI in Phase 2 only has to handle free-text comments and merge them with chip data.
+If AI is down, the dashboard still shows reasons.
+10. Provider Value & Oversight   NEW   v3 UPDATED
+10.1 Why the Provider Benefits
+Less shouting: complaints arrive in one organized place instead of at the counter.
+Two-minute daily view: top reasons and needs-attention items, so problems are caught before they escalate.
+Proof of good work: positive themes, best-rated meals and improving trends are reported with the same prominence as complaints.
+Credit for fixes: action tracking shows the warden and students what was fixed and when.
+Fair data: fake and flagged ratings are filtered, so one angry burst does not damage the provider's record.
+Context notes: the provider can attach a note to a meal (for example “gas supply delayed”) that appears alongside the rating for the manager and the read-only viewers.
+10.2 Warden / Mess Committee (Read-only)
+Can view: response counts, average ratings, meal-wise and day-wise trends, top themes, issue status and weekly reports, plus the provider's action notes.
+Cannot: edit menus, change issue status, create polls, or see any student identity.
+Individual comments are hidden by default. Showing redacted comments to this role is an open decision (Section 23).
+Sees the same numbers as the provider, so there are no separate versions of the truth.
+v3  The only action this role can take is the rating-window / QR override in Section 8.6. All other data stays read-only.
+10.3 Design Rules Against the “Complaint Machine” Perception
+Show positive and negative themes with equal weight.
+Show the number of responses next to every average.
+Weekly report opens with what went well before recurring issues.
+Suggestions are advisory and never change operations automatically.
+11. Weekly Menu Upload & Meal Schedule   NEW
+11.1 Meal Schedule (one-time setup)
+Manager/admin sets meal types (breakfast, lunch, dinner) with start and end times.
+Sets the rating-window buffer and marks closed days.
+Meal timings drive “current meal” detection and the rating window.
+11.2 Weekly Menu
+Entry: manager creates a menu by day and meal, each with a list of dishes.
+Save time: “copy last week” as a starting point; optional spreadsheet (CSV/Excel) template upload.
+Draft then publish: menu is saved as a draft and goes live to students when published.
+Reminders: the manager is reminded a couple of days before the week ends if next week's menu is not published.
+Edits after publishing: allowed, logged, and the affected meal shows “Menu changed”.
+Special flags: special/festival meal, late meal, mess closed.
+Student view: today's dishes on the rating page and an upcoming-week menu view.
+11.3 Fallback
+If no menu is uploaded for a meal, students can still rate it by meal type (for example “Lunch”), so feedback is never blocked. The manager dashboard shows a “Menu not uploaded” flag.
+11.4 Link to Menu Voting
+The provider may use poll results when filling a future menu slot. The menu decision stays with the provider.
+12. Functional Requirements   UPDATED   v3 UPDATED
+ID
+Requirement
+Description
+FR-01
+Meal Rating
+Student must be able to rate the current meal with one tap, only within the rating window.
+FR-02
+Reason Chips (NEW)
+After the rating, student may tap up to three reason chips; chips are optional and adapt to the star value.
+FR-03
+Optional Comment
+Student may add a short comment; commenting must not be required.
+FR-04
+Multilingual Input
+Comments may be submitted in any supported language; AI should normalize/classify them for analysis.
+FR-05
+Duplicate Prevention
+System must prevent the same student (anonymous ID) from submitting multiple ratings for the same meal/date.
+FR-06
+Student Verification (NEW)
+Student verifies once and receives a pseudonymous ID; the session persists on the device.
+FR-07
+Identity Protection (NEW)
+Manager, provider and warden interfaces never expose student name, room or identity link; small-group suppression and comment redaction apply.
+FR-08
+Meal Session and Window (NEW)
+System creates a session per meal with a rating window; ratings outside the window are rejected.
+FR-09
+Meal QR (NEW)
+Each meal session has an expiring QR token; scanning it enables rating for that meal.
+FR-10
+Abuse Flags (NEW)
+System rate-limits and flags suspicious rating patterns; flagged ratings are held for review.
+FR-11
+Daily Summary
+System must aggregate feedback and produce a concise daily AI summary.
+FR-12
+Theme Classification
+System must classify chips and comments into configurable themes.
+FR-13
+Trend Analytics
+System must display ratings by meal and by day.
+FR-14
+Weekly Report
+System must generate a weekly report with recurring issues and suggested actions.
+FR-15
+Issue Alerts
+System should notify/highlight important negative spikes or recurring issues.
+FR-16
+Action Tracking
+Manager must be able to update issue status and optionally record action taken and context notes.
+FR-17
+Menu Poll Creation
+Provider must be able to create a poll for a future meal and define eligible options.
+FR-18
+Poll Voting
+Student must be able to cast one vote per poll.
+FR-19
+Poll Results
+System must calculate vote counts and percentages.
+FR-20
+Access Control
+Student, manager/provider, warden/committee (read-only) and platform admin interfaces show role-appropriate features.
+FR-21
+Meal Schedule (NEW)
+Manager/admin can configure meal types, timings, closed days and the rating window.
+FR-22
+Weekly Menu Upload (NEW)
+Manager can create, copy, upload, draft and publish a weekly menu with dishes per meal.
+FR-23
+Menu Change Log (NEW)
+Post-publish menu edits are logged and marked to students as “Menu changed”.
+FR-24
+Read-only Oversight (NEW)
+Warden/Mess Committee can view dashboards and weekly reports but cannot edit any data. Only exception: the rating-window override (FR-30).
+FR-25
+Abuse Escalation (NEW)
+Manager can flag abusive comments; Platform Admin can review and suspend an anonymous ID without revealing identity to the provider.
+FR-26
+Response Rate Display (v3)
+Every average and count shows how many students responded compared with the expected number of diners for that meal (configurable head-count).
+FR-27
+Daily Digest (v3)
+Manager receives a daily digest (counts and top reasons; AI summary once Phase 2 is live) through the chosen channel.
+FR-28
+You Said → We Did (v3)
+Resolved issues are published to students as theme-level updates with a notification; no student is identified.
+FR-29
+QR Scan Log and No-scan Alert (v3)
+System logs scan counts per meal session and alerts the manager and warden if no scans occur within the configured time.
+FR-30
+Window Override (v3)
+A designated Warden/Committee member can open or extend a rating window or issue a temporary meal code, with a mandatory reason; all overrides are logged.
+FR-31
+Outcome Metrics (v3)
+System reports rating change before and after an action, issue resolution time, repeat-issue rate and response-rate trend.
+FR-32
+Rollout Toggles (v3)
+Modules can be switched on or off per rollout stage so a pilot can run a defined subset.
+FR-33
+Dispute Request (v3)
+Manager can raise a dispute on a meal's ratings; Platform Admin / Warden review it; outcomes are logged and the provider can never delete ratings.
+13. AI Requirements   UPDATED
+Language understanding: process short comments written in different languages, including mixed-language text (for example Hindi written in English letters). The list of supported languages must be stated and tested on real comments.
+Theme extraction: identify topics such as taste, quantity, hygiene, temperature, quality and delays; combine with reason-chip data.
+Sentiment/feedback direction: distinguish positive, neutral and negative feedback where useful.
+Aggregation: combine many similar comments into a concise theme-level insight.
+Recurrence detection: identify issues appearing repeatedly over several meals/days.
+Summary generation: produce a short manager-readable daily and weekly summary, always alongside counts so the manager can check it.
+Suggested actions: advisory only; they must not automatically change the menu or operations.
+NEW: Redact names, room numbers and phone numbers before comments are shown or summarized.
+NEW: The AI must not expose or infer private student information in any manager or warden summary.
+14. Dashboard Requirements   UPDATED   v3 UPDATED
+Student Dashboard
+Current meal with today's dishes, star rating and reason chips.
+Optional comment field.
+Upcoming meal poll when active and voting status.
+Simple personal feedback history.
+Clear confirmation after rating/voting.
+Upcoming-week menu view (NEW).
+v3: “You Said → We Did” feed of resolved issues.
+Manager Dashboard
+Today's total responses and average rating; meal-wise rating.
+Top reason chips and themes.
+AI daily summary and Needs Attention / alerts.
+Trend charts by meal and day.
+Weekly report access and issue/action status.
+Menu poll creation and results.
+Menu upload and meal schedule (NEW), with a “Menu not uploaded” flag.
+Flagged ratings for review (NEW), and context notes (NEW).
+v3: Response rate, daily digest settings, outcome metrics, and a dispute request option (Section 25).
+Warden / Mess Committee Dashboard (NEW, read-only)
+Response counts, average ratings, trends, top themes.
+Issue status and provider action notes.
+Weekly reports.
+v3: Response rate, outcome metrics and QR scan status per meal.
+v3: Rating-window override control (Section 8.6), the only action this role can take.
+No other edit controls and no identity data.
+Platform Admin Console (NEW)
+Student verification management.
+Abuse escalation queue and suspension of anonymous IDs.
+Access log for every identity lookup.
+15. Core Data Model   UPDATED   v3 UPDATED
+Entity
+Important Fields
+Student (NEW split)
+student_id, name, roll_no/email, room, verification_status. Stored separately with restricted access.
+Anonymous Profile (NEW)
+anon_id, status (active/suspended). Linked to Student only through the protected mapping.
+Meal Schedule (NEW)
+meal_type, start_time, end_time, window_buffer, closed_days
+Meal Session (NEW)
+meal_id, date, meal_type, window_start, window_end, qr_token, status (open/closed/mess closed)
+Weekly Menu (NEW)
+menu_id, week_start, status (draft/published), published_at
+Menu Item (NEW)
+menu_item_id, menu_id, meal_id, dish_name, special_flag
+Menu Change Log (NEW)
+change_id, menu_id, meal_id, changed_at, change_summary
+Feedback
+feedback_id, anon_id, meal_id, rating, comment, language, timestamp, review_status (valid/flagged)
+Feedback Reason (NEW)
+feedback_id, reason_code (taste, quantity, hygiene, ...), direction (positive/negative)
+Theme
+theme_id, name, description
+AI Insight
+insight_id, date/meal, theme, count, sentiment, summary, priority
+Issue
+issue_id, theme, detected_date, priority, status, action_taken
+Context Note (NEW)
+note_id, meal_id, text, created_by, created_at
+Menu Poll / Poll Option
+poll_id, target_date, meal_type, opening_time, closing_time, status / option_id, poll_id, meal_name
+Vote
+vote_id, poll_id, option_id, anon_id, timestamp
+Weekly Report
+report_id, week, rating, recurring_issues, suggestions
+Role / Access Log (NEW)
+role assignments, and a log of every identity lookup: who, when, reason
+QR Scan Log (v3)
+meal_id, first_scan_at, scan_count (counts only, no identity)
+Window Override (v3)
+override_id, meal_id, granted_by (role), minutes_extended or temporary_code, reason, timestamp
+Digest Setting (v3)
+recipient, channel (email/SMS/WhatsApp), send_time, content_level
+Published Update (v3)
+update_id, issue_id, public_summary, published_at (theme-level text, no identity)
+Dispute (v3)
+dispute_id, meal_id, raised_by, reason, status, reviewer, outcome, timestamps
+Rollout Toggle (v3)
+feature_key, enabled, stage
+16. Business Rules   UPDATED   v3 UPDATED
+A student can submit at most one rating per meal/date.
+A student can submit at most one vote per active menu poll.
+Comments and reason chips are optional and must not block fast rating submission.
+NEW: Ratings are accepted only during the meal's rating window and after scanning that meal's QR.
+NEW: The provider, manager and warden can never view the link between a student's identity and their feedback or votes.
+NEW: Identity lookups by the Platform Admin are allowed only for abuse review and are always logged.
+NEW: Flagged ratings are excluded from averages until reviewed and are never silently deleted.
+NEW: The weekly menu is published by the manager; if it is missing, rating by meal type still works.
+NEW: The warden / mess committee role is strictly read-only for all data. The only exception is the rating-window override (v3, Section 8.6).
+A poll must contain provider-approved options.
+Voting should close automatically at the configured closing time.
+Poll results should be calculated from valid votes only.
+Menu voting provides preference data; final menu decisions remain with the mess provider.
+AI summaries should aggregate information rather than overwhelm the manager with raw comments.
+Manager dashboard should prioritize the most important information first.
+The system should retain enough information to generate trends and reports while following the chosen data-retention policy.
+v3: Every average shown to the manager or warden is accompanied by the response count and response rate.
+v3: A meal with no scans in the configured time triggers an alert to the manager and the warden / committee.
+v3: Only the rating-window override may be used by the Warden / Committee, and every use is logged with a reason.
+v3: “You Said → We Did” updates are theme-level and must never identify a student.
+v3: The provider cannot delete ratings; disputes go through a logged review (Section 25).
+17. Non-Functional Requirements   UPDATED
+Fast page load and responsive interface on mobile phones; mobile-first student UI.
+Accessible buttons and readable text.
+Secure authentication and role-based access.
+NEW: Identity mapping stored separately from feedback data, encrypted, with logged access.
+NEW: QR tokens expire automatically; rate limiting on submissions.
+NEW: Data-protection compliance (for example India's DPDP Act 2023, if applicable) must be reviewed before launch, including consent, notice and retention.
+Reliable duplicate-prevention logic.
+Reliable aggregation so dashboard numbers match stored feedback.
+AI failures should not prevent a student from submitting a rating; reason chips keep working without AI.
+System should handle approximately 300 students and around 900 meal interactions per day, with room to scale.
+Dashboard should remain simple enough to review in approximately two minutes.
+18. Success Metrics   UPDATED   v3 UPDATED
+Metric
+Target (new targets are proposed)
+Student feedback completion time
+< 10 seconds from opening the rating page
+Manager daily review time
+≈ 2 minutes
+Duplicate ratings
+0 accepted duplicates per student/meal
+Poll duplicate votes
+0 accepted duplicate votes per student/poll
+Identity exposure (NEW)
+0 cases where manager, provider or warden can see student identity
+Ratings from valid meal sessions (NEW)
+100% of counted ratings are inside a rating window with a valid meal token
+Reason chip usage (NEW)
+Proposed: at least 70% of ratings include one or more chips
+Weekly menu published on time (NEW)
+Proposed: at least 90% of weeks
+Provider engagement (NEW)
+Proposed: manager reviews the dashboard on at least 5 days a week
+Daily summary availability
+Available after sufficient feedback is collected
+Weekly report
+Generated automatically each week
+Mobile usability
+Core student flow usable comfortably on a phone
+Actionability
+Manager can identify top issues without reading every raw comment
+Response rate (v3)
+Proposed: at least 30% of expected diners rating by the end of the pilot; set a firmer target after the pilot baseline
+Rating change after action (v3)
+Track a theme's average rating for 2 weeks before and after an issue is marked Resolved; target: improved or stable
+Issue resolution time (v3)
+Track median days from “detected” to “Resolved”; set the target after the pilot baseline
+Repeat-issue rate (v3)
+Share of resolved issues that reappear within 4 weeks; target: a falling trend
+Pilot go / no-go (v3)
+Criteria in Section 24.5
+19. Out of Scope for Initial Version
+Food ordering or delivery.
+Mess fee/payment management.
+Full hostel attendance management.
+Student-to-student social/chat features.
+Automatic purchasing of ingredients.
+Automatic menu changes solely based on AI or voting.
+Medical/nutritional diagnosis or personalized medical advice.
+20. Recommended Development Order   UPDATED   v3 UPDATED
+Build student verification with pseudonymous IDs and role-based access (student, manager, warden read-only, admin).
+Set up meal schedule and weekly menu upload/publish.
+Generate meal sessions with QR tokens and rating windows.
+Build meal-aware one-tap rating with reason chips and optional multilingual comment.
+Implement duplicate-rating prevention and basic abuse flags.
+Build manager dashboard with basic statistics and top reasons; add the read-only warden view.
+Add AI theme classification, comment redaction and daily summaries.
+Add trends and recurring-issue detection.
+Add weekly reports and suggested actions.
+Add issue alerts and action tracking.
+Build provider-controlled menu polls and one-vote-per-student logic.
+Polish UI, security, accessibility and mobile responsiveness.
+Where the v3 items fit in this order:
+Rollout toggles: from step 1, so the pilot subset can be switched on.
+QR scan log, no-scan alert and window override: with step 3 (meal sessions and QR).
+Response rate display: with step 6 (manager dashboard).
+Pilot (Section 24): run after steps 1 to 6 are complete.
+Daily digest: with step 7 (AI daily summaries); a counts-only version can run earlier.
+You Said → We Did and outcome metrics: with step 10 (action tracking).
+21. Example End-to-End Scenario   UPDATED
+On Sunday the manager copies last week's menu, edits two dishes and publishes it. At lunch, a student scans the QR at the counter. The page shows lunch and today's dishes. The student taps 2 stars, taps “Taste” and “Temperature”, and submits in a few seconds. Another student adds a comment in their own language. The system stores one valid rating per anonymous ID for that meal.
+The manager's dashboard shows total responses, average rating, and top reasons, with comments summarized by AI and personal details removed. The manager never sees who rated. If a problem becomes unusually frequent, the dashboard highlights it. The warden opens the read-only view and sees the same numbers and the provider's action notes. At the end of the week the system generates a report showing recurring issues and suggested actions.
+For an upcoming meal, the provider creates a poll with a few eligible options. Students vote once. The final result shows the student preference, while the provider considers operational constraints such as budget, ingredients, nutrition and kitchen capacity before finalizing the menu.
+22. Product USP   UPDATED
+“Students tell the mess what happened today and what they would like to eat next, anonymously and only if they were really there, while AI turns hundreds of responses into a concise, actionable view for the manager.”
+The product is differentiated by three things: extremely fast student feedback, extremely low reading effort for the manager, and a trust design that protects students and treats the provider fairly.
+23. Open Decisions & Backlog   NEW   v3 UPDATED
+23.1 Open Decisions
+Verification method: college email, roll number plus OTP, or hostel-issued list.
+Who is the Platform Admin (hostel office, IT, or someone else) and what is the abuse-review process.
+How the meal QR is delivered: printed daily sheet or a display at the counter.
+Whether the Warden / Committee sees redacted individual comments or only aggregates.
+Minimum responses before a breakdown is shown (default 5).
+Supported comment languages for AI.
+Data-retention period for feedback and for the identity mapping.
+23.2 Suggested Additions Not Yet in Scope
+These came out of the earlier review and are not in scope yet. They are listed so they are not lost. Response rate, daily digest and “You Said → We Did” were in this list and moved into scope in v3.0.
+Urgent safety report (food poisoning, foreign objects) that alerts the manager and warden immediately, with optional photo.
+Short edit window (about 10 minutes) for a mis-tapped rating.
+Offline-friendly web app that queues submissions on weak networks.
+Multi-mess support with a mess identifier on every record.
+“I'm eating / skipping this meal” toggle, and wastage tracking.
+Diet and allergen tags on dishes; dish-level feedback.
+Poll safeguards: cost/nutrition tags, cap on how often one dish can win, diet-wise results, minimum turnout.
+Audit log for issue status changes.
+23.3 Suggested Defaults for Open Decisions (to confirm)   v3 NEW
+These are proposals so that build is not blocked. The decisions in 23.1 stay open until you confirm or change them.
+Decision
+Suggested default
+Reason
+Verification method
+Roll number from the hostel's student list plus an OTP to the registered mobile or email
+Uses data the hostel already has; quick and hard to fake
+Platform Admin
+Two named people from the hostel office, not provider staff
+Removes the conflict of interest and avoids a single point of trust
+QR delivery
+Printed per-meal QR sheet issued daily by the hostel office for the pilot; counter screen later
+Cheap, works offline, and is not controlled by the provider
+Warden sees comments
+Aggregates only during the pilot; review redacted comments afterwards
+Limits privacy risk while trust is being built
+Minimum responses per breakdown
+5
+Balances privacy and usefulness
+AI languages
+English, Hindi and Hinglish (Roman script) for the pilot; add others after testing on real comments
+Confirm with students which languages they actually write in
+Data retention
+Keep feedback for one academic year; delete the identity mapping when the student leaves the hostel; confirm with hostel policy and applicable law
+Enough for trends without holding personal data longer than needed
+Digest channel
+Email for the pilot; add SMS or WhatsApp if managers prefer
+Lowest cost and fewest approvals
+24. Pilot & Rollout Plan   v3 NEW
+24.1 Purpose
+Prove that students will use the system and the manager will act on it, in one hostel and one mess, before wider rollout. No existing feature is removed; the pilot simply switches on a defined subset (using the rollout toggles, FR-32).
+24.2 Pilot Length (proposed)
+Week 0: setup, printed QR sheets, and a usability test with about 10 students to time the 10-second flow.
+Week 1: onboarding and close observation.
+Weeks 2 to 4: steady use with a short weekly review between manager and warden.
+24.3 Pilot Scope
+Feature
+In the pilot?
+Note
+Verification and pseudonymous ID
+Yes
+Needed for duplicate prevention and anonymity
+Meal schedule, meal sessions, QR and rating window
+Yes
+Required
+Star rating, reason chips, optional comment
+Yes
+Core flow
+Duplicate prevention and abuse flags
+Yes
+Required
+Manager dashboard with response rate
+Yes
+Core
+QR scan log, no-scan alert, warden override
+Yes
+Protects the pilot from suppressed feedback
+Read-only warden view
+Yes
+Basic version
+Weekly menu upload
+Simple version
+Manager enters or copies dishes; spreadsheet upload and change log can follow. Without a menu, students rate by meal type (Section 11.3)
+Daily digest
+Yes
+Counts and top reasons by email; AI summary follows in Phase 2
+AI summaries, trends, weekly reports (Phases 2 to 4)
+After the pilot starts
+Switch on one at a time as data builds up
+You Said → We Did
+Manual version
+Manager posts short updates for resolved issues
+Menu voting (Phase 5)
+After the pilot
+Needs a stable user base first
+24.4 Onboarding
+Poster with the QR and a one-line “how to rate” at the counter and on dining tables.
+A two-minute demo at a hostel or mess meeting; the warden announces the pilot and explains the privacy design.
+Verification desk on days 1 and 2 so students can verify quickly (run by the Platform Admin).
+A 30-minute training for the mess manager on the dashboard, digest and recording actions.
+The plain-language privacy note shown at first login (Section 7.4).
+One clear place for students and staff to report problems during the pilot.
+24.5 Go / No-go Criteria (proposed; adjust after week 1)
+Criterion
+Target
+Feedback completion time
+Median under 10 seconds, in the usability test and in real use
+Response rate
+At least 30% of expected diners by week 3 (review after week 2)
+Manager engagement
+Dashboard or digest reviewed on at least 5 days a week
+Action loop
+At least 3 issues moved to Resolved with a published “You Said → We Did” update
+Trust
+0 identity exposure incidents and no unresolved abuse case
+Warden involvement
+Read-only view opened at least weekly
+Decision at the end of week 4: Go (expand to more hostels or messes), Fix and extend the pilot by 2 weeks, or Stop and rethink.
+24.6 Owners
+Product owner: the idea owner, who decides scope and the go / no-go.
+Warden sponsor: announces the pilot and uses the read-only view and override.
+Platform Admin: verification, abuse review and identity safeguards.
+Mess manager champion: daily use of the dashboard, digest and action tracking.
+25. Edge Cases & Dispute Process   v3 NEW
+25.1 No Smartphone or Shared Phones
+During onboarding, find out how many students have no smartphone before choosing a solution.
+Options: a shared tablet at the counter where a student verifies with a short code and rates (slower), or an assisted rating by a volunteer. Which one to use is an open decision.
+On shared phones, each student uses their own verified account and the app always shows which account is signed in, with an easy sign-out.
+25.2 Guests and Non-residents
+Guests cannot rate because they have no verified ID. Guest counts and guest passes are out of scope.
+25.3 Missed or Late Windows
+The default rating window ends 60 minutes after the meal ends. After that, rating is closed with a clear message. If there is a genuine reason to reopen, the Warden / Committee can use the override (Section 8.6).
+25.4 Changing or Losing a Phone
+The student verifies again on the new device and receives the same anonymous ID. This prevents duplicate identities and duplicate ratings.
+25.5 Provider Disputes
+The manager can raise a dispute on a meal's ratings within 48 hours (configurable), for example for suspected fake or coordinated ratings, or an operational reason such as a supply failure.
+The Platform Admin and the warden review the dispute together with the abuse flags.
+Possible outcomes: keep as is, exclude the flagged ratings from averages, or attach a context note.
+The provider can never delete ratings. Every dispute and outcome is logged and visible to the warden.
+26. Technical & Cost Considerations   v3 NEW
+These are decisions to make before build. They are considerations, not final choices.
+Area
+Considerations
+Stack
+A mobile-first web app that can later work like an installed app. Any mainstream web framework is fine. Choose based on who will build and maintain it.
+Database
+A relational database is a good fit. Enforce “one rating per student per meal” and “one vote per student per poll” with database-level uniqueness rules, not only in code.
+Load
+About 900 interactions a day, but bursty: most students rate within the same 30 to 60 minutes after scanning the QR. Test for these bursts.
+AI cost
+Only free-text comments need AI. Process them in batches per meal or per day instead of per submission, set a monthly cost cap, and estimate cost from a sample of real comments before build. If AI fails, chips and ratings still work.
+Notifications
+Email is the cheapest. SMS and WhatsApp add cost and provider approval steps. Decide the digest and alert channel.
+Security
+Encrypt the identity mapping and keep it separate; manage secrets properly; log every identity lookup; take regular backups.
+Hosting
+A small managed platform or one small server is enough at this scale. Prefer a provider with easy backups and a region acceptable for student data.
+Ownership
+Decide who fixes bugs after launch, who edits chips and schedules, and who pays for hosting and AI usage.
+Budget and timeline
+Not yet estimated. Produce an estimate for the pilot subset (Section 24.3) first.
+27. UI / UX DESIGN DIRECTION — v3.1
+Design Goal — Apni Rasoi should look like a clean, trustworthy and modern food-management/feedback platform. The interface must NOT feel like a gaming website, entertainment app or overly dark dashboard.
+27.1 Overall Visual Style
+• Use a predominantly white and light interface with a soft, clean visual hierarchy.
+• The design should feel professional, friendly, simple and suitable for students, mess managers and wardens.
+• Avoid heavy dark themes, neon colors, glowing effects, gaming-style cards, excessive gradients and futuristic HUD-style elements.
+• Use generous white space, clear sections, restrained rounded cards, subtle borders and light shadows.
+• The visual language should communicate food, cleanliness, trust, simplicity and community rather than gaming or entertainment.
+27.2 Color Direction
+• Primary background: white or very light neutral/off-white.
+• Secondary surfaces: very light gray or warm off-white for cards, sections and dashboard panels.
+• Primary accent: a fresh food-related color such as green, used in a restrained way.
+• Optional secondary accent: a warm food-related tone such as orange/yellow for highlights, polls or positive actions.
+• Text should use dark charcoal for readability rather than making the entire interface black.
+• Success, warning and error colors should be used only for status communication and remain visually balanced.
+• Dark colors may be used for small text, navigation or contrast, but the overall UI must remain light.
+27.3 Visual Elements to Avoid
+• No full dark-mode-first design.
+• No black/purple neon gaming aesthetic.
+• No excessive glow, glassmorphism or cyberpunk effects.
+• No animated backgrounds that distract from the feedback flow.
+• No oversized decorative graphics that make the student rating process slower.
+• No complex dashboard layouts that make the manager's two-minute review difficult.
+27.4 Student UI
+• The student experience is mobile-first and extremely simple.
+• The current meal and today's dishes should be visible immediately.
+• Use large, easy-to-tap star rating controls and reason chips.
+• Keep the rating action visually dominant while keeping optional comments secondary.
+• Use simple food-related icons/illustrations where useful, but never let decoration interfere with the under-10-second feedback target.
+• Confirmation screens should be clear and reassuring, using concise messages.
+• The upcoming menu, active poll and 'You Said → We Did' feed should use clean cards with clear status labels.
+27.5 Manager Dashboard UI
+• Use a light dashboard layout with a clear information hierarchy.
+• The first screen should prioritize today's response count, average rating, response rate and important issues.
+• Use simple charts with restrained colors and sufficient white space.
+• AI summaries should appear in clean summary cards rather than large blocks of raw text.
+• Needs Attention, positive themes and recurring issues should be visually distinguishable without an aggressive or alarm-heavy design.
+• Menu management, polls, reports and settings should use a consistent sidebar/top-navigation structure.
+• The dashboard must support the existing requirement that a manager can understand the day's feedback in approximately two minutes.
+27.6 Warden / Mess Committee UI
+• Use the same light visual system as the manager dashboard.
+• Clearly indicate that the interface is read-only except for the permitted rating-window/QR override.
+• Use clean aggregated charts, response rates, issue status and weekly reports.
+• Do not expose student identity information.
+27.7 Admin UI
+• Use a professional light administrative interface.
+• Identity-management, abuse review and access logs should be presented as structured tables/cards.
+• Security-sensitive actions should have clear confirmation and status feedback.
+• Avoid unnecessary visual decoration in admin workflows.
+27.8 Typography & Components
+• Use a modern, highly readable sans-serif font.
+• Headings should have clear hierarchy; body text should remain comfortable to read on mobile.
+• Buttons should have clear labels and adequate touch targets.
+• Cards should use subtle borders and/or soft shadows rather than heavy visual effects.
+• Use consistent corner radius, spacing, icons and button styles throughout the product.
+• Maintain accessible contrast and readable text sizes.
+27.9 Responsive & Accessibility Direction
+• Student screens must be designed mobile-first.
+• Manager, warden and admin dashboards must work well on desktop and remain usable on tablets.
+• The interface should remain functional on smaller screens without horizontal scrolling.
+• Controls must be easy to tap and visually distinguishable.
+• Color must not be the only way to communicate status.
+27.10 Brand Feel
+• Apni Rasoi should feel like a trustworthy campus food community product.
+• The brand personality should be: clean, friendly, simple, fresh, reliable and student-focused.
+• The UI should visually support the product's USP: fast feedback, low reading effort and trust/anonymity.
+• The design should look polished enough for a real hostel deployment, not like a gaming website or experimental tech demo.
+27.11 Direct Instruction for UI Implementation
+• Build Apni Rasoi using a predominantly white/light color palette.
+• Do not use a dark gaming-style visual theme.
+• Prefer clean cards, subtle shadows/borders, rounded controls, readable typography and generous spacing.
+• Keep the student feedback flow extremely lightweight and mobile-first.
+• Keep dashboards professional and data-focused without making them visually intimidating.
+• Maintain the same UI design system across Student, Manager/Provider, Warden/Committee and Platform Admin interfaces.
+• The visual design must complement, not alter, the functional requirements and phase-wise feature plan defined earlier in this PRD.
+Version 3.1 UI update: Adds the requested visual/UI direction. No existing functional requirement, phase, role, business rule or feature is removed by this update.
