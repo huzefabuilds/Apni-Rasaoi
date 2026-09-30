@@ -3,48 +3,48 @@
 @tailwind utilities;
 
 :root {
-  /* Brand Theme: Clean Crisp White Surfaces + Fresh Herbal Green + Warm Appetizing Orange */
-  --bg-primary: #faf9f6;
-  --bg-surface: #ffffff;
-  --bg-subtle: #f4f3ef;
-  --bg-subtle-hover: #eae8e1;
+  /* Warm Food-Themed Palette: Cream (#FFF8E7) + Fresh Green (#4F8A4C) + Warm Orange (#F4A261) */
+  --bg-primary: #FFF8E7;
+  --bg-surface: #FFFFFF;
+  --bg-subtle: #FAF2DD;
+  --bg-subtle-hover: #F2E7CA;
   
-  --brand-50: #f0fdf4;
-  --brand-100: #dcfce7;
-  --brand-200: #bbf7d0;
-  --brand-500: #22c55e;
-  --brand-600: #16a34a;
-  --brand-700: #15803d;
-  --brand-800: #166534;
+  --brand-50: #F3F8F2;
+  --brand-100: #E4F1E3;
+  --brand-200: #C7E2C5;
+  --brand-500: #5C9E59;
+  --brand-600: #4F8A4C; /* Fresh Green Buttons */
+  --brand-700: #41733E;
+  --brand-800: #335C31;
 
-  --accent-50: #fff7ed;
-  --accent-100: #ffedd5;
-  --accent-200: #fed7aa;
-  --accent-500: #f97316;
-  --accent-600: #ea580c;
-  --accent-700: #c2410c;
+  --accent-50: #FEF8F3;
+  --accent-100: #FDEEE3;
+  --accent-200: #FBD9C3;
+  --accent-500: #F4A261; /* Warm Orange Highlights */
+  --accent-600: #E28A40;
+  --accent-700: #C77024;
 
-  --amber-50: #fffbeb;
-  --amber-100: #fef3c7;
-  --amber-200: #fde68a;
-  --amber-500: #f59e0b;
-  --amber-600: #d97706;
+  --amber-50: #FFFBEB;
+  --amber-100: #FEF3C7;
+  --amber-200: #FDE68A;
+  --amber-500: #F59E0B;
+  --amber-600: #D97706;
 
-  --rose-50: #fff1f2;
-  --rose-100: #ffe4e6;
-  --rose-500: #f43f5e;
-  --rose-600: #e11d48;
+  --rose-50: #FFF1F2;
+  --rose-100: #FFE4E6;
+  --rose-500: #F43F5E;
+  --rose-600: #E11D48;
 
-  --text-primary: #1c1917;
-  --text-secondary: #57534e;
-  --text-muted: #a8a29e;
-  --border-subtle: #e7e5e4;
-  --border-focus: #16a34a;
+  --text-primary: #2B2621;
+  --text-secondary: #5C544B;
+  --text-muted: #968D82;
+  --border-subtle: #E8DECA;
+  --border-focus: #4F8A4C;
 
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.04);
-  --shadow-card: 0 1px 3px 0 rgb(0 0 0 / 0.05), 0 1px 2px -1px rgb(0 0 0 / 0.05);
-  --shadow-md: 0 4px 12px -2px rgb(0 0 0 / 0.06), 0 2px 6px -2px rgb(0 0 0 / 0.04);
-  --shadow-lg: 0 12px 24px -4px rgb(0 0 0 / 0.08), 0 4px 8px -2px rgb(0 0 0 / 0.04);
+  --shadow-sm: 0 1px 2px 0 rgb(43 38 33 / 0.04);
+  --shadow-card: 0 1px 3px 0 rgb(43 38 33 / 0.06), 0 1px 2px -1px rgb(43 38 33 / 0.04);
+  --shadow-md: 0 4px 12px -2px rgb(43 38 33 / 0.07), 0 2px 6px -2px rgb(43 38 33 / 0.04);
+  --shadow-lg: 0 12px 24px -4px rgb(43 38 33 / 0.09), 0 4px 8px -2px rgb(43 38 33 / 0.04);
 
   --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-display: 'Outfit', var(--font-sans);
@@ -73,7 +73,7 @@ h1, h2, h3, h4, .font-heading {
   letter-spacing: -0.015em;
 }
 
-/* Custom Clean Scrollbars */
+/* Custom Scrollbars with warm tones */
 ::-webkit-scrollbar {
   width: 5px;
   height: 5px;
@@ -82,14 +82,14 @@ h1, h2, h3, h4, .font-heading {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #d6d3d1;
+  background: #D9CEB8;
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #a8a29e;
+  background: #C4B69C;
 }
 
-/* Clean Food Card Style with Soft Shadow */
+/* Clean Food Card Style with Soft Warm Shadow */
 .card-clean {
   background-color: var(--bg-surface);
   border: 1px solid var(--border-subtle);
@@ -100,11 +100,11 @@ h1, h2, h3, h4, .font-heading {
 
 .card-clean-hover:hover {
   box-shadow: var(--shadow-md);
-  border-color: #d6d3d1;
+  border-color: #D9CEB8;
   transform: translateY(-1px);
 }
 
-/* Clean Food Feedback Chips - Balanced touch targets */
+/* Food Feedback Chips */
 .chip-btn {
   display: inline-flex;
   align-items: center;
@@ -123,7 +123,7 @@ h1, h2, h3, h4, .font-heading {
 
 .chip-btn:hover {
   background-color: var(--bg-subtle);
-  border-color: #d6d3d1;
+  border-color: #D9CEB8;
   transform: translateY(-1px);
 }
 
@@ -138,10 +138,10 @@ h1, h2, h3, h4, .font-heading {
   background-color: var(--brand-50);
   border-color: var(--brand-600);
   color: var(--brand-800);
-  box-shadow: 0 1px 4px rgba(22, 163, 74, 0.15);
+  box-shadow: 0 1px 4px rgba(79, 138, 76, 0.2);
 }
 
-/* Star Rating Controls with tactile scaling */
+/* Star Rating Controls */
 .star-btn {
   background: none;
   border: none;
@@ -161,10 +161,10 @@ h1, h2, h3, h4, .font-heading {
 .mobile-device-frame {
   max-width: 410px;
   margin: 0 auto;
-  background: #ffffff;
-  border: 7px solid #292524;
+  background: #FFF8E7;
+  border: 7px solid #2B2621;
   border-radius: 36px;
-  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 20px 40px -10px rgba(43, 38, 33, 0.18);
   overflow: hidden;
   position: relative;
 }
@@ -172,7 +172,7 @@ h1, h2, h3, h4, .font-heading {
 .mobile-notch {
   width: 130px;
   height: 20px;
-  background: #292524;
+  background: #2B2621;
   position: absolute;
   top: 0;
   left: 50%;
@@ -201,9 +201,9 @@ h1, h2, h3, h4, .font-heading {
 }
 
 .badge-orange {
-  background-color: var(--accent-50);
-  color: var(--accent-700);
-  border: 1px solid var(--accent-200);
+  background-color: #FEF8F3;
+  color: #C77024;
+  border: 1px solid #FBD9C3;
 }
 
 .badge-amber {
@@ -224,9 +224,9 @@ h1, h2, h3, h4, .font-heading {
   border: 1px solid var(--border-subtle);
 }
 
-/* Standardized Button Sizing & Hierarchy */
+/* Standardized Button Sizing with Fresh Green (#4F8A4C) */
 .btn-primary {
-  background-color: var(--brand-600);
+  background-color: #4F8A4C;
   color: #ffffff;
   font-weight: 600;
   font-size: 0.875rem;
@@ -243,9 +243,9 @@ h1, h2, h3, h4, .font-heading {
   min-height: 40px;
 }
 .btn-primary:hover {
-  background-color: var(--brand-700);
+  background-color: #41733E;
   transform: translateY(-1px);
-  box-shadow: 0 4px 10px rgba(22, 163, 74, 0.2);
+  box-shadow: 0 4px 12px rgba(79, 138, 76, 0.25);
 }
 .btn-primary:active {
   transform: translateY(0);
@@ -270,11 +270,12 @@ h1, h2, h3, h4, .font-heading {
 }
 .btn-secondary:hover {
   background-color: var(--bg-subtle);
-  border-color: #d6d3d1;
+  border-color: #D9CEB8;
 }
 
+/* Warm Orange Highlight Button */
 .btn-accent {
-  background-color: var(--accent-600);
+  background-color: #F4A261;
   color: #ffffff;
   font-weight: 600;
   font-size: 0.875rem;
@@ -290,11 +291,10 @@ h1, h2, h3, h4, .font-heading {
   min-height: 40px;
 }
 .btn-accent:hover {
-  background-color: var(--accent-700);
-  box-shadow: 0 4px 10px rgba(234, 88, 12, 0.2);
+  background-color: #E28A40;
+  box-shadow: 0 4px 12px rgba(244, 162, 97, 0.25);
 }
 
-/* Compact Button Variant */
 .btn-sm {
   font-size: 0.75rem;
   padding: 0.35rem 0.75rem;

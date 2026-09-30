@@ -20,7 +20,7 @@ export default function App() {
   const [isDemoModalOpen, setIsDemoModalOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-[#faf9f6] flex flex-col md:flex-row font-sans text-stone-900 selection:bg-brand-100 selection:text-brand-900">
+    <div className="min-h-screen bg-[#FFF8E7] flex flex-col md:flex-row font-sans text-stone-900 selection:bg-brand-100 selection:text-brand-900">
       {/* Left Vertical Sidebar (Desktop) & Mobile Top/Bottom App Bars */}
       <Sidebar onOpenDemoModal={() => setIsDemoModalOpen(true)} />
 
@@ -36,7 +36,7 @@ export default function App() {
                 </div>
                 <div className="mobile-device-frame w-full">
                   <div className="mobile-notch"></div>
-                  <div className="pt-8 pb-4 max-h-[85vh] overflow-y-auto bg-[#faf9f6]">
+                  <div className="pt-8 pb-4 max-h-[85vh] overflow-y-auto bg-[#FFF8E7]">
                     <StudentPortal />
                   </div>
                 </div>
@@ -53,18 +53,18 @@ export default function App() {
         </main>
 
         {/* Clean Minimalist Footer */}
-        <footer className="hidden md:block bg-white border-t border-stone-200/80 py-4 px-6 mt-auto">
+        <footer className="hidden md:block bg-white/80 backdrop-blur-xs border-t border-[#E8DECA] py-4 px-6 mt-auto">
           <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3 text-xs text-stone-500">
             <div className="flex items-center gap-2">
-              <div className="w-5 h-5 rounded-md bg-brand-600 text-white flex items-center justify-center text-[10px] font-bold">
+              <div className="w-5 h-5 rounded-md bg-[#4F8A4C] text-white flex items-center justify-center text-[10px] font-bold">
                 AR
               </div>
-              <span><strong>Apni Rasoi</strong> — Hostel Mess Anonymous Feedback & Planning</span>
+              <span><strong>Apni Rasoi</strong> — Hostel Mess Anonymous Feedback & Menu Planning</span>
             </div>
             <div className="flex items-center gap-4">
-              <span className="text-brand-800 font-semibold">Campus Dining Intelligence</span>
+              <span className="text-[#41733E] font-semibold">Campus Dining Intelligence</span>
               <span>•</span>
-              <span className="flex items-center gap-1 text-brand-700 font-semibold">
+              <span className="flex items-center gap-1 text-[#4F8A4C] font-semibold">
                 <ShieldCheck className="w-3.5 h-3.5" /> DPDP & Privacy Shielded
               </span>
             </div>
@@ -80,14 +80,14 @@ export default function App() {
               ? 'bg-rose-50 text-rose-800 border-rose-200'
               : notification.type === 'info'
               ? 'bg-stone-900 text-white border-stone-800'
-              : 'bg-brand-600 text-white border-brand-500 shadow-brand-600/20'
+              : 'bg-[#4F8A4C] text-white border-[#40723D] shadow-[#4F8A4C]/20'
           }`}>
             {notification.type === 'error' ? (
               <AlertCircle className="w-4 h-4 text-rose-600 flex-shrink-0" />
             ) : notification.type === 'info' ? (
-              <Info className="w-4 h-4 text-brand-400 flex-shrink-0" />
+              <Info className="w-4 h-4 text-[#F4A261] flex-shrink-0" />
             ) : (
-              <CheckCircle2 className="w-4 h-4 text-brand-200 flex-shrink-0" />
+              <CheckCircle2 className="w-4 h-4 text-emerald-200 flex-shrink-0" />
             )}
             <span>{notification.message}</span>
           </div>

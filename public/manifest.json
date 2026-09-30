@@ -3,15 +3,15 @@
   "name": "Apni Rasoi — Hostel Mess Platform",
   "icons": [
     {
-      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' fill='%2316a34a'><rect width='512' height='512' rx='128' fill='%2316a34a'/><path d='M256 120c-50 0-90 40-90 90 0 70 90 182 90 182s90-112 90-182c0-50-40-90-90-90zm0 130a40 40 0 1 1 0-80 40 40 0 0 1 0 80z' fill='white'/></svg>",
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' fill='%234F8A4C'><rect width='512' height='512' rx='128' fill='%234F8A4C'/><path d='M256 120c-50 0-90 40-90 90 0 70 90 182 90 182s90-112 90-182c0-50-40-90-90-90zm0 130a40 40 0 1 1 0-80 40 40 0 0 1 0 80z' fill='white'/></svg>",
       "type": "image/svg+xml",
       "sizes": "512x512",
       "purpose": "any maskable"
     }
   ],
   "start_url": "/",
-  "background_color": "#faf9f6",
-  "theme_color": "#16a34a",
+  "background_color": "#FFF8E7",
+  "theme_color": "#4F8A4C",
   "display": "standalone",
   "orientation": "portrait",
   "scope": "/"
