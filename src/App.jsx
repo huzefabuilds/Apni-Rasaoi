@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useApp } from './context/AppContext';
-import Navbar from './components/Navbar';
+import Sidebar from './components/Sidebar';
 import StudentPortal from './components/StudentPortal';
 import ManagerDashboard from './components/ManagerDashboard';
 import WardenDashboard from './components/WardenDashboard';
@@ -12,8 +12,7 @@ import {
   CheckCircle2,
   AlertCircle,
   Info,
-  Smartphone,
-  Utensils
+  Smartphone
 } from 'lucide-react';
 
 export default function App() {
@@ -21,53 +20,74 @@ export default function App() {
   const [isDemoModalOpen, setIsDemoModalOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col font-sans text-slate-900 selection:bg-emerald-100 selection:text-emerald-900">
-      {/* Top Navbar & Role Switcher */}
-      <Navbar onOpenDemoModal={() => setIsDemoModalOpen(true)} />
+    <div className="min-h-screen bg-[#faf9f6] flex flex-col md:flex-row font-sans text-stone-900 selection:bg-brand-100 selection:text-brand-900">
+      {/* Left Vertical Sidebar (Desktop) & Mobile Top/Bottom App Bars */}
+      <Sidebar onOpenDemoModal={() => setIsDemoModalOpen(true)} />
 
-      {/* Main Role Content View */}
-      <main className="flex-1 py-4 sm:py-6">
-        {activeRole === 'student' && (
-          isMobileFrameView ? (
-            <div className="py-4 px-2 flex flex-col items-center justify-center">
-              <div className="text-xs text-slate-500 mb-2 font-medium flex items-center gap-1.5">
-                <Smartphone className="w-3.5 h-3.5 text-emerald-600" />
-                <span>Simulating Mobile Device Viewport (&lt;10s Flow)</span>
-              </div>
-              <div className="mobile-device-frame w-full">
-                <div className="mobile-notch"></div>
-                <div className="pt-8 pb-4 max-h-[85vh] overflow-y-auto bg-slate-50">
-                  <StudentPortal />
+      {/* Main Content Area */}
+      <div className="flex-1 flex flex-col min-w-0 pb-20 md:pb-6">
+        <main className="flex-1 py-3 sm:py-6 px-2 sm:px-4 max-w-7xl w-full mx-auto">
+          {activeRole === 'student' && (
+            isMobileFrameView ? (
+              <div className="py-4 px-2 flex flex-col items-center justify-center">
+                <div className="text-xs text-stone-500 mb-2 font-medium flex items-center gap-1.5">
+                  <Smartphone className="w-3.5 h-3.5 text-brand-600" />
+                  <span>Simulating Mobile Phone App Viewport</span>
+                </div>
+                <div className="mobile-device-frame w-full">
+                  <div className="mobile-notch"></div>
+                  <div className="pt-8 pb-4 max-h-[85vh] overflow-y-auto bg-[#faf9f6]">
+                    <StudentPortal />
+                  </div>
                 </div>
               </div>
-            </div>
-          ) : (
-            <StudentPortal />
-          )
-        )}
+            ) : (
+              <StudentPortal />
+            )
+          )}
 
-        {activeRole === 'manager' && <ManagerDashboard />}
-        {activeRole === 'warden' && <WardenDashboard />}
-        {activeRole === 'admin' && <AdminPortal />}
-        {activeRole === 'kiosk' && <KioskDisplay />}
-      </main>
+          {activeRole === 'manager' && <ManagerDashboard />}
+          {activeRole === 'warden' && <WardenDashboard />}
+          {activeRole === 'admin' && <AdminPortal />}
+          {activeRole === 'kiosk' && <KioskDisplay />}
+        </main>
+
+        {/* Clean Minimalist Footer */}
+        <footer className="hidden md:block bg-white border-t border-stone-200/80 py-4 px-6 mt-auto">
+          <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3 text-xs text-stone-500">
+            <div className="flex items-center gap-2">
+              <div className="w-5 h-5 rounded-md bg-brand-600 text-white flex items-center justify-center text-[10px] font-bold">
+                AR
+              </div>
+              <span><strong>Apni Rasoi</strong> — Hostel Mess Anonymous Feedback & Planning</span>
+            </div>
+            <div className="flex items-center gap-4">
+              <span className="text-brand-800 font-semibold">Campus Dining Intelligence</span>
+              <span>•</span>
+              <span className="flex items-center gap-1 text-brand-700 font-semibold">
+                <ShieldCheck className="w-3.5 h-3.5" /> DPDP & Privacy Shielded
+              </span>
+            </div>
+          </div>
+        </footer>
+      </div>
 
       {/* Floating Notification Toast */}
       {notification && (
-        <div className="fixed bottom-5 right-5 z-50 animate-bounceIn">
-          <div className={`flex items-center gap-2.5 px-4 py-3 rounded-xl shadow-xl text-xs font-semibold border ${
+        <div className="fixed bottom-18 md:bottom-5 right-5 z-50 animate-bounceIn">
+          <div className={`flex items-center gap-2.5 px-4 py-3 rounded-2xl shadow-xl text-xs font-semibold border ${
             notification.type === 'error'
               ? 'bg-rose-50 text-rose-800 border-rose-200'
               : notification.type === 'info'
-              ? 'bg-slate-900 text-white border-slate-800'
-              : 'bg-emerald-600 text-white border-emerald-500 shadow-emerald-600/20'
+              ? 'bg-stone-900 text-white border-stone-800'
+              : 'bg-brand-600 text-white border-brand-500 shadow-brand-600/20'
           }`}>
             {notification.type === 'error' ? (
               <AlertCircle className="w-4 h-4 text-rose-600 flex-shrink-0" />
             ) : notification.type === 'info' ? (
-              <Info className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+              <Info className="w-4 h-4 text-brand-400 flex-shrink-0" />
             ) : (
-              <CheckCircle2 className="w-4 h-4 text-emerald-200 flex-shrink-0" />
+              <CheckCircle2 className="w-4 h-4 text-brand-200 flex-shrink-0" />
             )}
             <span>{notification.message}</span>
           </div>
@@ -79,25 +99,6 @@ export default function App() {
         isOpen={isDemoModalOpen}
         onClose={() => setIsDemoModalOpen(false)}
       />
-
-      {/* Footer */}
-      <footer className="bg-white border-t border-slate-200 py-4 mt-auto">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 flex flex-wrap items-center justify-between gap-3 text-xs text-slate-500">
-          <div className="flex items-center gap-2">
-            <div className="w-5 h-5 rounded-md bg-emerald-600 text-white flex items-center justify-center text-[10px] font-bold">
-              AR
-            </div>
-            <span><strong>Apni Rasoi</strong> — Hostel Mess Management & Anonymous Feedback Platform</span>
-          </div>
-          <div className="flex items-center gap-4">
-            <span className="text-emerald-800 font-semibold">Hostel Dining Intelligence</span>
-            <span>•</span>
-            <span className="flex items-center gap-1 text-emerald-700 font-semibold">
-              <ShieldCheck className="w-3.5 h-3.5" /> DPDP & Privacy Protected
-            </span>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }
