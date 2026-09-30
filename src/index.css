@@ -75,8 +75,8 @@ h1, h2, h3, h4, .font-heading {
 
 /* Custom Clean Scrollbars */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
 }
 ::-webkit-scrollbar-track {
   background: transparent;
@@ -104,15 +104,15 @@ h1, h2, h3, h4, .font-heading {
   transform: translateY(-1px);
 }
 
-/* Clean Food Feedback Chips */
+/* Clean Food Feedback Chips - Balanced touch targets */
 .chip-btn {
   display: inline-flex;
   align-items: center;
-  gap: 0.45rem;
-  padding: 0.5rem 0.95rem;
-  font-size: 0.875rem;
+  gap: 0.4rem;
+  padding: 0.45rem 0.85rem;
+  font-size: 0.8125rem;
   font-weight: 600;
-  border-radius: 9999px;
+  border-radius: 12px;
   border: 1px solid var(--border-subtle);
   background-color: var(--bg-surface);
   color: var(--text-secondary);
@@ -130,23 +130,23 @@ h1, h2, h3, h4, .font-heading {
 .chip-btn.selected-negative {
   background-color: var(--rose-50);
   border-color: var(--rose-500);
-  color: var(--rose-600);
-  box-shadow: 0 2px 8px rgba(244, 63, 94, 0.15);
+  color: var(--rose-700);
+  box-shadow: 0 1px 4px rgba(244, 63, 94, 0.15);
 }
 
 .chip-btn.selected-positive {
   background-color: var(--brand-50);
   border-color: var(--brand-600);
-  color: var(--brand-700);
-  box-shadow: 0 2px 8px rgba(22, 163, 74, 0.15);
+  color: var(--brand-800);
+  box-shadow: 0 1px 4px rgba(22, 163, 74, 0.15);
 }
 
-/* Star Rating Controls with tactile hover */
+/* Star Rating Controls with tactile scaling */
 .star-btn {
   background: none;
   border: none;
   cursor: pointer;
-  padding: 0.4rem;
+  padding: 0.35rem;
   transition: transform 0.18s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   outline: none;
 }
@@ -157,9 +157,9 @@ h1, h2, h3, h4, .font-heading {
   transform: scale(0.92);
 }
 
-/* Mobile Frame Container for realistic student smartphone testing */
+/* Mobile Frame Container */
 .mobile-device-frame {
-  max-width: 420px;
+  max-width: 410px;
   margin: 0 auto;
   background: #ffffff;
   border: 7px solid #292524;
@@ -187,7 +187,7 @@ h1, h2, h3, h4, .font-heading {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  padding: 0.25rem 0.75rem;
+  padding: 0.2rem 0.65rem;
   border-radius: 9999px;
   font-size: 0.75rem;
   font-weight: 600;
@@ -224,26 +224,28 @@ h1, h2, h3, h4, .font-heading {
   border: 1px solid var(--border-subtle);
 }
 
-/* Rounded Clean Buttons */
+/* Standardized Button Sizing & Hierarchy */
 .btn-primary {
   background-color: var(--brand-600);
   color: #ffffff;
   font-weight: 600;
-  padding: 0.65rem 1.25rem;
+  font-size: 0.875rem;
+  padding: 0.55rem 1.15rem;
   border-radius: 12px;
   border: none;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
+  gap: 0.45rem;
   transition: all 0.15s ease;
   font-family: var(--font-sans);
+  min-height: 40px;
 }
 .btn-primary:hover {
   background-color: var(--brand-700);
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(22, 163, 74, 0.22);
+  box-shadow: 0 4px 10px rgba(22, 163, 74, 0.2);
 }
 .btn-primary:active {
   transform: translateY(0);
@@ -253,16 +255,18 @@ h1, h2, h3, h4, .font-heading {
   background-color: var(--bg-surface);
   color: var(--text-primary);
   font-weight: 600;
-  padding: 0.65rem 1.25rem;
+  font-size: 0.875rem;
+  padding: 0.55rem 1.15rem;
   border-radius: 12px;
   border: 1px solid var(--border-subtle);
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
+  gap: 0.45rem;
   transition: all 0.15s ease;
   font-family: var(--font-sans);
+  min-height: 40px;
 }
 .btn-secondary:hover {
   background-color: var(--bg-subtle);
@@ -273,17 +277,27 @@ h1, h2, h3, h4, .font-heading {
   background-color: var(--accent-600);
   color: #ffffff;
   font-weight: 600;
-  padding: 0.65rem 1.25rem;
+  font-size: 0.875rem;
+  padding: 0.55rem 1.15rem;
   border-radius: 12px;
   border: none;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
+  gap: 0.45rem;
   transition: all 0.15s ease;
+  min-height: 40px;
 }
 .btn-accent:hover {
   background-color: var(--accent-700);
-  box-shadow: 0 4px 12px rgba(234, 88, 12, 0.22);
+  box-shadow: 0 4px 10px rgba(234, 88, 12, 0.2);
+}
+
+/* Compact Button Variant */
+.btn-sm {
+  font-size: 0.75rem;
+  padding: 0.35rem 0.75rem;
+  min-height: 32px;
+  border-radius: 10px;
 }
