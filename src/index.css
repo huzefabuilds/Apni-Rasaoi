@@ -3,11 +3,11 @@
 @tailwind utilities;
 
 :root {
-  /* Brand Theme: Fresh Emerald Green + Warm Appetizing Amber + Crisp Light Surfaces */
-  --bg-primary: #f8fafc;
+  /* Brand Theme: Clean Crisp White Surfaces + Fresh Herbal Green + Warm Appetizing Orange */
+  --bg-primary: #faf9f6;
   --bg-surface: #ffffff;
-  --bg-subtle: #f1f5f9;
-  --bg-subtle-hover: #e2e8f0;
+  --bg-subtle: #f4f3ef;
+  --bg-subtle-hover: #eae8e1;
   
   --brand-50: #f0fdf4;
   --brand-100: #dcfce7;
@@ -19,12 +19,14 @@
 
   --accent-50: #fff7ed;
   --accent-100: #ffedd5;
+  --accent-200: #fed7aa;
   --accent-500: #f97316;
   --accent-600: #ea580c;
   --accent-700: #c2410c;
 
   --amber-50: #fffbeb;
   --amber-100: #fef3c7;
+  --amber-200: #fde68a;
   --amber-500: #f59e0b;
   --amber-600: #d97706;
 
@@ -33,16 +35,16 @@
   --rose-500: #f43f5e;
   --rose-600: #e11d48;
 
-  --text-primary: #0f172a;
-  --text-secondary: #475569;
-  --text-muted: #94a3b8;
-  --border-subtle: #e2e8f0;
+  --text-primary: #1c1917;
+  --text-secondary: #57534e;
+  --text-muted: #a8a29e;
+  --border-subtle: #e7e5e4;
   --border-focus: #16a34a;
 
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --shadow-card: 0 1px 3px 0 rgb(0 0 0 / 0.07), 0 1px 2px -1px rgb(0 0 0 / 0.07);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.07), 0 2px 4px -2px rgb(0 0 0 / 0.07);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.08), 0 4px 6px -4px rgb(0 0 0 / 0.08);
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.04);
+  --shadow-card: 0 1px 3px 0 rgb(0 0 0 / 0.05), 0 1px 2px -1px rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 12px -2px rgb(0 0 0 / 0.06), 0 2px 6px -2px rgb(0 0 0 / 0.04);
+  --shadow-lg: 0 12px 24px -4px rgb(0 0 0 / 0.08), 0 4px 8px -2px rgb(0 0 0 / 0.04);
 
   --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-display: 'Outfit', var(--font-sans);
@@ -68,10 +70,10 @@ h1, h2, h3, h4, .font-heading {
   font-family: var(--font-display);
   font-weight: 700;
   color: var(--text-primary);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.015em;
 }
 
-/* Custom Scrollbars */
+/* Custom Clean Scrollbars */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -80,47 +82,48 @@ h1, h2, h3, h4, .font-heading {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: #d6d3d1;
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+  background: #a8a29e;
 }
 
-/* Base Card Style matching PRD Section 27 (Light, clean, restrained borders & soft shadows) */
+/* Clean Food Card Style with Soft Shadow */
 .card-clean {
   background-color: var(--bg-surface);
   border: 1px solid var(--border-subtle);
-  border-radius: 14px;
+  border-radius: 16px;
   box-shadow: var(--shadow-card);
-  transition: all 0.2s ease;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .card-clean-hover:hover {
   box-shadow: var(--shadow-md);
-  border-color: #cbd5e1;
+  border-color: #d6d3d1;
+  transform: translateY(-1px);
 }
 
-/* Interactive Chips */
+/* Clean Food Feedback Chips */
 .chip-btn {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
-  padding: 0.45rem 0.85rem;
+  gap: 0.45rem;
+  padding: 0.5rem 0.95rem;
   font-size: 0.875rem;
-  font-weight: 500;
+  font-weight: 600;
   border-radius: 9999px;
   border: 1px solid var(--border-subtle);
   background-color: var(--bg-surface);
   color: var(--text-secondary);
   cursor: pointer;
-  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
   user-select: none;
 }
 
 .chip-btn:hover {
   background-color: var(--bg-subtle);
-  border-color: #cbd5e1;
+  border-color: #d6d3d1;
   transform: translateY(-1px);
 }
 
@@ -128,85 +131,79 @@ h1, h2, h3, h4, .font-heading {
   background-color: var(--rose-50);
   border-color: var(--rose-500);
   color: var(--rose-600);
-  box-shadow: 0 0 0 1px var(--rose-500);
+  box-shadow: 0 2px 8px rgba(244, 63, 94, 0.15);
 }
 
 .chip-btn.selected-positive {
   background-color: var(--brand-50);
   border-color: var(--brand-600);
   color: var(--brand-700);
-  box-shadow: 0 0 0 1px var(--brand-600);
+  box-shadow: 0 2px 8px rgba(22, 163, 74, 0.15);
 }
 
-/* Star Rating Controls */
+/* Star Rating Controls with tactile hover */
 .star-btn {
   background: none;
   border: none;
   cursor: pointer;
-  padding: 0.35rem;
-  transition: transform 0.15s ease, filter 0.15s ease;
+  padding: 0.4rem;
+  transition: transform 0.18s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   outline: none;
 }
 .star-btn:hover {
-  transform: scale(1.18);
+  transform: scale(1.15);
 }
 .star-btn:active {
-  transform: scale(0.95);
+  transform: scale(0.92);
 }
 
-/* Pulse animation for active rating timer */
-@keyframes pulse-ring {
-  0% { transform: scale(0.95); opacity: 0.8; }
-  50% { transform: scale(1.05); opacity: 0.4; }
-  100% { transform: scale(0.95); opacity: 0.8; }
-}
-
-.pulse-badge {
-  animation: pulse-ring 2s infinite ease-in-out;
-}
-
-/* Mobile Frame Container (Optional toggle for testing phone experience) */
+/* Mobile Frame Container for realistic student smartphone testing */
 .mobile-device-frame {
-  max-width: 440px;
+  max-width: 420px;
   margin: 0 auto;
   background: #ffffff;
-  border: 8px solid #0f172a;
-  border-radius: 40px;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  border: 7px solid #292524;
+  border-radius: 36px;
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.18);
   overflow: hidden;
   position: relative;
 }
 
 .mobile-notch {
-  width: 140px;
-  height: 22px;
-  background: #0f172a;
+  width: 130px;
+  height: 20px;
+  background: #292524;
   position: absolute;
   top: 0;
   left: 50%;
   transform: translateX(-50%);
-  border-bottom-left-radius: 12px;
-  border-bottom-right-radius: 12px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
   z-index: 50;
 }
 
-/* Pill status badges */
+/* Clean Pill Status Badges */
 .badge-status {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  padding: 0.2rem 0.65rem;
+  padding: 0.25rem 0.75rem;
   border-radius: 9999px;
   font-size: 0.75rem;
   font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.02em;
 }
 
 .badge-green {
   background-color: var(--brand-50);
   color: var(--brand-700);
   border: 1px solid var(--brand-200);
+}
+
+.badge-orange {
+  background-color: var(--accent-50);
+  color: var(--accent-700);
+  border: 1px solid var(--accent-200);
 }
 
 .badge-amber {
@@ -227,13 +224,13 @@ h1, h2, h3, h4, .font-heading {
   border: 1px solid var(--border-subtle);
 }
 
-/* Button styles */
+/* Rounded Clean Buttons */
 .btn-primary {
   background-color: var(--brand-600);
   color: #ffffff;
   font-weight: 600;
   padding: 0.65rem 1.25rem;
-  border-radius: 10px;
+  border-radius: 12px;
   border: none;
   cursor: pointer;
   display: inline-flex;
@@ -246,7 +243,7 @@ h1, h2, h3, h4, .font-heading {
 .btn-primary:hover {
   background-color: var(--brand-700);
   transform: translateY(-1px);
-  box-shadow: 0 4px 10px rgba(22, 163, 74, 0.25);
+  box-shadow: 0 4px 12px rgba(22, 163, 74, 0.22);
 }
 .btn-primary:active {
   transform: translateY(0);
@@ -257,7 +254,7 @@ h1, h2, h3, h4, .font-heading {
   color: var(--text-primary);
   font-weight: 600;
   padding: 0.65rem 1.25rem;
-  border-radius: 10px;
+  border-radius: 12px;
   border: 1px solid var(--border-subtle);
   cursor: pointer;
   display: inline-flex;
@@ -269,7 +266,7 @@ h1, h2, h3, h4, .font-heading {
 }
 .btn-secondary:hover {
   background-color: var(--bg-subtle);
-  border-color: #cbd5e1;
+  border-color: #d6d3d1;
 }
 
 .btn-accent {
@@ -277,7 +274,7 @@ h1, h2, h3, h4, .font-heading {
   color: #ffffff;
   font-weight: 600;
   padding: 0.65rem 1.25rem;
-  border-radius: 10px;
+  border-radius: 12px;
   border: none;
   cursor: pointer;
   display: inline-flex;
@@ -288,5 +285,5 @@ h1, h2, h3, h4, .font-heading {
 }
 .btn-accent:hover {
   background-color: var(--accent-700);
-  box-shadow: 0 4px 10px rgba(234, 88, 12, 0.25);
+  box-shadow: 0 4px 12px rgba(234, 88, 12, 0.22);
 }
