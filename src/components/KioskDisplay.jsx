@@ -9,7 +9,9 @@ import {
   Smartphone,
   ChevronRight,
   Flame,
-  CheckCircle2
+  CheckCircle2,
+  Zap,
+  Info
 } from 'lucide-react';
 
 export default function KioskDisplay() {
@@ -44,20 +46,23 @@ export default function KioskDisplay() {
 
         {/* Top Header */}
         <div className="flex flex-wrap items-center justify-between border-b border-[#233252] pb-5 mb-6 gap-3 relative z-10">
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3.5">
             <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-emerald-500 via-teal-500 to-emerald-600 text-slate-950 font-black flex items-center justify-center shadow-lg shadow-emerald-500/30">
-              <Utensils className="w-6 h-6" />
+              <Utensils className="w-6 h-6 stroke-[2.5]" />
             </div>
             <div className="text-left">
-              <h1 className="text-2xl font-bold text-white font-heading">Apni Rasoi Mess Counter</h1>
+              <h1 className="text-2xl font-bold text-white font-heading flex items-center gap-2">
+                <span>Apni Rasoi Mess Counter</span>
+                <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
+              </h1>
               <p className="text-xs text-slate-400 font-medium">Hostel Central Dining Hall • Live Diner Feedback Station</p>
             </div>
           </div>
 
           <div className="flex items-center gap-2">
-            <span className="badge-status badge-green text-xs py-1.5 px-3.5 shadow-sm font-bold">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-              {activeSession.mealName} Active
+            <span className="badge-status badge-green text-xs py-1.5 px-3.5 shadow-sm font-bold flex items-center gap-1.5">
+              <Flame className="w-3.5 h-3.5 text-emerald-400 animate-pulse" />
+              <span>{activeSession.mealName} Active</span>
             </span>
           </div>
         </div>
@@ -102,19 +107,24 @@ export default function KioskDisplay() {
             </div>
 
             <div className="flex items-center gap-2 text-xs font-mono font-bold text-slate-200 bg-[#162035] px-4 py-2 rounded-full border border-[#28375A] shadow-md">
+              <QrCode className="w-3.5 h-3.5 text-emerald-400" />
               <span className="text-slate-400">Token: <strong className="text-white">{activeSession.qrToken}</strong></span>
               <span>•</span>
-              <span className="text-emerald-400 font-extrabold">Code: #{rotatingCode}</span>
+              <span className="text-emerald-400 font-extrabold flex items-center gap-1">
+                <Sparkles className="w-3 h-3" /> Code: #{rotatingCode}
+              </span>
             </div>
-            <p className="text-[11px] text-slate-400 mt-2 text-center font-medium">
-              Scan with your smartphone camera • Window closes at {activeSession.windowEnd}
+            <p className="text-[11px] text-slate-400 mt-2.5 text-center font-medium flex items-center justify-center gap-1">
+              <Clock className="w-3 h-3 text-slate-500" />
+              <span>Scan with smartphone camera • Window closes at {activeSession.windowEnd}</span>
             </p>
           </div>
 
           <div className="space-y-4">
             <div>
-              <span className="text-xs font-bold uppercase tracking-wider text-emerald-300 bg-emerald-950/80 px-2.5 py-1 rounded-lg border border-emerald-500/40">
-                ⚡ 10-Second Feedback Flow
+              <span className="text-xs font-bold uppercase tracking-wider text-emerald-300 bg-emerald-950/80 px-2.5 py-1 rounded-lg border border-emerald-500/40 inline-flex items-center gap-1.5">
+                <Zap className="w-3.5 h-3.5 text-amber-400" />
+                <span>10-Second Feedback Flow</span>
               </span>
               <h2 className="text-2xl sm:text-3xl font-bold text-white mt-2.5 font-heading">
                 Scan to Rate Today's {activeSession.mealName}
@@ -126,7 +136,10 @@ export default function KioskDisplay() {
 
             {/* Today's Menu Highlight with Colorful Badges */}
             <div className="bg-[#0E1524] p-4.5 rounded-2xl border border-[#233252] shadow-lg">
-              <span className="text-xs font-bold text-slate-300 block mb-2.5">Today's Menu Items:</span>
+              <span className="text-xs font-bold text-slate-300 mb-2.5 flex items-center gap-1.5">
+                <Utensils className="w-3.5 h-3.5 text-emerald-400" />
+                <span>Today's Menu Items:</span>
+              </span>
               <div className="flex flex-wrap gap-2">
                 {activeSession.dishes.map((dish, i) => (
                   <span key={i} className={`text-xs px-3 py-1.5 rounded-xl border font-semibold shadow-xs ${getDishBadgeClass(i)}`}>

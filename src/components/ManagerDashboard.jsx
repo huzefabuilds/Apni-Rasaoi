@@ -26,7 +26,11 @@ import {
   Check,
   Flame,
   Award,
-  X
+  X,
+  ThumbsUp,
+  ThumbsDown,
+  Activity,
+  Zap
 } from 'lucide-react';
 
 export default function ManagerDashboard() {
@@ -160,10 +164,13 @@ export default function ManagerDashboard() {
         <div className="flex flex-wrap items-center justify-between gap-4 mb-5 pb-4 border-b border-[#233252] relative z-10">
           <div>
             <div className="flex items-center gap-2">
-              <span className="badge-status badge-amber">
+              <span className="badge-status badge-amber flex items-center gap-1.5">
                 <Sparkles className="w-3.5 h-3.5 text-amber-400" /> 2-Minute Daily Briefing
               </span>
-              <span className="text-xs text-slate-400 font-medium">Updated live as students scan & rate</span>
+              <span className="text-xs text-slate-400 font-medium flex items-center gap-1">
+                <Clock className="w-3 h-3 text-slate-500" />
+                <span>Updated live as students scan & rate</span>
+              </span>
             </div>
             <h1 className="text-2xl font-bold text-white mt-1 font-heading">
               Mess Manager & Provider Command Center
@@ -173,46 +180,52 @@ export default function ManagerDashboard() {
             </p>
           </div>
 
-          <div className="flex flex-wrap items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2.5">
             <button
               onClick={() => setIsDigestModalOpen(true)}
-              className="btn-secondary text-xs py-2 px-3.5 rounded-xl flex items-center gap-1.5 shadow-sm hover:border-emerald-500/40"
+              className="btn-secondary text-xs py-2 px-3.5 rounded-xl flex items-center gap-2 shadow-sm hover:border-emerald-500/40"
             >
-              <Mail className="w-3.5 h-3.5 text-emerald-400" />
+              <div className="p-1 rounded-lg bg-emerald-500/20 text-emerald-400">
+                <Mail className="w-3.5 h-3.5" />
+              </div>
               <span>Daily Digest Preview</span>
             </button>
             <button
               onClick={() => setIsContextNoteModalOpen(true)}
-              className="btn-secondary text-xs py-2 px-3.5 rounded-xl flex items-center gap-1.5 shadow-sm hover:border-amber-500/40"
+              className="btn-secondary text-xs py-2 px-3.5 rounded-xl flex items-center gap-2 shadow-sm hover:border-amber-500/40"
             >
-              <FileText className="w-3.5 h-3.5 text-amber-400" />
+              <div className="p-1 rounded-lg bg-amber-500/20 text-amber-400">
+                <FileText className="w-3.5 h-3.5" />
+              </div>
               <span>Add Meal Context Note</span>
             </button>
             <button
               onClick={() => setIsDisputeModalOpen(true)}
-              className="btn-secondary text-xs py-2 px-3.5 rounded-xl flex items-center gap-1.5 text-rose-300 hover:bg-rose-950/40 border-rose-500/30 shadow-sm"
+              className="btn-secondary text-xs py-2 px-3.5 rounded-xl flex items-center gap-2 text-rose-300 hover:bg-rose-950/40 border-rose-500/30 shadow-sm"
             >
-              <AlertTriangle className="w-3.5 h-3.5 text-rose-400" />
+              <div className="p-1 rounded-lg bg-rose-500/20 text-rose-400">
+                <AlertTriangle className="w-3.5 h-3.5" />
+              </div>
               <span>Dispute Meal Ratings</span>
             </button>
           </div>
         </div>
 
-        {/* 4 Core KPIs Cards with Distinct Colorful Glowing Accents */}
+        {/* 4 Core KPIs Cards with Distinct Colorful Glowing Accents & Icon Containers */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 relative z-10">
           {/* Average Rating - Amber / Gold Glow */}
           <div className="bg-gradient-to-br from-amber-950/40 via-[#162035] to-[#0E1524] p-4.5 rounded-2xl border border-amber-500/30 shadow-lg">
             <div className="flex items-center justify-between text-xs text-amber-300 font-bold">
               <span>Overall Mess Rating</span>
-              <div className="p-1.5 bg-gradient-to-tr from-amber-500 to-orange-500 text-slate-950 font-bold rounded-lg shadow-md shadow-amber-500/20">
-                <Star className="w-4 h-4 fill-slate-950 text-slate-950" />
+              <div className="p-2 bg-gradient-to-tr from-amber-500 to-orange-500 text-slate-950 font-bold rounded-xl shadow-md shadow-amber-500/20">
+                <Star className="w-4 h-4 fill-slate-950 text-slate-950 stroke-[2.5]" />
               </div>
             </div>
             <div className="flex items-baseline gap-2 mt-2">
               <span className="text-3xl font-extrabold text-white font-heading">{avgRating}</span>
               <span className="text-xs text-slate-400 font-medium">/ 5.0</span>
-              <span className="text-xs font-bold text-emerald-300 bg-emerald-950/80 px-2 py-0.5 rounded-full ml-auto border border-emerald-500/30">
-                +0.3 vs last wk
+              <span className="text-xs font-bold text-emerald-300 bg-emerald-950/80 px-2 py-0.5 rounded-full ml-auto border border-emerald-500/30 flex items-center gap-1">
+                <TrendingUp className="w-3 h-3 text-emerald-400" /> +0.3
               </span>
             </div>
             <p className="text-[11px] text-slate-400 mt-1">Based on {totalReviews} total verified diner ratings</p>
@@ -222,8 +235,8 @@ export default function ManagerDashboard() {
           <div className="bg-gradient-to-br from-cyan-950/40 via-[#162035] to-[#0E1524] p-4.5 rounded-2xl border border-cyan-500/30 shadow-lg">
             <div className="flex items-center justify-between text-xs text-cyan-300 font-bold">
               <span>Today's Response Rate</span>
-              <div className="p-1.5 bg-gradient-to-tr from-cyan-500 to-teal-500 text-slate-950 rounded-lg shadow-md shadow-cyan-500/20">
-                <Users className="w-4 h-4" />
+              <div className="p-2 bg-gradient-to-tr from-cyan-500 to-teal-500 text-slate-950 rounded-xl shadow-md shadow-cyan-500/20">
+                <Users className="w-4 h-4 stroke-[2.5]" />
               </div>
             </div>
             <div className="flex items-baseline gap-2 mt-2">
@@ -240,7 +253,10 @@ export default function ManagerDashboard() {
           <div className="bg-gradient-to-br from-emerald-950/40 via-[#162035] to-[#0E1524] p-4.5 rounded-2xl border border-emerald-500/30 shadow-lg">
             <div className="flex items-center justify-between text-xs text-emerald-300 font-bold">
               <span>Live Meal Status</span>
-              <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
+              <div className="p-2 bg-gradient-to-tr from-emerald-500 to-teal-500 text-slate-950 rounded-xl shadow-md shadow-emerald-500/20 relative">
+                <Flame className="w-4 h-4 stroke-[2.5]" />
+                <span className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+              </div>
             </div>
             <div className="flex items-baseline gap-2 mt-2">
               <span className="text-2xl font-extrabold text-emerald-300 font-heading">{activeSession.mealName}</span>
@@ -257,8 +273,8 @@ export default function ManagerDashboard() {
           <div className="bg-gradient-to-br from-purple-950/40 via-[#162035] to-[#0E1524] p-4.5 rounded-2xl border border-purple-500/30 shadow-lg">
             <div className="flex items-center justify-between text-xs text-purple-300 font-bold">
               <span>Issues Resolved</span>
-              <div className="p-1.5 bg-gradient-to-tr from-purple-500 to-indigo-500 text-white rounded-lg shadow-md shadow-purple-500/20">
-                <CheckCircle2 className="w-4 h-4" />
+              <div className="p-2 bg-gradient-to-tr from-purple-500 to-indigo-500 text-white rounded-xl shadow-md shadow-purple-500/20">
+                <CheckCircle2 className="w-4 h-4 stroke-[2.5]" />
               </div>
             </div>
             <div className="flex items-baseline gap-2 mt-2">
@@ -275,65 +291,75 @@ export default function ManagerDashboard() {
         </div>
       </div>
 
-      {/* Navigation Sub-Tabs with Signature Colorful Gradients */}
+      {/* Navigation Sub-Tabs with Signature Colorful Gradients & Badges */}
       <div className="flex items-center gap-2 border-b border-[#233252] pb-3 overflow-x-auto scrollbar-none">
         <button
           onClick={() => setActiveTab('overview')}
-          className={`px-4 py-2.5 rounded-xl text-xs font-bold transition flex items-center gap-2 shadow-sm ${
+          className={`px-4 py-2.5 rounded-xl text-xs font-bold transition flex items-center gap-2.5 shadow-sm ${
             activeTab === 'overview'
               ? 'bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-lg shadow-emerald-900/30 border border-emerald-400/40'
               : 'text-slate-300 bg-[#131B2E] hover:bg-[#1C2640] border border-[#233252]'
           }`}
         >
-          <Sparkles className="w-4 h-4 text-emerald-400" />
+          <div className={`p-1 rounded-lg ${activeTab === 'overview' ? 'bg-white/20 text-white' : 'bg-emerald-950/60 text-emerald-400'}`}>
+            <Sparkles className="w-3.5 h-3.5" />
+          </div>
           <span>AI Daily Summary & Themes</span>
         </button>
 
         <button
           onClick={() => setActiveTab('comments')}
-          className={`px-4 py-2.5 rounded-xl text-xs font-bold transition flex items-center gap-2 shadow-sm ${
+          className={`px-4 py-2.5 rounded-xl text-xs font-bold transition flex items-center gap-2.5 shadow-sm ${
             activeTab === 'comments'
               ? 'bg-gradient-to-r from-amber-600 to-orange-600 text-white shadow-lg shadow-amber-900/30 border border-amber-400/40'
               : 'text-slate-300 bg-[#131B2E] hover:bg-[#1C2640] border border-[#233252]'
           }`}
         >
-          <MessageSquare className="w-4 h-4 text-amber-400" />
+          <div className={`p-1 rounded-lg ${activeTab === 'comments' ? 'bg-white/20 text-white' : 'bg-amber-950/60 text-amber-400'}`}>
+            <MessageSquare className="w-3.5 h-3.5" />
+          </div>
           <span>Multilingual Comments ({feedbacks.length})</span>
         </button>
 
         <button
           onClick={() => setActiveTab('menu')}
-          className={`px-4 py-2.5 rounded-xl text-xs font-bold transition flex items-center gap-2 shadow-sm ${
+          className={`px-4 py-2.5 rounded-xl text-xs font-bold transition flex items-center gap-2.5 shadow-sm ${
             activeTab === 'menu'
               ? 'bg-gradient-to-r from-teal-600 to-cyan-700 text-white shadow-lg shadow-teal-900/30 border border-teal-400/40'
               : 'text-slate-300 bg-[#131B2E] hover:bg-[#1C2640] border border-[#233252]'
           }`}
         >
-          <Calendar className="w-4 h-4 text-cyan-400" />
+          <div className={`p-1 rounded-lg ${activeTab === 'menu' ? 'bg-white/20 text-white' : 'bg-teal-950/60 text-teal-400'}`}>
+            <Calendar className="w-3.5 h-3.5" />
+          </div>
           <span>Weekly Menu & Timings</span>
         </button>
 
         <button
           onClick={() => setActiveTab('actions')}
-          className={`px-4 py-2.5 rounded-xl text-xs font-bold transition flex items-center gap-2 shadow-sm ${
+          className={`px-4 py-2.5 rounded-xl text-xs font-bold transition flex items-center gap-2.5 shadow-sm ${
             activeTab === 'actions'
               ? 'bg-gradient-to-r from-rose-600 to-pink-600 text-white shadow-lg shadow-rose-900/30 border border-rose-400/40'
               : 'text-slate-300 bg-[#131B2E] hover:bg-[#1C2640] border border-[#233252]'
           }`}
         >
-          <TrendingUp className="w-4 h-4 text-rose-400" />
+          <div className={`p-1 rounded-lg ${activeTab === 'actions' ? 'bg-white/20 text-white' : 'bg-rose-950/60 text-rose-400'}`}>
+            <TrendingUp className="w-3.5 h-3.5" />
+          </div>
           <span>Action Tracker ({issues.length})</span>
         </button>
 
         <button
           onClick={() => setActiveTab('polls')}
-          className={`px-4 py-2.5 rounded-xl text-xs font-bold transition flex items-center gap-2 shadow-sm ${
+          className={`px-4 py-2.5 rounded-xl text-xs font-bold transition flex items-center gap-2.5 shadow-sm ${
             activeTab === 'polls'
               ? 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-lg shadow-purple-900/30 border border-purple-400/40'
               : 'text-slate-300 bg-[#131B2E] hover:bg-[#1C2640] border border-[#233252]'
           }`}
         >
-          <Vote className="w-4 h-4 text-purple-400" />
+          <div className={`p-1 rounded-lg ${activeTab === 'polls' ? 'bg-white/20 text-white' : 'bg-purple-950/60 text-purple-400'}`}>
+            <Vote className="w-3.5 h-3.5" />
+          </div>
           <span>Menu Polls & Preference</span>
         </button>
       </div>
@@ -353,8 +379,8 @@ export default function ManagerDashboard() {
                   <span className="text-xs text-slate-400">Processed from Reason Chips & Multilingual Free-Text</span>
                 </div>
               </div>
-              <span className="badge-status badge-green text-xs">
-                Language Auto-Detected: English, Hindi & Hinglish
+              <span className="badge-status badge-green text-xs flex items-center gap-1">
+                <CheckCircle2 className="w-3 h-3" /> Language Auto-Detected: English, Hindi & Hinglish
               </span>
             </div>
 
@@ -365,16 +391,21 @@ export default function ManagerDashboard() {
             {/* Top Positives vs Negatives Breakdown */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
               {/* Positive Themes */}
-              <div className="bg-emerald-950/30 p-4 rounded-2xl border border-emerald-500/30 shadow-lg">
+              <div className="bg-emerald-950/30 p-4.5 rounded-2xl border border-emerald-500/30 shadow-lg">
                 <div className="flex items-center gap-2 text-xs font-bold text-emerald-300 mb-3">
-                  <Award className="w-4 h-4 text-emerald-400" />
+                  <div className="p-1 rounded-lg bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+                    <Award className="w-4 h-4" />
+                  </div>
                   <span>WHAT DINERS LIKED (Top Positive Themes)</span>
                 </div>
                 <div className="space-y-2.5">
                   {aiSummary.keyPositives.map((pos, idx) => (
                     <div key={idx} className="bg-[#0E1524] p-3 rounded-xl border border-emerald-500/20 text-xs">
                       <div className="flex justify-between font-bold text-white mb-1">
-                        <span>{pos.theme}</span>
+                        <span className="flex items-center gap-1.5">
+                          <ThumbsUp className="w-3 h-3 text-emerald-400" />
+                          <span>{pos.theme}</span>
+                        </span>
                         <span className="text-emerald-400">{pos.mentionCount} mentions ({pos.percentage}%)</span>
                       </div>
                       <p className="text-slate-300 text-[11px]">{pos.text}</p>
@@ -384,16 +415,21 @@ export default function ManagerDashboard() {
               </div>
 
               {/* Needs Attention / Bottlenecks */}
-              <div className="bg-rose-950/30 p-4 rounded-2xl border border-rose-500/30 shadow-lg">
+              <div className="bg-rose-950/30 p-4.5 rounded-2xl border border-rose-500/30 shadow-lg">
                 <div className="flex items-center gap-2 text-xs font-bold text-rose-300 mb-3">
-                  <AlertTriangle className="w-4 h-4 text-rose-400" />
+                  <div className="p-1 rounded-lg bg-rose-500/20 text-rose-400 border border-rose-500/30">
+                    <AlertTriangle className="w-4 h-4" />
+                  </div>
                   <span>AREAS FOR IMPROVEMENT (Needs Attention)</span>
                 </div>
                 <div className="space-y-2.5">
                   {aiSummary.keyNegatives.map((neg, idx) => (
                     <div key={idx} className="bg-[#0E1524] p-3 rounded-xl border border-rose-500/20 text-xs">
                       <div className="flex justify-between font-bold text-white mb-1">
-                        <span>{neg.theme}</span>
+                        <span className="flex items-center gap-1.5">
+                          <ThumbsDown className="w-3 h-3 text-rose-400" />
+                          <span>{neg.theme}</span>
+                        </span>
                         <span className="text-rose-400">{neg.mentionCount} mentions ({neg.percentage}%)</span>
                       </div>
                       <p className="text-slate-300 text-[11px]">{neg.text}</p>
@@ -407,7 +443,9 @@ export default function ManagerDashboard() {
           {/* Needs Attention Actionable Cards */}
           <div className="card-clean p-5 sm:p-6 border-[#233252] bg-[#131B2E]">
             <h3 className="text-sm font-bold text-white mb-3.5 flex items-center gap-2 font-heading">
-              <AlertTriangle className="w-4 h-4 text-amber-400" />
+              <div className="p-1 rounded-lg bg-amber-500/20 text-amber-400 border border-amber-500/30">
+                <AlertTriangle className="w-4 h-4" />
+              </div>
               <span>Recommended Operational Adjustments for Tonight / Tomorrow</span>
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -430,8 +468,9 @@ export default function ManagerDashboard() {
                   </div>
                   <h4 className="text-xs font-bold text-white mb-1">{alert.title}</h4>
                   <p className="text-xs text-slate-300 mb-2.5">{alert.summary}</p>
-                  <div className="bg-[#162035] p-2.5 rounded-xl border border-[#28375A] text-xs text-emerald-300 font-medium">
-                    💡 <strong>Suggested Action:</strong> {alert.suggestedAction}
+                  <div className="bg-[#162035] p-2.5 rounded-xl border border-[#28375A] text-xs text-emerald-300 font-medium flex items-start gap-1.5">
+                    <Zap className="w-3.5 h-3.5 text-amber-400 flex-shrink-0 mt-0.5" />
+                    <span><strong>Suggested Action:</strong> {alert.suggestedAction}</span>
                   </div>
                 </div>
               ))}
@@ -447,7 +486,9 @@ export default function ManagerDashboard() {
             <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[#233252] pb-3 mb-4">
               <div>
                 <h3 className="text-base font-bold text-white flex items-center gap-2 font-heading">
-                  <MessageSquare className="w-4 h-4 text-amber-400" />
+                  <div className="p-1 rounded-lg bg-amber-500/20 text-amber-400 border border-amber-500/30">
+                    <MessageSquare className="w-4 h-4" />
+                  </div>
                   <span>Student Feedback Stream</span>
                 </h3>
                 <p className="text-xs text-slate-400">
@@ -507,7 +548,7 @@ export default function ManagerDashboard() {
                       </span>
                       <button
                         onClick={() => showNotification(`Feedback ${fb.id} flagged for Platform Admin review.`, 'info')}
-                        className="text-xs text-slate-400 hover:text-rose-400 flex items-center gap-1"
+                        className="text-xs text-slate-400 hover:text-rose-400 flex items-center gap-1 p-1 rounded-lg hover:bg-rose-950/40"
                         title="Flag abusive feedback"
                       >
                         <Flag className="w-3.5 h-3.5" />
@@ -555,7 +596,9 @@ export default function ManagerDashboard() {
             <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[#233252] pb-3 mb-4">
               <div>
                 <h3 className="text-base font-bold text-white flex items-center gap-2 font-heading">
-                  <Calendar className="w-4 h-4 text-teal-400" />
+                  <div className="p-1 rounded-lg bg-teal-500/20 text-teal-400 border border-teal-500/30">
+                    <Calendar className="w-4 h-4" />
+                  </div>
                   <span>{weeklyMenu.weekTitle} Management</span>
                 </h3>
                 <p className="text-xs text-slate-400">
@@ -566,14 +609,14 @@ export default function ManagerDashboard() {
               <div className="flex items-center gap-2">
                 <button
                   onClick={copyLastWeekMenu}
-                  className="btn-secondary text-xs py-2 px-3.5 flex items-center gap-1.5"
+                  className="btn-secondary text-xs py-2 px-3.5 flex items-center gap-2"
                 >
                   <Copy className="w-3.5 h-3.5 text-slate-300" />
                   <span>Copy Last Week</span>
                 </button>
                 <button
                   onClick={() => showNotification('Menu published to student dashboards!', 'success')}
-                  className="btn-primary text-xs py-2 px-4 flex items-center gap-1.5"
+                  className="btn-primary text-xs py-2 px-4 flex items-center gap-2"
                 >
                   <Check className="w-3.5 h-3.5" />
                   <span>Publish Menu</span>
@@ -591,45 +634,56 @@ export default function ManagerDashboard() {
                       {d.isToday && <span className="badge-status badge-amber text-[10px]">Today</span>}
                       {d.isSpecial && <span className="badge-status badge-green text-[10px]">Special Feast</span>}
                     </h4>
-                    <span className="text-xs text-slate-400">3 Meals Scheduled</span>
+                    <span className="text-xs text-slate-400 flex items-center gap-1">
+                      <Clock className="w-3 h-3" /> 3 Meals Scheduled
+                    </span>
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                     {/* Breakfast */}
                     <div className="bg-[#162035] p-3.5 rounded-xl border border-[#28375A]">
-                      <div className="text-xs font-bold text-amber-300 mb-2 flex justify-between">
+                      <div className="text-xs font-bold text-amber-300 mb-2 flex justify-between items-center">
                         <span>☕ Breakfast</span>
-                        <span className="text-slate-400 font-normal">07:30 - 09:30</span>
+                        <span className="text-slate-400 font-normal text-[11px]">07:30 - 09:30</span>
                       </div>
                       <div className="text-xs text-slate-300 space-y-1">
                         {d.meals.breakfast.map((dish, i) => (
-                          <div key={i}>• {dish}</div>
+                          <div key={i} className="flex items-center gap-1.5">
+                            <span className="text-amber-400 font-bold">›</span>
+                            <span>{dish}</span>
+                          </div>
                         ))}
                       </div>
                     </div>
 
                     {/* Lunch */}
                     <div className="bg-[#162035] p-3.5 rounded-xl border border-emerald-500/30">
-                      <div className="text-xs font-bold text-emerald-300 mb-2 flex justify-between">
+                      <div className="text-xs font-bold text-emerald-300 mb-2 flex justify-between items-center">
                         <span>🍛 Lunch</span>
-                        <span className="text-slate-400 font-normal">12:30 - 14:30</span>
+                        <span className="text-slate-400 font-normal text-[11px]">12:30 - 14:30</span>
                       </div>
                       <div className="text-xs text-slate-200 space-y-1 font-medium">
                         {d.meals.lunch.map((dish, i) => (
-                          <div key={i}>• {dish}</div>
+                          <div key={i} className="flex items-center gap-1.5">
+                            <span className="text-emerald-400 font-bold">›</span>
+                            <span>{dish}</span>
+                          </div>
                         ))}
                       </div>
                     </div>
 
                     {/* Dinner */}
                     <div className="bg-[#162035] p-3.5 rounded-xl border border-indigo-500/30">
-                      <div className="text-xs font-bold text-indigo-300 mb-2 flex justify-between">
+                      <div className="text-xs font-bold text-indigo-300 mb-2 flex justify-between items-center">
                         <span>🌙 Dinner</span>
-                        <span className="text-slate-400 font-normal">19:30 - 21:30</span>
+                        <span className="text-slate-400 font-normal text-[11px]">19:30 - 21:30</span>
                       </div>
                       <div className="text-xs text-slate-300 space-y-1">
                         {d.meals.dinner.map((dish, i) => (
-                          <div key={i}>• {dish}</div>
+                          <div key={i} className="flex items-center gap-1.5">
+                            <span className="text-indigo-400 font-bold">›</span>
+                            <span>{dish}</span>
+                          </div>
                         ))}
                       </div>
                     </div>
@@ -648,7 +702,9 @@ export default function ManagerDashboard() {
             <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[#233252] pb-3 mb-4">
               <div>
                 <h3 className="text-base font-bold text-white flex items-center gap-2 font-heading">
-                  <TrendingUp className="w-4 h-4 text-rose-400" />
+                  <div className="p-1 rounded-lg bg-rose-500/20 text-rose-400 border border-rose-500/30">
+                    <TrendingUp className="w-4 h-4" />
+                  </div>
                   <span>Corrective Action Pipeline</span>
                 </h3>
                 <p className="text-xs text-slate-400">
@@ -669,7 +725,9 @@ export default function ManagerDashboard() {
                       </span>
                       <span className="text-xs font-bold text-white">{issue.id}: {issue.title}</span>
                     </div>
-                    <span className="text-xs text-slate-400">Detected: {issue.detectedDate}</span>
+                    <span className="text-xs text-slate-400 font-medium flex items-center gap-1">
+                      <Clock className="w-3 h-3" /> Detected: {issue.detectedDate}
+                    </span>
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-3 bg-[#162035] p-3 rounded-xl border border-[#28375A] text-xs">
@@ -686,7 +744,7 @@ export default function ManagerDashboard() {
                   <div className="flex items-center justify-between mt-3 pt-2.5 border-t border-[#233252]">
                     <div className="text-xs text-slate-400">
                       {issue.publishedToFeed ? (
-                        <span className="text-emerald-400 font-bold flex items-center gap-1">
+                        <span className="text-emerald-400 font-bold flex items-center gap-1.5">
                           <CheckCircle2 className="w-3.5 h-3.5" /> Published to "You Said → We Did" Feed
                         </span>
                       ) : (
@@ -702,7 +760,7 @@ export default function ManagerDashboard() {
                       }}
                       className="btn-secondary text-xs py-1.5 px-3 flex items-center gap-1.5"
                     >
-                      <Edit className="w-3 h-3 text-emerald-400" />
+                      <Edit className="w-3.5 h-3.5 text-emerald-400" />
                       <span>Update Action</span>
                     </button>
                   </div>
@@ -720,7 +778,9 @@ export default function ManagerDashboard() {
             <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[#233252] pb-3 mb-4">
               <div>
                 <h3 className="text-base font-bold text-white flex items-center gap-2 font-heading">
-                  <Vote className="w-4 h-4 text-purple-400" />
+                  <div className="p-1 rounded-lg bg-purple-500/20 text-purple-400 border border-purple-500/30">
+                    <Vote className="w-4 h-4" />
+                  </div>
                   <span>Student Menu Preference Polls (Phase 5)</span>
                 </h3>
                 <p className="text-xs text-slate-400">
@@ -730,7 +790,7 @@ export default function ManagerDashboard() {
 
               <button
                 onClick={() => setIsCreatePollOpen(true)}
-                className="btn-primary text-xs py-2 px-3.5 flex items-center gap-1.5"
+                className="btn-primary text-xs py-2 px-3.5 flex items-center gap-2"
               >
                 <Plus className="w-3.5 h-3.5" />
                 <span>Create New Poll</span>
@@ -742,7 +802,9 @@ export default function ManagerDashboard() {
               {polls.map((poll) => (
                 <div key={poll.id} className="p-4.5 rounded-2xl border border-[#233252] bg-[#0E1524]">
                   <div className="flex justify-between items-center mb-2">
-                    <span className="badge-status badge-purple text-xs">Active Student Poll</span>
+                    <span className="badge-status badge-purple text-xs flex items-center gap-1">
+                      <Vote className="w-3 h-3" /> Active Student Poll
+                    </span>
                     <span className="text-xs font-bold text-purple-300">{poll.totalVotes} Total Votes Cast</span>
                   </div>
                   <h4 className="text-base font-bold text-white mb-1 font-heading">{poll.title}</h4>
@@ -762,8 +824,9 @@ export default function ManagerDashboard() {
                     ))}
                   </div>
 
-                  <p className="text-[11px] text-slate-400 mt-3 italic">
-                    Note: {poll.managerNote}
+                  <p className="text-[11px] text-slate-400 mt-3 italic flex items-center gap-1">
+                    <Info className="w-3 h-3 text-slate-500" />
+                    <span>Note: {poll.managerNote}</span>
                   </p>
                 </div>
               ))}
@@ -776,8 +839,9 @@ export default function ManagerDashboard() {
       {selectedIssueForAction && (
         <div className="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-md flex items-center justify-center p-4 animate-fadeIn">
           <div className="bg-[#131B2E] rounded-2xl max-w-lg w-full p-6 shadow-2xl border border-[#233252]">
-            <h3 className="text-lg font-bold text-white mb-1 font-heading">
-              Record Action for Issue {selectedIssueForAction.id}
+            <h3 className="text-lg font-bold text-white mb-1 font-heading flex items-center gap-2">
+              <Edit className="w-4 h-4 text-emerald-400" />
+              <span>Record Action for Issue {selectedIssueForAction.id}</span>
             </h3>
             <p className="text-xs text-slate-400 mb-4">{selectedIssueForAction.title}</p>
 
@@ -847,8 +911,9 @@ export default function ManagerDashboard() {
       {isContextNoteModalOpen && (
         <div className="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-md flex items-center justify-center p-4 animate-fadeIn">
           <div className="bg-[#131B2E] rounded-2xl max-w-md w-full p-6 shadow-2xl border border-[#233252]">
-            <h3 className="text-lg font-bold text-white mb-1 font-heading">
-              Add Context Note to Today's {activeSession.mealName}
+            <h3 className="text-lg font-bold text-white mb-1 font-heading flex items-center gap-2">
+              <FileText className="w-4 h-4 text-amber-400" />
+              <span>Add Context Note to Today's {activeSession.mealName}</span>
             </h3>
             <p className="text-xs text-slate-400 mb-4">
               Official operational notes appear alongside ratings for Warden and Manager review (e.g. gas supply delay).
@@ -891,7 +956,10 @@ export default function ManagerDashboard() {
       {isCreatePollOpen && (
         <div className="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-md flex items-center justify-center p-4 animate-fadeIn">
           <div className="bg-[#131B2E] rounded-2xl max-w-lg w-full p-6 shadow-2xl border border-[#233252]">
-            <h3 className="text-lg font-bold text-white mb-1 font-heading">Create Upcoming Meal Poll</h3>
+            <h3 className="text-lg font-bold text-white mb-1 font-heading flex items-center gap-2">
+              <Vote className="w-4 h-4 text-purple-400" />
+              <span>Create Upcoming Meal Poll</span>
+            </h3>
             <p className="text-xs text-slate-400 mb-4">
               Set provider-approved meal options for students to vote on.
             </p>
@@ -995,16 +1063,30 @@ export default function ManagerDashboard() {
                 <Mail className="w-4 h-4 text-emerald-400" />
                 <span>Daily Digest Simulation (FR-27)</span>
               </h3>
-              <span className="badge-status badge-green text-[10px]">Email / WhatsApp Channel</span>
+              <span className="badge-status badge-green text-[10px] flex items-center gap-1">
+                <CheckCircle2 className="w-3 h-3" /> Email / WhatsApp Channel
+              </span>
             </div>
 
             <div className="bg-[#0E1524] p-4 rounded-xl border border-[#233252] text-xs space-y-2">
               <p className="font-bold text-white">Subject: Apni Rasoi Daily Digest — 30 Sep 2026</p>
-              <div className="border-t border-[#233252] pt-2 space-y-1 text-slate-300">
-                <p>📊 <strong>Total Ratings:</strong> 78 Diners (26% response rate)</p>
-                <p>⭐ <strong>Average Rating:</strong> 3.8 / 5.0</p>
-                <p>✨ <strong>Top Positive:</strong> Taste & Food Quality (61%)</p>
-                <p>⚠️ <strong>Top Negative:</strong> Roti Temperature at Peak (24%)</p>
+              <div className="border-t border-[#233252] pt-2 space-y-1.5 text-slate-300">
+                <p className="flex items-center gap-1.5">
+                  <Users className="w-3.5 h-3.5 text-cyan-400" />
+                  <span><strong>Total Ratings:</strong> 78 Diners (26% response rate)</span>
+                </p>
+                <p className="flex items-center gap-1.5">
+                  <Star className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />
+                  <span><strong>Average Rating:</strong> 3.8 / 5.0</span>
+                </p>
+                <p className="flex items-center gap-1.5">
+                  <Award className="w-3.5 h-3.5 text-emerald-400" />
+                  <span><strong>Top Positive:</strong> Taste & Food Quality (61%)</span>
+                </p>
+                <p className="flex items-center gap-1.5">
+                  <AlertTriangle className="w-3.5 h-3.5 text-rose-400" />
+                  <span><strong>Top Negative:</strong> Roti Temperature at Peak (24%)</span>
+                </p>
                 <p className="pt-2 italic text-slate-400">"Gulab Jamun was highly appreciated. Water glass dispenser checked."</p>
               </div>
             </div>

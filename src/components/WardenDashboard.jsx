@@ -18,7 +18,9 @@ import {
   Activity,
   Award,
   Zap,
-  X
+  X,
+  Flame,
+  Check
 } from 'lucide-react';
 
 export default function WardenDashboard() {
@@ -83,11 +85,11 @@ export default function WardenDashboard() {
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <span className="badge-status badge-purple text-xs font-bold">
+                <span className="badge-status badge-purple text-xs font-bold flex items-center gap-1">
                   <Eye className="w-3.5 h-3.5" /> Read-Only Oversight Role
                 </span>
-                <span className="text-xs text-indigo-300 font-bold bg-[#0E1524] px-2.5 py-0.5 rounded-full border border-indigo-500/30 shadow-sm">
-                  Zero Student Identity Exposure
+                <span className="text-xs text-indigo-300 font-bold bg-[#0E1524] px-2.5 py-0.5 rounded-full border border-indigo-500/30 shadow-sm flex items-center gap-1">
+                  <Lock className="w-3 h-3 text-indigo-400" /> Zero Student Identity Exposure
                 </span>
               </div>
               <h1 className="text-2xl font-bold text-white mt-1 font-heading">
@@ -110,53 +112,61 @@ export default function WardenDashboard() {
         </div>
       </div>
 
-      {/* Oversight Sub-tabs with Signature Colorful Styling */}
+      {/* Oversight Sub-tabs with Signature Colorful Styling & Icon Badges */}
       <div className="flex items-center gap-2 border-b border-[#233252] pb-3 overflow-x-auto scrollbar-none">
         <button
           onClick={() => setActiveTab('overview')}
-          className={`px-4 py-2.5 rounded-xl text-xs font-bold transition flex items-center gap-2 shadow-sm ${
+          className={`px-4 py-2.5 rounded-xl text-xs font-bold transition flex items-center gap-2.5 shadow-sm ${
             activeTab === 'overview'
               ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg shadow-indigo-900/30 border border-indigo-400/40'
               : 'text-slate-300 bg-[#131B2E] hover:bg-[#1C2640] border border-[#233252]'
           }`}
         >
-          <Activity className="w-4 h-4 text-indigo-400" />
+          <div className={`p-1 rounded-lg ${activeTab === 'overview' ? 'bg-white/20 text-white' : 'bg-indigo-950/60 text-indigo-400'}`}>
+            <Activity className="w-3.5 h-3.5" />
+          </div>
           <span>Aggregated KPIs & Trends</span>
         </button>
 
         <button
           onClick={() => setActiveTab('qrlogs')}
-          className={`px-4 py-2.5 rounded-xl text-xs font-bold transition flex items-center gap-2 shadow-sm ${
+          className={`px-4 py-2.5 rounded-xl text-xs font-bold transition flex items-center gap-2.5 shadow-sm ${
             activeTab === 'qrlogs'
               ? 'bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-lg shadow-emerald-900/30 border border-emerald-400/40'
               : 'text-slate-300 bg-[#131B2E] hover:bg-[#1C2640] border border-[#233252]'
           }`}
         >
-          <QrCode className="w-4 h-4 text-emerald-400" />
+          <div className={`p-1 rounded-lg ${activeTab === 'qrlogs' ? 'bg-white/20 text-white' : 'bg-emerald-950/60 text-emerald-400'}`}>
+            <QrCode className="w-3.5 h-3.5" />
+          </div>
           <span>QR Scan Logs & Health</span>
         </button>
 
         <button
           onClick={() => setActiveTab('outcomes')}
-          className={`px-4 py-2.5 rounded-xl text-xs font-bold transition flex items-center gap-2 shadow-sm ${
+          className={`px-4 py-2.5 rounded-xl text-xs font-bold transition flex items-center gap-2.5 shadow-sm ${
             activeTab === 'outcomes'
               ? 'bg-gradient-to-r from-amber-600 to-orange-600 text-white shadow-lg shadow-amber-900/30 border border-amber-400/40'
               : 'text-slate-300 bg-[#131B2E] hover:bg-[#1C2640] border border-[#233252]'
           }`}
         >
-          <TrendingUp className="w-4 h-4 text-amber-400" />
+          <div className={`p-1 rounded-lg ${activeTab === 'outcomes' ? 'bg-white/20 text-white' : 'bg-amber-950/60 text-amber-400'}`}>
+            <TrendingUp className="w-3.5 h-3.5" />
+          </div>
           <span>Outcome Metrics</span>
         </button>
 
         <button
           onClick={() => setActiveTab('overrides')}
-          className={`px-4 py-2.5 rounded-xl text-xs font-bold transition flex items-center gap-2 shadow-sm ${
+          className={`px-4 py-2.5 rounded-xl text-xs font-bold transition flex items-center gap-2.5 shadow-sm ${
             activeTab === 'overrides'
               ? 'bg-gradient-to-r from-cyan-600 to-blue-600 text-white shadow-lg shadow-cyan-900/30 border border-cyan-400/40'
               : 'text-slate-300 bg-[#131B2E] hover:bg-[#1C2640] border border-[#233252]'
           }`}
         >
-          <History className="w-4 h-4 text-cyan-400" />
+          <div className={`p-1 rounded-lg ${activeTab === 'overrides' ? 'bg-white/20 text-white' : 'bg-cyan-950/60 text-cyan-400'}`}>
+            <History className="w-3.5 h-3.5" />
+          </div>
           <span>Override Audit Log ({overrideLogs.length})</span>
         </button>
       </div>
@@ -164,30 +174,43 @@ export default function WardenDashboard() {
       {/* ================= TAB 1: AGGREGATED KPIS & TRENDS ================= */}
       {activeTab === 'overview' && (
         <div className="space-y-6">
-          {/* Key Metrics Cards */}
+          {/* Key Metrics Cards with Icon Boxes */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <div className="bg-gradient-to-br from-amber-950/40 via-[#162035] to-[#0E1524] p-4.5 rounded-2xl border border-amber-500/30 shadow-lg">
-              <span className="text-xs text-amber-300 font-bold">Aggregated Mess Rating</span>
+              <div className="flex items-center justify-between text-xs text-amber-300 font-bold">
+                <span>Aggregated Mess Rating</span>
+                <div className="p-1.5 rounded-lg bg-amber-500/20 text-amber-400 border border-amber-500/30">
+                  <Star className="w-4 h-4 fill-amber-400" />
+                </div>
+              </div>
               <div className="flex items-baseline gap-2 mt-2">
                 <span className="text-3xl font-extrabold text-white font-heading">{avgRating}</span>
                 <span className="text-xs text-slate-400">/ 5.0</span>
-                <Star className="w-4 h-4 fill-amber-400 text-amber-400 ml-auto drop-shadow-[0_0_8px_rgba(245,158,11,0.5)]" />
               </div>
               <p className="text-[11px] text-slate-400 mt-1">Across all student meal feedback</p>
             </div>
 
             <div className="bg-gradient-to-br from-indigo-950/40 via-[#162035] to-[#0E1524] p-4.5 rounded-2xl border border-indigo-500/30 shadow-lg">
-              <span className="text-xs text-indigo-300 font-bold">Student Response Rate</span>
+              <div className="flex items-center justify-between text-xs text-indigo-300 font-bold">
+                <span>Student Response Rate</span>
+                <div className="p-1.5 rounded-lg bg-indigo-500/20 text-indigo-400 border border-indigo-500/30">
+                  <Users className="w-4 h-4" />
+                </div>
+              </div>
               <div className="flex items-baseline gap-2 mt-2">
                 <span className="text-3xl font-extrabold text-white font-heading">{aiSummary.responseRatePercent}%</span>
                 <span className="text-xs text-slate-400 font-medium">({aiSummary.totalReviews} of 300)</span>
-                <Users className="w-4 h-4 text-indigo-400 ml-auto" />
               </div>
               <p className="text-[11px] text-slate-400 mt-1">Statistically valid student representation</p>
             </div>
 
             <div className="bg-gradient-to-br from-emerald-950/40 via-[#162035] to-[#0E1524] p-4.5 rounded-2xl border border-emerald-500/30 shadow-lg">
-              <span className="text-xs text-emerald-300 font-bold">Active Meal Window</span>
+              <div className="flex items-center justify-between text-xs text-emerald-300 font-bold">
+                <span>Active Meal Window</span>
+                <div className="p-1.5 rounded-lg bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+                  <Flame className="w-4 h-4" />
+                </div>
+              </div>
               <div className="flex items-baseline gap-2 mt-2">
                 <span className="text-2xl font-bold text-emerald-300 font-heading">{activeSession.mealName}</span>
                 <span className="badge-status badge-green text-[10px] ml-auto">
@@ -198,7 +221,12 @@ export default function WardenDashboard() {
             </div>
 
             <div className="bg-gradient-to-br from-purple-950/40 via-[#162035] to-[#0E1524] p-4.5 rounded-2xl border border-purple-500/30 shadow-lg">
-              <span className="text-xs text-purple-300 font-bold">Resolution Speed</span>
+              <div className="flex items-center justify-between text-xs text-purple-300 font-bold">
+                <span>Resolution Speed</span>
+                <div className="p-1.5 rounded-lg bg-purple-500/20 text-purple-400 border border-purple-500/30">
+                  <Clock className="w-4 h-4" />
+                </div>
+              </div>
               <div className="flex items-baseline gap-2 mt-2">
                 <span className="text-3xl font-extrabold text-white font-heading">2.3 Days</span>
                 <span className="text-xs text-purple-300 font-bold ml-auto bg-purple-950/80 px-2 py-0.5 rounded-full border border-purple-500/30">
@@ -212,7 +240,9 @@ export default function WardenDashboard() {
           {/* Meal-Wise Ratings Breakdown */}
           <div className="card-clean p-5 sm:p-6 border-[#233252] bg-[#131B2E] shadow-2xl">
             <h3 className="text-base font-bold text-white mb-4 flex items-center gap-2 font-heading">
-              <Calendar className="w-4 h-4 text-emerald-400" />
+              <div className="p-1 rounded-lg bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+                <Calendar className="w-4 h-4" />
+              </div>
               <span>Meal Session Ratings & Provider Context Notes</span>
             </h3>
 
@@ -246,7 +276,7 @@ export default function WardenDashboard() {
 
                   {sess.contextNote && (
                     <div className="mt-3 p-3 bg-amber-950/40 rounded-xl border border-amber-500/30 text-xs text-amber-200 flex items-center gap-2 font-medium">
-                      <span className="text-amber-400">📝</span>
+                      <FileText className="w-4 h-4 text-amber-400 flex-shrink-0" />
                       <div>
                         <strong>Provider Operational Note:</strong> {sess.contextNote}
                       </div>
@@ -266,10 +296,14 @@ export default function WardenDashboard() {
             <div className="border-b border-[#233252] pb-3 mb-4">
               <div className="flex items-center justify-between">
                 <h3 className="text-base font-bold text-white flex items-center gap-2 font-heading">
-                  <QrCode className="w-4 h-4 text-emerald-400" />
+                  <div className="p-1 rounded-lg bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+                    <QrCode className="w-4 h-4" />
+                  </div>
                   <span>Mess Counter QR Scan Verification & Health (FR-29)</span>
                 </h3>
-                <span className="badge-status badge-green text-xs">Counter QR Display Active</span>
+                <span className="badge-status badge-green text-xs flex items-center gap-1">
+                  <CheckCircle2 className="w-3 h-3" /> Counter QR Display Active
+                </span>
               </div>
               <p className="text-xs text-slate-400 mt-1">
                 Monitors first scan times to ensure the mess counter displays the QR on time without suppressing feedback.
@@ -316,7 +350,9 @@ export default function WardenDashboard() {
           <div className="card-clean p-5 sm:p-6 border-[#233252] bg-[#131B2E]">
             <div className="border-b border-[#233252] pb-3 mb-4">
               <h3 className="text-base font-bold text-white flex items-center gap-2 font-heading">
-                <TrendingUp className="w-4 h-4 text-emerald-400" />
+                <div className="p-1 rounded-lg bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+                  <TrendingUp className="w-4 h-4" />
+                </div>
                 <span>Outcome Metrics & Accountability (PRD FR-31)</span>
               </h3>
               <p className="text-xs text-slate-400 mt-1">
@@ -325,25 +361,28 @@ export default function WardenDashboard() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-              <div className="bg-[#0E1524] p-4 rounded-xl border border-emerald-500/30">
-                <span className="text-xs text-slate-400 font-bold uppercase tracking-wider">
-                  Rating Change After Action
+              <div className="bg-[#0E1524] p-4.5 rounded-xl border border-emerald-500/30">
+                <span className="text-xs text-slate-400 font-bold uppercase tracking-wider flex items-center gap-1.5">
+                  <Star className="w-3.5 h-3.5 text-emerald-400 fill-emerald-400" />
+                  <span>Rating Change After Action</span>
                 </span>
                 <div className="text-2xl font-extrabold text-emerald-400 mt-2">+1.5 Stars</div>
                 <p className="text-[11px] text-slate-400 mt-1">Average theme improvement post-resolution</p>
               </div>
 
-              <div className="bg-[#0E1524] p-4 rounded-xl border border-indigo-500/30">
-                <span className="text-xs text-slate-400 font-bold uppercase tracking-wider">
-                  Median Issue Resolution Time
+              <div className="bg-[#0E1524] p-4.5 rounded-xl border border-indigo-500/30">
+                <span className="text-xs text-slate-400 font-bold uppercase tracking-wider flex items-center gap-1.5">
+                  <Clock className="w-3.5 h-3.5 text-indigo-400" />
+                  <span>Median Issue Resolution Time</span>
                 </span>
                 <div className="text-2xl font-extrabold text-white mt-2">2.3 Days</div>
                 <p className="text-[11px] text-slate-400 mt-1">PRD Pilot target: &lt; 3.0 days</p>
               </div>
 
-              <div className="bg-[#0E1524] p-4 rounded-xl border border-amber-500/30">
-                <span className="text-xs text-slate-400 font-bold uppercase tracking-wider">
-                  Repeat-Issue Rate
+              <div className="bg-[#0E1524] p-4.5 rounded-xl border border-amber-500/30">
+                <span className="text-xs text-slate-400 font-bold uppercase tracking-wider flex items-center gap-1.5">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-amber-400" />
+                  <span>Repeat-Issue Rate</span>
                 </span>
                 <div className="text-2xl font-extrabold text-amber-300 mt-2">4.2%</div>
                 <p className="text-[11px] text-slate-400 mt-1">Share of resolved issues recurring within 4 wks</p>
@@ -351,19 +390,23 @@ export default function WardenDashboard() {
             </div>
 
             {/* Resolved Issue Outcomes List */}
-            <h4 className="text-xs font-bold text-slate-300 uppercase tracking-wider mb-3">
-              Action Verification Records:
+            <h4 className="text-xs font-bold text-slate-300 uppercase tracking-wider mb-3 flex items-center gap-1.5">
+              <Award className="w-3.5 h-3.5 text-emerald-400" />
+              <span>Action Verification Records:</span>
             </h4>
             <div className="space-y-3">
               {issues.filter(i => i.status === 'Resolved').map((issue) => (
                 <div key={issue.id} className="p-4 rounded-xl border border-[#233252] bg-[#0E1524]">
                   <div className="flex justify-between items-center mb-1">
                     <span className="text-xs font-bold text-white">{issue.title}</span>
-                    <span className="badge-status badge-green text-[10px]">Verified Improvement</span>
+                    <span className="badge-status badge-green text-[10px] flex items-center gap-1">
+                      <CheckCircle2 className="w-3 h-3" /> Verified Improvement
+                    </span>
                   </div>
                   <p className="text-xs text-slate-300 mt-1">Action: {issue.actionTaken}</p>
                   {issue.impactMetric && (
                     <div className="mt-2 text-xs font-bold text-emerald-300 bg-emerald-950/70 p-2 rounded-lg border border-emerald-500/40 inline-flex items-center gap-2">
+                      <Star className="w-3 h-3 fill-amber-400 text-amber-400" />
                       <span>Theme Score Before: {issue.impactMetric.beforeRating}★</span>
                       <span>→</span>
                       <span>After: {issue.impactMetric.afterRating}★</span>
@@ -383,7 +426,9 @@ export default function WardenDashboard() {
           <div className="card-clean p-5 sm:p-6 border-[#233252] bg-[#131B2E]">
             <div className="border-b border-[#233252] pb-3 mb-4">
               <h3 className="text-base font-bold text-white flex items-center gap-2 font-heading">
-                <History className="w-4 h-4 text-cyan-400" />
+                <div className="p-1 rounded-lg bg-cyan-500/20 text-cyan-400 border border-cyan-500/30">
+                  <History className="w-4 h-4" />
+                </div>
                 <span>Rating-Window & QR Override Audit Trail (FR-30)</span>
               </h3>
               <p className="text-xs text-slate-400 mt-1">
@@ -396,7 +441,9 @@ export default function WardenDashboard() {
                 <div key={log.id} className="p-4 rounded-xl border border-[#233252] bg-[#0E1524]">
                   <div className="flex justify-between items-center mb-1">
                     <span className="text-xs font-bold text-white">{log.actionType} — {log.mealName}</span>
-                    <span className="text-xs text-cyan-300 font-mono">{log.timestamp}</span>
+                    <span className="text-xs text-cyan-300 font-mono flex items-center gap-1">
+                      <Clock className="w-3 h-3" /> {log.timestamp}
+                    </span>
                   </div>
                   <p className="text-xs text-slate-300 mt-1">
                     <strong className="text-slate-400">Granted By:</strong> {log.grantedBy}
