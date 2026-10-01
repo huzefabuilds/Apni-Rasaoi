@@ -14,7 +14,10 @@ import {
   Lock,
   TrendingUp,
   MessageSquare,
-  AlertCircle
+  AlertCircle,
+  Flame,
+  Coffee,
+  Moon
 } from 'lucide-react';
 
 export default function StudentPortal() {
@@ -136,79 +139,79 @@ export default function StudentPortal() {
     }
   };
 
-  // Star Labels with warm styling
+  // Dynamic Star Labels with Rich Dark Colorful Styling
   const starLabels = {
-    1: { title: 'Needs Improvement', sub: 'सुधार चाहिए', color: 'text-rose-700 bg-rose-50 border-rose-200' },
-    2: { title: 'Below Average', sub: 'औसत से कम', color: 'text-[#C77024] bg-[#FEF8F3] border-[#FBD9C3]' },
-    3: { title: 'Satisfactory', sub: 'ठीक-ठाक', color: 'text-[#B45309] bg-[#FFFBEB] border-[#FDE68A]' },
-    4: { title: 'Tasty & Good', sub: 'स्वादिष्ट', color: 'text-[#41733E] bg-[#F3F8F2] border-[#C7E2C5]' },
-    5: { title: 'Delicious Feast!', sub: 'लाजवाब', color: 'text-[#224021] bg-[#E4F1E3] border-[#A3D0A0]' }
+    1: { title: 'Needs Improvement', sub: 'सुधार चाहिए', color: 'text-rose-300 bg-rose-950/70 border-rose-500/40' },
+    2: { title: 'Below Average', sub: 'औसत से कम', color: 'text-orange-300 bg-orange-950/70 border-orange-500/40' },
+    3: { title: 'Satisfactory', sub: 'ठीक-ठाक', color: 'text-amber-300 bg-amber-950/70 border-amber-500/40' },
+    4: { title: 'Tasty & Good', sub: 'स्वादिष्ट', color: 'text-emerald-300 bg-emerald-950/70 border-emerald-500/40' },
+    5: { title: 'Delicious Feast!', sub: 'लाजवाब', color: 'text-teal-200 bg-teal-950/80 border-teal-400/50' }
   };
 
   const resolvedIssues = issues.filter(i => i.publishedToFeed || i.status === 'Resolved');
 
   return (
     <div className="max-w-3xl mx-auto px-2 sm:px-4 py-2 sm:py-4">
-      {/* Student Navigation Sub-tabs with fresh green active button (#4F8A4C) */}
-      <div className="flex items-center justify-between border-b border-[#E8DECA] pb-2.5 mb-4 overflow-x-auto gap-1.5 scrollbar-none">
+      {/* Student Navigation Sub-tabs with Vibrant Glowing Dark Pills */}
+      <div className="flex items-center justify-between border-b border-[#233252] pb-3 mb-4 overflow-x-auto gap-1.5 scrollbar-none">
         <div className="flex items-center gap-1.5 min-w-max">
           <button
             onClick={() => setActiveTab('rate')}
-            className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold transition shadow-2xs ${
+            className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold transition-all shadow-sm ${
               activeTab === 'rate'
-                ? 'bg-[#4F8A4C] text-white shadow-xs'
-                : 'text-[#5C544B] bg-white hover:bg-[#FAF2DD] border border-[#E8DECA]'
+                ? 'bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-lg shadow-emerald-900/30 border border-emerald-400/30'
+                : 'text-slate-300 bg-[#131B2E] hover:bg-[#1C2640] border border-[#233252]'
             }`}
           >
-            <Utensils className="w-3.5 h-3.5" />
+            <Utensils className="w-3.5 h-3.5 text-emerald-400" />
             <span>Rate Meal</span>
           </button>
 
           <button
             onClick={() => setActiveTab('menu')}
-            className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold transition shadow-2xs ${
+            className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold transition-all shadow-sm ${
               activeTab === 'menu'
-                ? 'bg-[#4F8A4C] text-white shadow-xs'
-                : 'text-[#5C544B] bg-white hover:bg-[#FAF2DD] border border-[#E8DECA]'
+                ? 'bg-gradient-to-r from-amber-600 to-orange-600 text-white shadow-lg shadow-amber-900/30 border border-amber-400/30'
+                : 'text-slate-300 bg-[#131B2E] hover:bg-[#1C2640] border border-[#233252]'
             }`}
           >
-            <Calendar className="w-3.5 h-3.5" />
+            <Calendar className="w-3.5 h-3.5 text-amber-400" />
             <span>Weekly Menu</span>
           </button>
 
           <button
             onClick={() => setActiveTab('vote')}
-            className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold transition shadow-2xs ${
+            className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold transition-all shadow-sm ${
               activeTab === 'vote'
-                ? 'bg-[#4F8A4C] text-white shadow-xs'
-                : 'text-[#5C544B] bg-white hover:bg-[#FAF2DD] border border-[#E8DECA]'
+                ? 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-lg shadow-purple-900/30 border border-purple-400/30'
+                : 'text-slate-300 bg-[#131B2E] hover:bg-[#1C2640] border border-[#233252]'
             }`}
           >
-            <Vote className="w-3.5 h-3.5" />
+            <Vote className="w-3.5 h-3.5 text-purple-400" />
             <span>Menu Poll</span>
           </button>
 
           <button
             onClick={() => setActiveTab('yousaid')}
-            className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold transition shadow-2xs ${
+            className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold transition-all shadow-sm ${
               activeTab === 'yousaid'
-                ? 'bg-[#4F8A4C] text-white shadow-xs'
-                : 'text-[#5C544B] bg-white hover:bg-[#FAF2DD] border border-[#E8DECA]'
+                ? 'bg-gradient-to-r from-cyan-600 to-blue-600 text-white shadow-lg shadow-cyan-900/30 border border-cyan-400/30'
+                : 'text-slate-300 bg-[#131B2E] hover:bg-[#1C2640] border border-[#233252]'
             }`}
           >
-            <TrendingUp className="w-3.5 h-3.5 text-[#F4A261]" />
+            <TrendingUp className="w-3.5 h-3.5 text-cyan-400" />
             <span>You Said → We Did</span>
           </button>
 
           <button
             onClick={() => setActiveTab('history')}
-            className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold transition shadow-2xs ${
+            className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold transition-all shadow-sm ${
               activeTab === 'history'
-                ? 'bg-[#4F8A4C] text-white shadow-xs'
-                : 'text-[#5C544B] bg-white hover:bg-[#FAF2DD] border border-[#E8DECA]'
+                ? 'bg-gradient-to-r from-rose-600 to-pink-600 text-white shadow-lg shadow-rose-900/30 border border-rose-400/30'
+                : 'text-slate-300 bg-[#131B2E] hover:bg-[#1C2640] border border-[#233252]'
             }`}
           >
-            <History className="w-3.5 h-3.5" />
+            <History className="w-3.5 h-3.5 text-rose-400" />
             <span>My Ratings</span>
           </button>
         </div>
@@ -218,32 +221,34 @@ export default function StudentPortal() {
       {activeTab === 'rate' && (
         <div className="space-y-4">
           {/* Privacy Notice Banner */}
-          <div className="bg-white border border-[#C7E2C5] rounded-2xl p-3 flex items-start gap-2.5 text-xs text-[#5C544B] shadow-2xs">
-            <div className="p-1 bg-[#F3F8F2] text-[#4F8A4C] rounded-lg mt-0.5 border border-[#C7E2C5] flex-shrink-0">
-              <Shield className="w-3.5 h-3.5" />
+          <div className="bg-[#131B2E] border border-emerald-500/30 rounded-2xl p-3.5 flex items-start gap-3 text-xs text-slate-300 shadow-lg">
+            <div className="p-1.5 bg-emerald-950/80 text-emerald-400 rounded-xl mt-0.5 border border-emerald-500/40 flex-shrink-0">
+              <Shield className="w-4 h-4" />
             </div>
             <div>
-              <span className="font-bold text-[#2B2621]">100% Anonymous Feedback:</span> Your response is strictly signed by pseudonymous token <code className="bg-[#FAF2DD] px-1.5 py-0.2 rounded border border-[#E8DECA] font-mono text-[#2B2621] font-bold">{currentStudent?.anonId}</code>.
+              <span className="font-bold text-white">100% Anonymous Feedback:</span> Your response is strictly signed by pseudonymous token <code className="bg-[#0E1524] px-2 py-0.5 rounded-lg border border-[#233252] font-mono text-amber-300 font-bold">{currentStudent?.anonId}</code>. No hostel staff can trace this to your personal identity.
             </div>
           </div>
 
           {/* Active Meal Card */}
-          <div className="card-clean p-4 sm:p-6 relative overflow-hidden bg-white border border-[#E8DECA] shadow-sm">
-            {/* Meal Header with Warm Orange Accents (#F4A261) */}
-            <div className="flex flex-wrap items-center justify-between gap-2 pb-3 mb-3.5 border-b border-[#F4EADA]">
+          <div className="card-clean p-4 sm:p-6 relative overflow-hidden bg-[#131B2E] border border-[#233252] shadow-2xl">
+            {/* Meal Header with Vibrant Warm Orange Highlights */}
+            <div className="flex flex-wrap items-center justify-between gap-2 pb-3 mb-3.5 border-b border-[#233252]">
               <div>
                 <div className="flex items-center gap-2">
                   <span className="badge-status badge-green">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#4F8A4C]"></span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
                     Verified QR Counter Scan
                   </span>
-                  <span className="text-xs text-[#968D82] font-medium">
+                  <span className="text-xs text-slate-400 font-medium">
                     {activeSession.windowStart} – {activeSession.windowEnd}
                   </span>
                 </div>
-                <h2 className="text-xl sm:text-2xl font-bold text-[#2B2621] mt-1 flex items-center gap-2 font-heading">
-                  <span>Today's {activeSession.mealName}</span>
-                  <span className="text-xs font-semibold text-[#5C544B] bg-[#FAF2DD] px-2.5 py-0.5 rounded-full border border-[#E8DECA]">
+                <h2 className="text-xl sm:text-2xl font-bold text-white mt-1 flex items-center gap-2 font-heading">
+                  <span className="bg-gradient-to-r from-amber-200 via-orange-300 to-amber-400 bg-clip-text text-transparent">
+                    Today's {activeSession.mealName}
+                  </span>
+                  <span className="text-xs font-semibold text-slate-300 bg-[#1C2640] px-2.5 py-0.5 rounded-full border border-[#28375A]">
                     {activeSession.expectedDiners} Expected Diners
                   </span>
                 </h2>
@@ -251,66 +256,66 @@ export default function StudentPortal() {
 
               {/* Live 10-Second Timer Tracker */}
               {!alreadyRated && !isSubmitted && (
-                <div className="flex items-center gap-1.5 bg-[#2B2621] text-white px-3 py-1.5 rounded-xl text-xs font-medium shadow-xs">
-                  <Clock className="w-3.5 h-3.5 text-[#F4A261]" />
-                  <span>Timer: </span>
-                  <strong className="font-mono text-[#F4A261] text-xs sm:text-sm">{timerSeconds}s</strong>
+                <div className="flex items-center gap-1.5 bg-[#0E1524] text-white px-3 py-1.5 rounded-xl text-xs font-medium border border-[#233252] shadow-inner">
+                  <Clock className="w-3.5 h-3.5 text-amber-400 animate-spin" />
+                  <span className="text-slate-400">Timer: </span>
+                  <strong className="font-mono text-amber-400 text-xs sm:text-sm">{timerSeconds}s</strong>
                 </div>
               )}
             </div>
 
             {/* Today's Menu Dishes */}
-            <div className="mb-4 bg-[#FFFDF8] rounded-2xl p-3 sm:p-4 border border-[#E8DECA]">
-              <p className="text-[11px] font-bold uppercase tracking-wider text-[#968D82] mb-2 flex items-center gap-1.5">
-                <Utensils className="w-3.5 h-3.5 text-[#4F8A4C]" /> Today's Meal Items:
+            <div className="mb-4 bg-[#0E1524] rounded-2xl p-3 sm:p-4 border border-[#233252]">
+              <p className="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2.5 flex items-center gap-1.5">
+                <Utensils className="w-3.5 h-3.5 text-emerald-400" /> Today's Meal Items:
               </p>
-              <div className="flex flex-wrap gap-1.5 sm:gap-2">
+              <div className="flex flex-wrap gap-2">
                 {activeSession.dishes.map((dish, idx) => (
                   <span
                     key={idx}
-                    className="inline-flex items-center gap-1 text-xs px-2.5 py-1 rounded-xl border border-[#E8DECA] bg-white text-[#2B2621] font-semibold shadow-2xs"
+                    className="inline-flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-xl border border-[#28375A] bg-[#162035] text-slate-200 font-semibold shadow-sm hover:border-emerald-500/40 transition"
                   >
-                    <span className="text-[#F4A261] text-xs">🥘</span>
+                    <span className="text-amber-400 text-xs">🥘</span>
                     <span>{dish}</span>
                   </span>
                 ))}
               </div>
               {activeSession.contextNote && (
-                <p className="mt-2 text-xs text-[#A65615] bg-[#FEF8F3] px-2.5 py-1 rounded-xl border border-[#FBD9C3] flex items-center gap-1.5 font-medium">
-                  <span className="text-[#F4A261] font-bold">ℹ️ Note:</span> {activeSession.contextNote}
+                <p className="mt-2.5 text-xs text-amber-300 bg-amber-950/40 px-3 py-1.5 rounded-xl border border-amber-500/30 flex items-center gap-1.5 font-medium">
+                  <span className="text-amber-400 font-bold">ℹ️ Note:</span> {activeSession.contextNote}
                 </p>
               )}
             </div>
 
             {/* Already Rated / Submitted Confirmation */}
             {(alreadyRated || isSubmitted) ? (
-              <div className="text-center py-6 px-3 bg-[#F3F8F2] rounded-2xl border border-[#C7E2C5]">
-                <div className="w-12 h-12 bg-[#4F8A4C] text-white rounded-2xl flex items-center justify-center mx-auto mb-2.5 shadow-sm">
-                  <CheckCircle2 className="w-7 h-7" />
+              <div className="text-center py-7 px-4 bg-gradient-to-b from-emerald-950/40 to-[#0E1524] rounded-2xl border border-emerald-500/30 shadow-inner">
+                <div className="w-14 h-14 bg-gradient-to-tr from-emerald-500 to-teal-400 text-slate-950 rounded-2xl flex items-center justify-center mx-auto mb-3 shadow-lg shadow-emerald-500/30">
+                  <CheckCircle2 className="w-8 h-8" />
                 </div>
-                <h3 className="text-lg font-bold text-[#2B2621] font-heading">Feedback Submitted!</h3>
-                <p className="text-xs text-[#5C544B] mt-1 max-w-md mx-auto font-medium">
+                <h3 className="text-xl font-bold text-white font-heading">Feedback Submitted!</h3>
+                <p className="text-xs text-slate-300 mt-1 max-w-md mx-auto font-medium">
                   Thank you for rating today's {activeSession.mealName}. Your response has been securely added to the daily kitchen briefing.
                 </p>
 
                 {/* Rating Badge */}
-                <div className="mt-4 inline-flex flex-col items-center bg-white p-3 rounded-2xl border border-[#E8DECA] shadow-2xs text-xs">
-                  <div className="flex items-center gap-1 text-[#F4A261] mb-1">
+                <div className="mt-4 inline-flex flex-col items-center bg-[#131B2E] p-3.5 rounded-2xl border border-[#233252] shadow-lg text-xs">
+                  <div className="flex items-center gap-1 text-amber-400 mb-1">
                     {[1, 2, 3, 4, 5].map((star) => (
                       <Star
                         key={star}
                         className={`w-4 h-4 ${
                           star <= (submittedFeedback?.rating || existingFeedback?.rating || 0)
-                            ? 'fill-[#F4A261] text-[#F4A261]'
-                            : 'text-[#E8DECA]'
+                            ? 'fill-amber-400 text-amber-400 drop-shadow-[0_0_8px_rgba(245,158,11,0.5)]'
+                            : 'text-slate-700'
                         }`}
                       />
                     ))}
-                    <span className="font-extrabold text-[#2B2621] ml-1.5 text-xs">
+                    <span className="font-extrabold text-white ml-2 text-xs">
                       {submittedFeedback?.rating || existingFeedback?.rating} / 5 Stars
                     </span>
                   </div>
-                  <span className="text-[#968D82] font-medium text-[10px]">
+                  <span className="text-slate-400 font-medium text-[10px]">
                     Verified • 1 rating per student per meal
                   </span>
                 </div>
@@ -326,7 +331,7 @@ export default function StudentPortal() {
                     onClick={() => setActiveTab('yousaid')}
                     className="btn-secondary btn-sm text-xs rounded-xl"
                   >
-                    <TrendingUp className="w-3.5 h-3.5 text-[#F4A261]" /> View "You Said → We Did"
+                    <TrendingUp className="w-3.5 h-3.5 text-cyan-400" /> View "You Said → We Did"
                   </button>
                 </div>
               </div>
@@ -334,11 +339,11 @@ export default function StudentPortal() {
               /* ================= RATING FORM ================= */
               <form onSubmit={handleFeedbackSubmit} className="space-y-4 sm:space-y-5">
                 {/* Step 1: Star Rating Buttons */}
-                <div className="text-center py-3 bg-[#FFFDF8] rounded-2xl p-3 border border-[#E8DECA]">
-                  <label className="block text-[11px] font-bold uppercase tracking-wider text-[#968D82] mb-2">
+                <div className="text-center py-4 bg-[#0E1524] rounded-2xl p-4 border border-[#233252]">
+                  <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2.5">
                     Step 1: Tap Your Overall Meal Rating
                   </label>
-                  <div className="flex items-center justify-center gap-1.5 sm:gap-3">
+                  <div className="flex items-center justify-center gap-2 sm:gap-4">
                     {[1, 2, 3, 4, 5].map((star) => (
                       <button
                         type="button"
@@ -346,16 +351,16 @@ export default function StudentPortal() {
                         onClick={() => handleStarSelect(star)}
                         className="star-btn flex flex-col items-center group p-1"
                       >
-                        <div className="p-1 rounded-xl transition-all group-hover:bg-[#FAF2DD]">
+                        <div className="p-1.5 rounded-2xl transition-all group-hover:bg-[#1C2640]">
                           <Star
-                            className={`w-9 h-9 sm:w-11 sm:h-11 transition-all ${
+                            className={`w-9 h-9 sm:w-12 sm:h-12 transition-all ${
                               star <= selectedRating
-                                ? 'fill-[#F4A261] text-[#F4A261] drop-shadow-sm scale-105'
-                                : 'text-[#D9CEB8] group-hover:text-[#F4A261]'
+                                ? 'fill-amber-400 text-amber-400 drop-shadow-[0_0_12px_rgba(245,158,11,0.7)] scale-110'
+                                : 'text-slate-700 group-hover:text-amber-400/60'
                             }`}
                           />
                         </div>
-                        <span className="text-[10px] sm:text-[11px] font-bold mt-0.5 text-[#5C544B]">
+                        <span className="text-[10px] sm:text-[11px] font-bold mt-1 text-slate-400 group-hover:text-amber-300">
                           {star}★
                         </span>
                       </button>
@@ -364,8 +369,8 @@ export default function StudentPortal() {
 
                   {/* Dynamic Rating Label */}
                   {selectedRating > 0 && starLabels[selectedRating] && (
-                    <div className="mt-2.5">
-                      <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold border ${starLabels[selectedRating].color}`}>
+                    <div className="mt-3">
+                      <span className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold border shadow-sm ${starLabels[selectedRating].color}`}>
                         <span>{starLabels[selectedRating].title}</span>
                         <span className="font-normal opacity-80">({starLabels[selectedRating].sub})</span>
                       </span>
@@ -375,22 +380,22 @@ export default function StudentPortal() {
 
                 {/* Step 2: Reason Chips */}
                 {selectedRating > 0 && (
-                  <div className="bg-white p-3.5 sm:p-4 rounded-2xl border border-[#E8DECA] shadow-2xs">
-                    <div className="flex items-center justify-between mb-2.5">
-                      <span className="text-xs font-bold text-[#2B2621] flex items-center gap-1.5">
+                  <div className="bg-[#0E1524] p-3.5 sm:p-4 rounded-2xl border border-[#233252] shadow-lg">
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="text-xs font-bold text-white flex items-center gap-1.5">
                         {selectedRating <= 3 ? (
                           <>
-                            <span className="text-rose-500 text-sm">⚠️</span>
+                            <span className="text-rose-400 text-sm">⚠️</span>
                             <span>Step 2: What could be improved? (Up to 3)</span>
                           </>
                         ) : (
                           <>
-                            <span className="text-[#4F8A4C] text-sm">✨</span>
+                            <span className="text-emerald-400 text-sm">✨</span>
                             <span>Step 2: What made it great? (Up to 3)</span>
                           </>
                         )}
                       </span>
-                      <span className="text-[10px] font-semibold text-[#5C544B] bg-[#FAF2DD] px-2 py-0.5 rounded-full border border-[#E8DECA]">
+                      <span className="text-[10px] font-semibold text-slate-300 bg-[#1C2640] px-2 py-0.5 rounded-full border border-[#28375A]">
                         {selectedChips.length}/3 selected
                       </span>
                     </div>
@@ -425,15 +430,15 @@ export default function StudentPortal() {
 
                 {/* Step 3: Multilingual Comment */}
                 {selectedRating > 0 && (
-                  <div className="space-y-1.5 bg-white p-3.5 rounded-2xl border border-[#E8DECA] shadow-2xs">
+                  <div className="space-y-1.5 bg-[#0E1524] p-3.5 rounded-2xl border border-[#233252] shadow-lg">
                     <div className="flex items-center justify-between text-xs">
-                      <label className="font-bold text-[#2B2621] flex items-center gap-1.5">
-                        <MessageSquare className="w-3.5 h-3.5 text-[#4F8A4C]" />
+                      <label className="font-bold text-white flex items-center gap-1.5">
+                        <MessageSquare className="w-3.5 h-3.5 text-emerald-400" />
                         <span>Optional Kitchen Note</span>
-                        <span className="text-[#968D82] text-[11px] font-normal">(English/Hindi/Hinglish)</span>
+                        <span className="text-slate-400 text-[11px] font-normal">(English/Hindi/Hinglish)</span>
                       </label>
-                      <span className="text-[10px] text-[#4F8A4C] bg-[#F3F8F2] px-2 py-0.5 rounded-md border border-[#C7E2C5] font-semibold flex items-center gap-1">
-                        <Lock className="w-3 h-3 text-[#4F8A4C]" /> Private
+                      <span className="text-[10px] text-emerald-400 bg-emerald-950/80 px-2 py-0.5 rounded-md border border-emerald-500/30 font-semibold flex items-center gap-1">
+                        <Lock className="w-3 h-3 text-emerald-400" /> Private
                       </span>
                     </div>
                     <textarea
@@ -442,22 +447,22 @@ export default function StudentPortal() {
                       placeholder="e.g. Paneer was very fresh, rotis were soft! or दाल में नमक सही था..."
                       rows={2}
                       maxLength={180}
-                      className="w-full text-xs sm:text-sm px-3 py-2 rounded-xl border border-[#E8DECA] focus:outline-none focus:border-[#4F8A4C] focus:ring-2 focus:ring-[#4F8A4C]/10 transition bg-[#FFFDF8]"
+                      className="w-full text-xs sm:text-sm px-3.5 py-2.5 rounded-xl border border-[#28375A] focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 transition bg-[#131B2E] text-slate-100 placeholder-slate-500"
                     ></textarea>
                   </div>
                 )}
 
-                {/* Submit Button in Fresh Green (#4F8A4C) */}
+                {/* Submit Button in Neon Emerald Gradient */}
                 <div className="pt-1">
                   <button
                     type="submit"
                     disabled={selectedRating === 0}
-                    className="w-full btn-primary py-3 text-xs sm:text-sm rounded-xl font-bold shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full btn-primary py-3.5 text-xs sm:text-sm rounded-xl font-bold shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    <Send className="w-3.5 h-3.5" />
+                    <Send className="w-4 h-4" />
                     <span>Submit Anonymous Rating ({timerSeconds}s)</span>
                   </button>
-                  <p className="text-[10px] text-center text-[#968D82] mt-1.5 font-medium">
+                  <p className="text-[10px] text-center text-slate-400 mt-2 font-medium">
                     ⚡ Fast 10-Second Flow • One rating per student per meal
                   </p>
                 </div>
@@ -470,16 +475,16 @@ export default function StudentPortal() {
       {/* ================= TAB 2: UPCOMING WEEKLY MENU ================= */}
       {activeTab === 'menu' && (
         <div className="space-y-4">
-          <div className="card-clean p-4 sm:p-6 shadow-sm border-[#E8DECA] bg-white">
-            <div className="flex flex-wrap items-center justify-between gap-2 mb-3.5 border-b border-[#F4EADA] pb-2.5">
+          <div className="card-clean p-4 sm:p-6 shadow-2xl border-[#233252] bg-[#131B2E]">
+            <div className="flex flex-wrap items-center justify-between gap-2 mb-3.5 border-b border-[#233252] pb-2.5">
               <div>
-                <h2 className="text-lg sm:text-xl font-bold text-[#2B2621] flex items-center gap-2 font-heading">
-                  <div className="p-1.5 rounded-xl bg-[#F4A261] text-white shadow-2xs">
+                <h2 className="text-lg sm:text-xl font-bold text-white flex items-center gap-2 font-heading">
+                  <div className="p-1.5 rounded-xl bg-gradient-to-tr from-amber-500 to-orange-500 text-white shadow-md shadow-orange-500/20">
                     <Calendar className="w-3.5 h-3.5" />
                   </div>
                   <span>{weeklyMenu.weekTitle}</span>
                 </h2>
-                <p className="text-[11px] text-[#968D82] mt-0.5 font-medium">Approved Hostel Dining Schedule</p>
+                <p className="text-[11px] text-slate-400 mt-0.5 font-medium">Approved Hostel Dining Schedule</p>
               </div>
               <span className="badge-status badge-green text-[11px]">
                 <CheckCircle2 className="w-3 h-3" /> Published & Live
@@ -496,14 +501,14 @@ export default function StudentPortal() {
                     onClick={() => setSelectedDayIndex(index)}
                     className={`px-3 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all ${
                       isSelected
-                        ? 'bg-[#4F8A4C] text-white shadow-2xs'
-                        : 'bg-[#FAF2DD] text-[#5C544B] hover:bg-[#F2E7CA] border border-transparent'
+                        ? 'bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-lg shadow-emerald-900/30 border border-emerald-400/40'
+                        : 'bg-[#1C2640] text-slate-300 hover:bg-[#263558] border border-[#28375A]'
                     }`}
                   >
                     <span>{d.day}</span>
                     {d.isToday && (
-                      <span className={`ml-1 text-[10px] px-1.5 py-0.2 rounded-full font-bold ${
-                        isSelected ? 'bg-white/20 text-white' : 'bg-[#E4F1E3] text-[#41733E]'
+                      <span className={`ml-1 text-[10px] px-1.5 py-0.5 rounded-full font-bold ${
+                        isSelected ? 'bg-white/20 text-white' : 'bg-emerald-950/80 text-emerald-300 border border-emerald-500/30'
                       }`}>
                         • Today
                       </span>
@@ -513,61 +518,61 @@ export default function StudentPortal() {
               })}
             </div>
 
-            {/* Meals Grid */}
+            {/* Meals Grid with Colorful Themes */}
             {weeklyMenu.days[selectedDayIndex] && (
               <div className="space-y-3.5">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-                  {/* Breakfast Card */}
-                  <div className="bg-[#FEF8F3] p-3.5 rounded-2xl border border-[#FBD9C3]">
-                    <div className="flex items-center justify-between mb-2.5 text-[#A65615] font-bold text-xs">
+                  {/* Breakfast Card - Warm Amber Theme */}
+                  <div className="bg-gradient-to-br from-amber-950/30 via-[#131B2E] to-[#0E1524] p-3.5 rounded-2xl border border-amber-500/30 shadow-lg">
+                    <div className="flex items-center justify-between mb-2.5 text-amber-300 font-bold text-xs">
                       <span className="flex items-center gap-1.5">
-                        <span>☕</span>
-                        <span className="font-heading font-bold text-[#2B2621]">Breakfast</span>
+                        <Coffee className="w-4 h-4 text-amber-400" />
+                        <span className="font-heading font-bold text-white">Breakfast</span>
                       </span>
-                      <span className="text-[#C77024] font-medium text-[11px]">07:30 - 09:30</span>
+                      <span className="text-amber-400 font-medium text-[11px]">07:30 - 09:30</span>
                     </div>
-                    <ul className="space-y-1 text-xs text-[#5C544B]">
+                    <ul className="space-y-1.5 text-xs text-slate-300">
                       {weeklyMenu.days[selectedDayIndex].meals.breakfast.map((dish, idx) => (
-                        <li key={idx} className="flex items-start gap-1.5 bg-white px-2 py-1 rounded-lg border border-[#FDEEE3] font-medium shadow-2xs">
-                          <span className="text-[#F4A261] font-bold">›</span>
+                        <li key={idx} className="flex items-start gap-1.5 bg-[#162035] px-2.5 py-1.5 rounded-xl border border-[#28375A] font-medium shadow-xs">
+                          <span className="text-amber-400 font-bold">›</span>
                           <span>{dish}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
 
-                  {/* Lunch Card */}
-                  <div className="bg-[#F3F8F2] p-3.5 rounded-2xl border border-[#C7E2C5]">
-                    <div className="flex items-center justify-between mb-2.5 text-[#41733E] font-bold text-xs">
+                  {/* Lunch Card - Fresh Emerald Theme */}
+                  <div className="bg-gradient-to-br from-emerald-950/30 via-[#131B2E] to-[#0E1524] p-3.5 rounded-2xl border border-emerald-500/30 shadow-lg">
+                    <div className="flex items-center justify-between mb-2.5 text-emerald-300 font-bold text-xs">
                       <span className="flex items-center gap-1.5">
-                        <span>🍛</span>
-                        <span className="font-heading font-bold text-[#2B2621]">Lunch</span>
+                        <Utensils className="w-4 h-4 text-emerald-400" />
+                        <span className="font-heading font-bold text-white">Lunch</span>
                       </span>
-                      <span className="text-[#4F8A4C] font-medium text-[11px]">12:30 - 14:30</span>
+                      <span className="text-emerald-400 font-medium text-[11px]">12:30 - 14:30</span>
                     </div>
-                    <ul className="space-y-1 text-xs text-[#2B2621]">
+                    <ul className="space-y-1.5 text-xs text-slate-200">
                       {weeklyMenu.days[selectedDayIndex].meals.lunch.map((dish, idx) => (
-                        <li key={idx} className="flex items-start gap-1.5 bg-white px-2 py-1 rounded-lg border border-[#E4F1E3] font-medium shadow-2xs">
-                          <span className="text-[#4F8A4C] font-bold">›</span>
+                        <li key={idx} className="flex items-start gap-1.5 bg-[#162035] px-2.5 py-1.5 rounded-xl border border-[#28375A] font-medium shadow-xs">
+                          <span className="text-emerald-400 font-bold">›</span>
                           <span>{dish}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
 
-                  {/* Dinner Card */}
-                  <div className="bg-[#FFFDF8] p-3.5 rounded-2xl border border-[#E8DECA]">
-                    <div className="flex items-center justify-between mb-2.5 text-[#2B2621] font-bold text-xs">
+                  {/* Dinner Card - Royal Indigo Theme */}
+                  <div className="bg-gradient-to-br from-indigo-950/30 via-[#131B2E] to-[#0E1524] p-3.5 rounded-2xl border border-indigo-500/30 shadow-lg">
+                    <div className="flex items-center justify-between mb-2.5 text-indigo-300 font-bold text-xs">
                       <span className="flex items-center gap-1.5">
-                        <span>🌙</span>
-                        <span className="font-heading font-bold text-[#2B2621]">Dinner</span>
+                        <Moon className="w-4 h-4 text-indigo-400" />
+                        <span className="font-heading font-bold text-white">Dinner</span>
                       </span>
-                      <span className="text-[#968D82] font-medium text-[11px]">19:30 - 21:30</span>
+                      <span className="text-indigo-400 font-medium text-[11px]">19:30 - 21:30</span>
                     </div>
-                    <ul className="space-y-1 text-xs text-[#5C544B]">
+                    <ul className="space-y-1.5 text-xs text-slate-300">
                       {weeklyMenu.days[selectedDayIndex].meals.dinner.map((dish, idx) => (
-                        <li key={idx} className="flex items-start gap-1.5 bg-white px-2 py-1 rounded-lg border border-[#E8DECA] font-medium shadow-2xs">
-                          <span className="text-[#968D82] font-bold">›</span>
+                        <li key={idx} className="flex items-start gap-1.5 bg-[#162035] px-2.5 py-1.5 rounded-xl border border-[#28375A] font-medium shadow-xs">
+                          <span className="text-indigo-400 font-bold">›</span>
                           <span>{dish}</span>
                         </li>
                       ))}
@@ -583,18 +588,18 @@ export default function StudentPortal() {
       {/* ================= TAB 3: MENU VOTING POLLS ================= */}
       {activeTab === 'vote' && (
         <div className="space-y-4">
-          <div className="card-clean p-4 sm:p-6 shadow-sm border-[#E8DECA] bg-white">
-            <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#F4EADA] pb-2.5 mb-3.5">
+          <div className="card-clean p-4 sm:p-6 shadow-2xl border-[#233252] bg-[#131B2E]">
+            <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#233252] pb-2.5 mb-3.5">
               <div>
                 <span className="badge-status badge-orange mb-1">
                   <Vote className="w-3 h-3" /> Active Poll
                 </span>
-                <h2 className="text-lg sm:text-xl font-bold text-[#2B2621] font-heading">{activePoll.title}</h2>
-                <p className="text-[11px] text-[#968D82] mt-0.5 font-medium">{activePoll.description}</p>
+                <h2 className="text-lg sm:text-xl font-bold text-white font-heading">{activePoll.title}</h2>
+                <p className="text-[11px] text-slate-400 mt-0.5 font-medium">{activePoll.description}</p>
               </div>
-              <div className="text-right text-xs bg-[#FFFDF8] p-2 rounded-xl border border-[#E8DECA]">
-                <span className="text-[#5C544B] text-[11px] font-medium block">{activePoll.closingLabel}</span>
-                <p className="font-extrabold text-[#2B2621] text-xs sm:text-sm">{activePoll.totalVotes} Votes</p>
+              <div className="text-right text-xs bg-[#0E1524] p-2.5 rounded-xl border border-[#233252]">
+                <span className="text-slate-400 text-[11px] font-medium block">{activePoll.closingLabel}</span>
+                <p className="font-extrabold text-amber-300 text-xs sm:text-sm">{activePoll.totalVotes} Votes</p>
               </div>
             </div>
 
@@ -609,37 +614,37 @@ export default function StudentPortal() {
                     className={`p-3.5 rounded-xl border transition-all ${
                       hasVotedActivePoll
                         ? isSelected
-                          ? 'border-[#4F8A4C] bg-[#F3F8F2] shadow-2xs'
-                          : 'border-[#E8DECA] bg-[#FFFDF8]'
-                        : 'border-[#E8DECA] hover:border-[#C7E2C5] hover:bg-[#FFFDF8] cursor-pointer shadow-2xs'
+                          ? 'border-emerald-500/60 bg-emerald-950/30 shadow-md shadow-emerald-950/20'
+                          : 'border-[#233252] bg-[#0E1524]'
+                        : 'border-[#233252] hover:border-emerald-500/40 hover:bg-[#162035] cursor-pointer shadow-sm'
                     }`}
                   >
                     <div className="flex items-center justify-between gap-2 mb-1.5">
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-2.5">
                         <div className={`w-5 h-5 rounded-full flex items-center justify-center border ${
                           isSelected
-                            ? 'bg-[#4F8A4C] border-[#4F8A4C] text-white'
-                            : 'border-[#D9CEB8] bg-white'
+                            ? 'bg-emerald-500 border-emerald-400 text-slate-950 font-bold'
+                            : 'border-slate-600 bg-[#162035]'
                         }`}>
                           {isSelected && <CheckCircle2 className="w-3.5 h-3.5" />}
                         </div>
-                        <span className="text-xs sm:text-sm font-bold text-[#2B2621]">{opt.title}</span>
+                        <span className="text-xs sm:text-sm font-bold text-white">{opt.title}</span>
                       </div>
-                      <span className="text-[10px] font-bold px-2 py-0.5 rounded-lg border bg-[#FAF2DD] text-[#2B2621] border-[#E8DECA]">
+                      <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-lg border bg-[#1C2640] text-amber-300 border-amber-500/30">
                         {opt.tag}
                       </span>
                     </div>
 
-                    <div className="mt-2">
-                      <div className="w-full bg-[#FAF2DD] h-2 rounded-full overflow-hidden">
+                    <div className="mt-2.5">
+                      <div className="w-full bg-[#1C2640] h-2.5 rounded-full overflow-hidden">
                         <div
-                          className="h-full rounded-full transition-all duration-700 bg-[#4F8A4C]"
+                          className="h-full rounded-full transition-all duration-700 bg-gradient-to-r from-emerald-500 to-teal-400 shadow-sm"
                           style={{ width: `${opt.percentage}%` }}
                         ></div>
                       </div>
-                      <div className="flex justify-between text-[10px] text-[#968D82] mt-1 font-semibold">
+                      <div className="flex justify-between text-[10px] text-slate-400 mt-1.5 font-semibold">
                         <span>{opt.votes} student votes</span>
-                        <strong className="text-[#2B2621] text-xs">{opt.percentage}%</strong>
+                        <strong className="text-emerald-400 text-xs">{opt.percentage}%</strong>
                       </div>
                     </div>
                   </div>
@@ -653,48 +658,48 @@ export default function StudentPortal() {
       {/* ================= TAB 4: "YOU SAID → WE DID" ================= */}
       {activeTab === 'yousaid' && (
         <div className="space-y-4">
-          <div className="card-clean p-4 sm:p-6 shadow-sm border-[#E8DECA] bg-white">
-            <div className="border-b border-[#F4EADA] pb-2.5 mb-3.5">
-              <span className="badge-status badge-orange mb-1">
+          <div className="card-clean p-4 sm:p-6 shadow-2xl border-[#233252] bg-[#131B2E]">
+            <div className="border-b border-[#233252] pb-2.5 mb-3.5">
+              <span className="badge-status badge-cyan mb-1">
                 <TrendingUp className="w-3 h-3" /> Action & Accountability
               </span>
-              <h2 className="text-lg sm:text-xl font-bold text-[#2B2621] font-heading">You Said → We Did</h2>
-              <p className="text-[11px] text-[#968D82] mt-0.5 font-medium">
+              <h2 className="text-lg sm:text-xl font-bold text-white font-heading">You Said → We Did</h2>
+              <p className="text-[11px] text-slate-400 mt-0.5 font-medium">
                 Real corrective actions taken in the hostel kitchen based on student feedback.
               </p>
             </div>
 
             <div className="space-y-3">
               {resolvedIssues.map((issue) => (
-                <div key={issue.id} className="p-3.5 rounded-2xl border border-[#E8DECA] bg-white hover:border-[#D9CEB8] transition shadow-2xs">
+                <div key={issue.id} className="p-3.5 rounded-2xl border border-[#233252] bg-[#0E1524] hover:border-slate-700 transition shadow-lg">
                   <div className="flex items-center justify-between gap-2 mb-2">
                     <span className="badge-status badge-green text-[10px]">
                       <CheckCircle2 className="w-3 h-3" /> Action Verified
                     </span>
-                    <span className="text-[11px] text-[#968D82] font-medium">{issue.publishedDate || issue.detectedDate}</span>
+                    <span className="text-[11px] text-slate-400 font-medium">{issue.publishedDate || issue.detectedDate}</span>
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5 mt-2">
-                    <div className="bg-[#FFF1F2] p-2.5 rounded-xl border border-[#FFE4E6]">
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-rose-800 block mb-0.5">
+                    <div className="bg-rose-950/40 p-3 rounded-xl border border-rose-500/30">
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-rose-400 block mb-1">
                         📢 You Said:
                       </span>
-                      <p className="text-xs text-[#2B2621] font-bold">{issue.title}</p>
+                      <p className="text-xs text-rose-100 font-bold">{issue.title}</p>
                     </div>
 
-                    <div className="bg-[#F3F8F2] p-2.5 rounded-xl border border-[#C7E2C5]">
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-[#41733E] block mb-0.5">
+                    <div className="bg-emerald-950/40 p-3 rounded-xl border border-emerald-500/30">
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-400 block mb-1">
                         ✅ We Did:
                       </span>
-                      <p className="text-xs text-[#2B2621] font-bold">
+                      <p className="text-xs text-emerald-100 font-bold">
                         {issue.publicSummary || issue.actionTaken}
                       </p>
                       {issue.impactMetric && (
-                        <div className="mt-1.5 inline-flex items-center gap-1 text-[10px] font-bold text-[#4F8A4C] bg-white px-2 py-0.5 rounded-md border border-[#C7E2C5]">
+                        <div className="mt-2 inline-flex items-center gap-1.5 text-[10px] font-bold text-emerald-300 bg-[#0E1524] px-2.5 py-1 rounded-md border border-emerald-500/40">
                           <span>Rating:</span>
-                          <span className="text-[#968D82] line-through">{issue.impactMetric.beforeRating}★</span>
+                          <span className="text-slate-500 line-through">{issue.impactMetric.beforeRating}★</span>
                           <span>→</span>
-                          <span className="text-[#4F8A4C]">{issue.impactMetric.afterRating}★</span>
+                          <span className="text-emerald-400 font-extrabold">{issue.impactMetric.afterRating}★</span>
                         </div>
                       )}
                     </div>
@@ -709,14 +714,14 @@ export default function StudentPortal() {
       {/* ================= TAB 5: MY RECENT FEEDBACK HISTORY ================= */}
       {activeTab === 'history' && (
         <div className="space-y-4">
-          <div className="card-clean p-4 sm:p-6 shadow-sm border-[#E8DECA] bg-white">
-            <div className="border-b border-[#F4EADA] pb-2.5 mb-3.5">
-              <h2 className="text-base sm:text-lg font-bold text-[#2B2621] flex items-center gap-2 font-heading">
-                <History className="w-4 h-4 text-[#4F8A4C]" />
+          <div className="card-clean p-4 sm:p-6 shadow-2xl border-[#233252] bg-[#131B2E]">
+            <div className="border-b border-[#233252] pb-2.5 mb-3.5">
+              <h2 className="text-base sm:text-lg font-bold text-white flex items-center gap-2 font-heading">
+                <History className="w-4 h-4 text-emerald-400" />
                 <span>My Anonymous Feedback History</span>
               </h2>
-              <p className="text-[11px] text-[#968D82] font-medium">
-                Ratings signed with pseudonymous token <code className="bg-[#FAF2DD] text-[#2B2621] px-1.5 py-0.2 rounded font-mono font-bold">{currentStudent?.anonId}</code>
+              <p className="text-[11px] text-slate-400 font-medium">
+                Ratings signed with pseudonymous token <code className="bg-[#0E1524] text-amber-300 px-2 py-0.5 rounded font-mono font-bold border border-[#233252]">{currentStudent?.anonId}</code>
               </p>
             </div>
 
@@ -724,33 +729,33 @@ export default function StudentPortal() {
               {feedbacks
                 .filter(f => f.anonId === currentStudent?.anonId)
                 .map((fb) => (
-                  <div key={fb.id} className="p-3 rounded-xl border border-[#E8DECA] bg-[#FFFDF8]">
-                    <div className="flex items-center justify-between mb-1.5">
-                      <div className="flex items-center gap-1 text-[#F4A261]">
+                  <div key={fb.id} className="p-3.5 rounded-xl border border-[#233252] bg-[#0E1524]">
+                    <div className="flex items-center justify-between mb-2">
+                      <div className="flex items-center gap-1 text-amber-400">
                         {[1, 2, 3, 4, 5].map((star) => (
                           <Star
                             key={star}
                             className={`w-3.5 h-3.5 ${
-                              star <= fb.rating ? 'fill-[#F4A261] text-[#F4A261]' : 'text-[#E8DECA]'
+                              star <= fb.rating ? 'fill-amber-400 text-amber-400 drop-shadow-[0_0_6px_rgba(245,158,11,0.5)]' : 'text-slate-700'
                             }`}
                           />
                         ))}
-                        <span className="text-xs font-bold text-[#2B2621] ml-1">{fb.rating}.0 Stars</span>
+                        <span className="text-xs font-bold text-white ml-1.5">{fb.rating}.0 Stars</span>
                       </div>
-                      <span className="text-[10px] font-semibold text-[#5C544B] bg-white px-2 py-0.5 rounded-md border border-[#E8DECA]">
+                      <span className="text-[10px] font-semibold text-slate-400 bg-[#162035] px-2 py-0.5 rounded-md border border-[#28375A]">
                         {fb.date} • {fb.timeCoarse}
                       </span>
                     </div>
 
                     {fb.chips && fb.chips.length > 0 && (
-                      <div className="flex flex-wrap gap-1 my-1.5">
+                      <div className="flex flex-wrap gap-1.5 my-2">
                         {fb.chips.map((chip, idx) => (
                           <span
                             key={idx}
-                            className={`text-[10px] px-2 py-0.2 rounded-full font-bold ${
+                            className={`text-[10px] px-2.5 py-0.5 rounded-full font-bold ${
                               chip.direction === 'positive'
-                                ? 'bg-[#F3F8F2] text-[#4F8A4C] border border-[#C7E2C5]'
-                                : 'bg-[#FFF1F2] text-rose-700 border border-[#FFE4E6]'
+                                ? 'bg-emerald-950/70 text-emerald-300 border border-emerald-500/40'
+                                : 'bg-rose-950/70 text-rose-300 border border-rose-500/40'
                             }`}
                           >
                             {chip.label}
@@ -760,7 +765,7 @@ export default function StudentPortal() {
                     )}
 
                     {fb.comment && (
-                      <p className="text-xs text-[#2B2621] bg-white p-2 rounded-lg border border-[#E8DECA] mt-1 font-medium">
+                      <p className="text-xs text-slate-200 bg-[#162035] p-2.5 rounded-xl border border-[#28375A] mt-1.5 font-medium">
                         "{fb.comment}"
                       </p>
                     )}

@@ -11,11 +11,7 @@ import {
   Monitor,
   Sliders,
   Sparkles,
-  Calendar,
-  Vote,
-  TrendingUp,
-  Clock,
-  Shield
+  Flame
 } from 'lucide-react';
 
 export default function Sidebar({ onOpenDemoModal }) {
@@ -29,52 +25,53 @@ export default function Sidebar({ onOpenDemoModal }) {
   } = useApp();
 
   const roles = [
-    { id: 'student', label: 'Student Portal', icon: UserCheck, desc: 'Rate in <10s & Vote', badge: 'Active' },
-    { id: 'manager', label: 'Mess Manager', icon: ChefHat, desc: '2-Min Daily Briefing', badge: null },
-    { id: 'warden', label: 'Warden Oversight', icon: Eye, desc: 'Audit & Override', badge: null },
-    { id: 'admin', label: 'Platform Admin', icon: ShieldCheck, desc: 'Campus & Isolation', badge: null },
-    { id: 'kiosk', label: 'Dining Hall QR', icon: QrCode, desc: 'Counter QR Kiosk', badge: null }
+    { id: 'student', label: 'Student Portal', icon: UserCheck, desc: 'Rate in <10s & Vote', badge: 'Active', color: 'from-emerald-500 to-teal-500' },
+    { id: 'manager', label: 'Mess Manager', icon: ChefHat, desc: '2-Min Daily Briefing', badge: null, color: 'from-amber-500 to-orange-500' },
+    { id: 'warden', label: 'Warden Oversight', icon: Eye, desc: 'Audit & Override', badge: null, color: 'from-purple-500 to-indigo-500' },
+    { id: 'admin', label: 'Platform Admin', icon: ShieldCheck, desc: 'Campus & Security', badge: null, color: 'from-cyan-500 to-blue-500' },
+    { id: 'kiosk', label: 'Dining Hall QR', icon: QrCode, desc: 'Counter QR Kiosk', badge: null, color: 'from-rose-500 to-pink-500' }
   ];
 
   return (
     <>
       {/* ================= DESKTOP / TABLET VERTICAL LEFT SIDEBAR ================= */}
-      <aside className="hidden md:flex md:flex-col md:w-64 lg:w-72 bg-white border-r border-[#E8DECA] h-screen sticky top-0 z-30 flex-shrink-0 shadow-xs">
+      <aside className="hidden md:flex md:flex-col md:w-64 lg:w-72 bg-[#131B2E] border-r border-[#233252] h-screen sticky top-0 z-30 flex-shrink-0 shadow-2xl">
         {/* Brand Header */}
-        <div className="p-4.5 border-b border-[#F4EADA]">
+        <div className="p-4.5 border-b border-[#233252]">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl bg-[#4F8A4C] text-white flex items-center justify-center shadow-md shadow-[#4F8A4C]/20 relative flex-shrink-0">
+            <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-emerald-500 via-teal-500 to-emerald-600 text-white flex items-center justify-center shadow-lg shadow-emerald-500/25 relative flex-shrink-0">
               <Utensils className="w-5 h-5 text-white" />
-              <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-[#F4A261] rounded-full border-2 border-white"></span>
+              <span className="absolute -top-1 -right-1 w-3 h-3 bg-orange-500 rounded-full border-2 border-[#131B2E] animate-pulse"></span>
             </div>
             <div>
               <div className="flex items-center gap-1.5">
-                <span className="font-heading text-lg font-extrabold text-[#2B2621] tracking-tight">
+                <span className="font-heading text-lg font-extrabold text-white tracking-tight bg-gradient-to-r from-white via-slate-100 to-emerald-200 bg-clip-text text-transparent">
                   Apni Rasoi
                 </span>
               </div>
-              <span className="inline-flex items-center gap-1 text-[10px] font-bold text-[#4F8A4C] bg-[#F3F8F2] px-2 py-0.2 rounded-full border border-[#C7E2C5]">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#4F8A4C]"></span>
+              <span className="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-400 bg-emerald-950/60 px-2 py-0.5 rounded-full border border-emerald-500/30">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
                 Hostel Mess Platform
               </span>
             </div>
           </div>
         </div>
 
-        {/* Live Active Meal Card with Warm Orange Highlights (#F4A261) */}
+        {/* Live Active Meal Card with Vibrant Glowing Orange Accent */}
         {activeSession && (
           <div className="px-3.5 py-2.5">
-            <div className="bg-[#FEF8F3] border border-[#FBD9C3] rounded-2xl p-3 shadow-2xs">
-              <div className="flex items-center justify-between text-xs mb-1">
-                <span className="font-bold text-[#A65615] flex items-center gap-1.5">
-                  <span className="w-2 h-2 rounded-full bg-[#F4A261] animate-pulse"></span>
+            <div className="bg-gradient-to-br from-amber-950/50 via-[#1C2640] to-orange-950/40 border border-amber-500/30 rounded-2xl p-3 shadow-lg relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-24 h-24 bg-amber-500/10 rounded-full blur-xl pointer-events-none"></div>
+              <div className="flex items-center justify-between text-xs mb-1 relative z-10">
+                <span className="font-bold text-amber-300 flex items-center gap-1.5">
+                  <Flame className="w-3.5 h-3.5 text-amber-400" />
                   Today's {activeSession.mealName}
                 </span>
-                <span className="bg-white px-1.5 py-0.2 rounded-md text-[#C77024] border border-[#FBD9C3] font-bold text-[10px]">
+                <span className="bg-[#0E1524] px-2 py-0.5 rounded-md text-amber-400 border border-amber-500/30 font-bold text-[10px]">
                   {activeSession.scanCount} Scans
                 </span>
               </div>
-              <p className="text-[11px] text-[#A65615]/90 font-medium">
+              <p className="text-[11px] text-slate-300 font-medium relative z-10">
                 Window: {activeSession.windowStart} – {activeSession.windowEnd}
               </p>
             </div>
@@ -83,7 +80,7 @@ export default function Sidebar({ onOpenDemoModal }) {
 
         {/* Vertical Navigation Menu */}
         <div className="flex-1 px-3 py-1.5 space-y-1 overflow-y-auto scrollbar-none">
-          <p className="px-3 py-1 text-[10px] font-extrabold uppercase tracking-wider text-[#968D82]">
+          <p className="px-3 py-1 text-[10px] font-extrabold uppercase tracking-wider text-slate-400">
             Platform Roles
           </p>
 
@@ -97,20 +94,22 @@ export default function Sidebar({ onOpenDemoModal }) {
                 onClick={() => setActiveRole(r.id)}
                 className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-left transition-all ${
                   isActive
-                    ? 'bg-[#4F8A4C] text-white shadow-xs'
-                    : 'text-[#5C544B] hover:bg-[#FAF2DD] hover:text-[#2B2621] border border-transparent'
+                    ? 'bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-lg shadow-emerald-900/40 border border-emerald-400/30 font-bold'
+                    : 'text-slate-300 hover:bg-[#1C2640] hover:text-white border border-transparent hover:border-[#28375A]'
                 }`}
               >
                 <div className="flex items-center gap-2.5">
                   <div className={`p-1.5 rounded-lg transition ${
-                    isActive ? 'bg-white/20 text-white' : 'bg-[#FAF2DD] text-[#5C544B]'
+                    isActive
+                      ? 'bg-white/20 text-white shadow-inner'
+                      : 'bg-[#1C2640] text-slate-300'
                   }`}>
                     <Icon className="w-4 h-4" />
                   </div>
                   <div>
                     <div className="text-xs font-bold leading-tight">{r.label}</div>
                     <div className={`text-[10px] font-medium leading-tight mt-0.5 ${
-                      isActive ? 'text-white/80' : 'text-[#968D82]'
+                      isActive ? 'text-emerald-100' : 'text-slate-400'
                     }`}>
                       {r.desc}
                     </div>
@@ -118,7 +117,7 @@ export default function Sidebar({ onOpenDemoModal }) {
                 </div>
 
                 {r.badge && !isActive && (
-                  <span className="text-[9px] font-bold bg-[#F3F8F2] text-[#4F8A4C] px-1.5 py-0.2 rounded-md border border-[#C7E2C5]">
+                  <span className="text-[9px] font-bold bg-emerald-950/80 text-emerald-400 px-1.5 py-0.5 rounded-md border border-emerald-500/30">
                     {r.badge}
                   </span>
                 )}
@@ -128,16 +127,16 @@ export default function Sidebar({ onOpenDemoModal }) {
         </div>
 
         {/* Bottom Sidebar Footer */}
-        <div className="p-3.5 border-t border-[#F4EADA] bg-[#FFFDF8] space-y-2.5">
+        <div className="p-3.5 border-t border-[#233252] bg-[#0E1524] space-y-2.5">
           {/* Active Persona Info */}
           {activeRole === 'student' && (
-            <div className="bg-white p-2.5 rounded-xl border border-[#E8DECA] text-xs">
-              <div className="text-[9px] text-[#968D82] font-bold uppercase tracking-wider">
+            <div className="bg-[#131B2E] p-2.5 rounded-xl border border-[#233252] text-xs">
+              <div className="text-[9px] text-slate-400 font-bold uppercase tracking-wider">
                 Anonymous Identity
               </div>
-              <div className="flex items-center justify-between mt-0.5 font-mono font-bold text-[#2B2621] text-xs">
-                <span>{currentStudent?.anonId || 'ANON-7842'}</span>
-                <span className="text-[9px] text-[#4F8A4C] bg-[#F3F8F2] px-1.5 py-0.2 rounded border border-[#C7E2C5] font-sans">
+              <div className="flex items-center justify-between mt-0.5 font-mono font-bold text-white text-xs">
+                <span className="text-amber-300">{currentStudent?.anonId || 'ANON-7842'}</span>
+                <span className="text-[9px] text-emerald-400 bg-emerald-950/80 px-1.5 py-0.5 rounded border border-emerald-500/30 font-sans">
                   Shielded
                 </span>
               </div>
@@ -153,12 +152,12 @@ export default function Sidebar({ onOpenDemoModal }) {
               >
                 {isMobileFrameView ? (
                   <>
-                    <Monitor className="w-3.5 h-3.5 text-[#4F8A4C]" />
+                    <Monitor className="w-3.5 h-3.5 text-emerald-400" />
                     <span>Full Width</span>
                   </>
                 ) : (
                   <>
-                    <Smartphone className="w-3.5 h-3.5 text-[#4F8A4C]" />
+                    <Smartphone className="w-3.5 h-3.5 text-emerald-400" />
                     <span>Phone View</span>
                   </>
                 )}
@@ -167,9 +166,9 @@ export default function Sidebar({ onOpenDemoModal }) {
 
             <button
               onClick={onOpenDemoModal}
-              className="flex-1 btn-primary btn-sm text-xs font-semibold"
+              className="flex-1 btn-accent btn-sm text-xs font-semibold"
             >
-              <Sliders className="w-3.5 h-3.5 text-[#F4A261]" />
+              <Sliders className="w-3.5 h-3.5 text-white" />
               <span>Scenarios</span>
             </button>
           </div>
@@ -177,39 +176,39 @@ export default function Sidebar({ onOpenDemoModal }) {
       </aside>
 
       {/* ================= MOBILE PHONE TOP APP BAR ================= */}
-      <header className="md:hidden bg-white/95 backdrop-blur-md border-b border-[#E8DECA] sticky top-0 z-40 px-3.5 py-2 flex items-center justify-between shadow-xs">
+      <header className="md:hidden bg-[#131B2E]/95 backdrop-blur-md border-b border-[#233252] sticky top-0 z-40 px-3.5 py-2.5 flex items-center justify-between shadow-lg">
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-xl bg-[#4F8A4C] text-white flex items-center justify-center shadow-xs">
+          <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-emerald-500 to-teal-500 text-white flex items-center justify-center shadow-md shadow-emerald-500/20">
             <Utensils className="w-4 h-4" />
           </div>
           <div>
-            <h1 className="font-heading text-base font-extrabold text-[#2B2621] leading-tight">
+            <h1 className="font-heading text-base font-extrabold text-white leading-tight">
               Apni Rasoi
             </h1>
-            <p className="text-[10px] text-[#5C544B] font-medium">Hostel Dining</p>
+            <p className="text-[10px] text-emerald-400 font-medium">Hostel Dining Portal</p>
           </div>
         </div>
 
         <div className="flex items-center gap-2">
           {activeSession && (
-            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-[#FEF8F3] text-[#C77024] border border-[#FBD9C3]">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#F4A261] animate-pulse"></span>
+            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-amber-950/70 text-amber-300 border border-amber-500/40">
+              <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span>
               {activeSession.mealName}
             </span>
           )}
 
           <button
             onClick={onOpenDemoModal}
-            className="p-1.5 rounded-xl bg-[#FAF2DD] hover:bg-[#F2E7CA] text-[#2B2621] border border-[#E8DECA]"
+            className="p-1.5 rounded-xl bg-[#1C2640] hover:bg-[#263353] text-white border border-[#28375A]"
             title="Demo Controls"
           >
-            <Sliders className="w-3.5 h-3.5 text-[#4F8A4C]" />
+            <Sliders className="w-3.5 h-3.5 text-amber-400" />
           </button>
         </div>
       </header>
 
       {/* ================= MOBILE PHONE NATIVE BOTTOM APP DOCK ================= */}
-      <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-[#E8DECA] z-40 px-2 py-1 shadow-[0_-4px_16px_rgba(43,38,33,0.06)]">
+      <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-[#131B2E]/95 backdrop-blur-md border-t border-[#233252] z-40 px-2 py-1.5 shadow-[0_-4px_20px_rgba(0,0,0,0.5)]">
         <div className="flex items-center justify-around">
           {roles.map((r) => {
             const Icon = r.icon;
@@ -220,10 +219,10 @@ export default function Sidebar({ onOpenDemoModal }) {
                 key={r.id}
                 onClick={() => setActiveRole(r.id)}
                 className={`flex flex-col items-center justify-center py-1 px-2 rounded-xl transition-all ${
-                  isActive ? 'text-[#4F8A4C] font-bold scale-105' : 'text-[#968D82] font-medium hover:text-[#5C544B]'
+                  isActive ? 'text-emerald-400 font-bold scale-105' : 'text-slate-400 font-medium hover:text-slate-200'
                 }`}
               >
-                <div className={`p-1 rounded-xl transition ${isActive ? 'bg-[#F3F8F2] text-[#4F8A4C]' : ''}`}>
+                <div className={`p-1 rounded-xl transition ${isActive ? 'bg-emerald-950/80 text-emerald-400 border border-emerald-500/30 shadow-xs' : ''}`}>
                   <Icon className="w-4.5 h-4.5" />
                 </div>
                 <span className="text-[10px] mt-0.5 tracking-tight">

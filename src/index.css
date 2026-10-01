@@ -3,48 +3,76 @@
 @tailwind utilities;
 
 :root {
-  /* Warm Food-Themed Palette: Cream (#FFF8E7) + Fresh Green (#4F8A4C) + Warm Orange (#F4A261) */
-  --bg-primary: #FFF8E7;
-  --bg-surface: #FFFFFF;
-  --bg-subtle: #FAF2DD;
-  --bg-subtle-hover: #F2E7CA;
+  /* Rich Dark & Vibrant Combination Theme */
+  --bg-primary: #0B0F19;
+  --bg-surface: #131B2E;
+  --bg-subtle: #1C2640;
+  --bg-subtle-hover: #263353;
+  --bg-well: #0E1524;
   
-  --brand-50: #F3F8F2;
-  --brand-100: #E4F1E3;
-  --brand-200: #C7E2C5;
-  --brand-500: #5C9E59;
-  --brand-600: #4F8A4C; /* Fresh Green Buttons */
-  --brand-700: #41733E;
-  --brand-800: #335C31;
+  /* Vibrant Emerald Accent */
+  --brand-50: #ECFDF5;
+  --brand-100: #D1FAE5;
+  --brand-200: #A7F3D0;
+  --brand-500: #10B981;
+  --brand-600: #059669;
+  --brand-700: #047857;
+  --brand-800: #065F46;
+  --brand-900: #064E3B;
 
-  --accent-50: #FEF8F3;
-  --accent-100: #FDEEE3;
-  --accent-200: #FBD9C3;
-  --accent-500: #F4A261; /* Warm Orange Highlights */
-  --accent-600: #E28A40;
-  --accent-700: #C77024;
+  /* Vibrant Saffron / Warm Orange */
+  --accent-50: #FFF7ED;
+  --accent-100: #FFEDD5;
+  --accent-200: #FED7AA;
+  --accent-400: #FB923C;
+  --accent-500: #F97316;
+  --accent-600: #EA580C;
+  --accent-700: #C2410C;
 
+  /* Vibrant Amber / Gold */
   --amber-50: #FFFBEB;
   --amber-100: #FEF3C7;
   --amber-200: #FDE68A;
+  --amber-400: #FBBF24;
   --amber-500: #F59E0B;
   --amber-600: #D97706;
 
+  /* Vibrant Rose / Crimson */
   --rose-50: #FFF1F2;
   --rose-100: #FFE4E6;
+  --rose-400: #FB7185;
   --rose-500: #F43F5E;
   --rose-600: #E11D48;
+  --rose-900: #4C0519;
 
-  --text-primary: #2B2621;
-  --text-secondary: #5C544B;
-  --text-muted: #968D82;
-  --border-subtle: #E8DECA;
-  --border-focus: #4F8A4C;
+  /* Vibrant Purple / Indigo */
+  --purple-400: #C084FC;
+  --purple-500: #A855F7;
+  --purple-600: #9333EA;
+  --purple-900: #3B0764;
 
-  --shadow-sm: 0 1px 2px 0 rgb(43 38 33 / 0.04);
-  --shadow-card: 0 1px 3px 0 rgb(43 38 33 / 0.06), 0 1px 2px -1px rgb(43 38 33 / 0.04);
-  --shadow-md: 0 4px 12px -2px rgb(43 38 33 / 0.07), 0 2px 6px -2px rgb(43 38 33 / 0.04);
-  --shadow-lg: 0 12px 24px -4px rgb(43 38 33 / 0.09), 0 4px 8px -2px rgb(43 38 33 / 0.04);
+  /* Vibrant Cyan / Sky */
+  --cyan-400: #38BDF8;
+  --cyan-500: #06B6D4;
+  --cyan-600: #0891B2;
+  --cyan-900: #164E63;
+
+  /* Typography & Borders */
+  --text-primary: #F8FAFC;
+  --text-secondary: #CBD5E1;
+  --text-muted: #94A3B8;
+  --border-subtle: #233252;
+  --border-medium: #33446B;
+  --border-focus: #10B981;
+
+  /* Deep Glowing Shadows */
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.4);
+  --shadow-card: 0 4px 20px -2px rgba(0, 0, 0, 0.45), 0 2px 6px -2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 8px 30px -4px rgba(0, 0, 0, 0.5), 0 4px 12px -2px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 16px 40px -6px rgba(0, 0, 0, 0.65), 0 6px 16px -4px rgba(0, 0, 0, 0.45);
+  --glow-emerald: 0 0 20px -3px rgba(16, 185, 129, 0.35);
+  --glow-orange: 0 0 20px -3px rgba(249, 115, 22, 0.35);
+  --glow-purple: 0 0 20px -3px rgba(168, 85, 247, 0.35);
 
   --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-display: 'Outfit', var(--font-sans);
@@ -64,6 +92,11 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(16, 185, 129, 0.07) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(249, 115, 22, 0.06) 0px, transparent 50%),
+    radial-gradient(at 50% 100%, rgba(139, 92, 246, 0.05) 0px, transparent 50%);
+  background-attachment: fixed;
 }
 
 h1, h2, h3, h4, .font-heading {
@@ -73,231 +106,271 @@ h1, h2, h3, h4, .font-heading {
   letter-spacing: -0.015em;
 }
 
-/* Custom Scrollbars with warm tones */
+/* Custom Scrollbars with glowing accents */
 ::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
+  width: 6px;
+  height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: #0B0F19;
 }
 ::-webkit-scrollbar-thumb {
-  background: #D9CEB8;
+  background: #233252;
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #C4B69C;
+  background: #3B82F6;
 }
 
-/* Clean Food Card Style with Soft Warm Shadow */
+/* Elevated Dark Glass Card Style with Soft Gradient Borders */
 .card-clean {
   background-color: var(--bg-surface);
   border: 1px solid var(--border-subtle);
-  border-radius: 16px;
+  border-radius: 20px;
   box-shadow: var(--shadow-card);
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
 }
 
 .card-clean-hover:hover {
-  box-shadow: var(--shadow-md);
-  border-color: #D9CEB8;
-  transform: translateY(-1px);
+  box-shadow: var(--shadow-md), 0 0 15px rgba(16, 185, 129, 0.08);
+  border-color: rgba(16, 185, 129, 0.35);
+  transform: translateY(-2px);
 }
 
-/* Food Feedback Chips */
+/* Food Feedback Chips (Dark, high contrast, colorful) */
 .chip-btn {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
-  padding: 0.45rem 0.85rem;
+  gap: 0.45rem;
+  padding: 0.5rem 0.95rem;
   font-size: 0.8125rem;
   font-weight: 600;
-  border-radius: 12px;
-  border: 1px solid var(--border-subtle);
-  background-color: var(--bg-surface);
-  color: var(--text-secondary);
+  border-radius: 14px;
+  border: 1px solid #233252;
+  background-color: #162035;
+  color: #CBD5E1;
   cursor: pointer;
-  transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   user-select: none;
 }
 
 .chip-btn:hover {
-  background-color: var(--bg-subtle);
-  border-color: #D9CEB8;
+  background-color: #1E2B47;
+  border-color: #3B82F6;
+  color: #F8FAFC;
   transform: translateY(-1px);
 }
 
 .chip-btn.selected-negative {
-  background-color: var(--rose-50);
-  border-color: var(--rose-500);
-  color: var(--rose-700);
-  box-shadow: 0 1px 4px rgba(244, 63, 94, 0.15);
+  background-color: rgba(244, 63, 94, 0.18);
+  border-color: #F43F5E;
+  color: #FDA4AF;
+  box-shadow: 0 0 14px rgba(244, 63, 94, 0.3);
 }
 
 .chip-btn.selected-positive {
-  background-color: var(--brand-50);
-  border-color: var(--brand-600);
-  color: var(--brand-800);
-  box-shadow: 0 1px 4px rgba(79, 138, 76, 0.2);
+  background-color: rgba(16, 185, 129, 0.18);
+  border-color: #10B981;
+  color: #6EE7B7;
+  box-shadow: 0 0 14px rgba(16, 185, 129, 0.3);
 }
 
-/* Star Rating Controls */
+/* Star Rating Controls with Golden Glow */
 .star-btn {
   background: none;
   border: none;
   cursor: pointer;
   padding: 0.35rem;
-  transition: transform 0.18s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   outline: none;
 }
 .star-btn:hover {
-  transform: scale(1.15);
+  transform: scale(1.18);
 }
 .star-btn:active {
   transform: scale(0.92);
 }
 
-/* Mobile Frame Container */
+/* Mobile Device Frame Container (Dark Obsidian) */
 .mobile-device-frame {
-  max-width: 410px;
+  max-width: 420px;
   margin: 0 auto;
-  background: #FFF8E7;
-  border: 7px solid #2B2621;
-  border-radius: 36px;
-  box-shadow: 0 20px 40px -10px rgba(43, 38, 33, 0.18);
+  background: #0B0F19;
+  border: 9px solid #1E293B;
+  border-radius: 42px;
+  box-shadow: 0 25px 60px -10px rgba(0, 0, 0, 0.8), 0 0 30px rgba(16, 185, 129, 0.12);
   overflow: hidden;
   position: relative;
 }
 
 .mobile-notch {
-  width: 130px;
-  height: 20px;
-  background: #2B2621;
+  width: 140px;
+  height: 22px;
+  background: #1E293B;
   position: absolute;
   top: 0;
   left: 50%;
   transform: translateX(-50%);
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
   z-index: 50;
 }
 
-/* Clean Pill Status Badges */
+/* Vibrant Badges (Dark Mode Contrast) */
 .badge-status {
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
-  padding: 0.2rem 0.65rem;
+  gap: 0.4rem;
+  padding: 0.25rem 0.75rem;
   border-radius: 9999px;
   font-size: 0.75rem;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.02em;
 }
 
 .badge-green {
-  background-color: var(--brand-50);
-  color: var(--brand-700);
-  border: 1px solid var(--brand-200);
+  background-color: rgba(16, 185, 129, 0.15);
+  color: #34D399;
+  border: 1px solid rgba(16, 185, 129, 0.35);
 }
 
 .badge-orange {
-  background-color: #FEF8F3;
-  color: #C77024;
-  border: 1px solid #FBD9C3;
+  background-color: rgba(249, 115, 22, 0.15);
+  color: #FB923C;
+  border: 1px solid rgba(249, 115, 22, 0.35);
 }
 
 .badge-amber {
-  background-color: var(--amber-50);
-  color: var(--amber-700);
-  border: 1px solid var(--amber-200);
+  background-color: rgba(245, 158, 11, 0.15);
+  color: #FBBF24;
+  border: 1px solid rgba(245, 158, 11, 0.35);
 }
 
 .badge-rose {
-  background-color: var(--rose-50);
-  color: var(--rose-600);
-  border: 1px solid var(--rose-100);
+  background-color: rgba(244, 63, 94, 0.15);
+  color: #FB7185;
+  border: 1px solid rgba(244, 63, 94, 0.35);
+}
+
+.badge-purple {
+  background-color: rgba(168, 85, 247, 0.15);
+  color: #C084FC;
+  border: 1px solid rgba(168, 85, 247, 0.35);
+}
+
+.badge-cyan {
+  background-color: rgba(6, 182, 212, 0.15);
+  color: #38BDF8;
+  border: 1px solid rgba(6, 182, 212, 0.35);
 }
 
 .badge-neutral {
-  background-color: var(--bg-subtle);
-  color: var(--text-secondary);
-  border: 1px solid var(--border-subtle);
+  background-color: #1C2640;
+  color: #CBD5E1;
+  border: 1px solid #28375A;
 }
 
-/* Standardized Button Sizing with Fresh Green (#4F8A4C) */
+/* Primary Button with Neon Emerald Gradient */
 .btn-primary {
-  background-color: #4F8A4C;
-  color: #ffffff;
-  font-weight: 600;
+  background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+  color: #FFFFFF;
+  font-weight: 700;
   font-size: 0.875rem;
-  padding: 0.55rem 1.15rem;
-  border-radius: 12px;
+  padding: 0.6rem 1.25rem;
+  border-radius: 14px;
   border: none;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.45rem;
-  transition: all 0.15s ease;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
   font-family: var(--font-sans);
-  min-height: 40px;
+  min-height: 42px;
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
 }
 .btn-primary:hover {
-  background-color: #41733E;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(79, 138, 76, 0.25);
+  background: linear-gradient(135deg, #34D399 0%, #059669 100%);
+  transform: translateY(-1.5px);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.45);
 }
 .btn-primary:active {
   transform: translateY(0);
 }
 
+/* Secondary Button with Dark Elevated Style */
 .btn-secondary {
-  background-color: var(--bg-surface);
-  color: var(--text-primary);
+  background-color: #162035;
+  color: #F8FAFC;
   font-weight: 600;
   font-size: 0.875rem;
-  padding: 0.55rem 1.15rem;
-  border-radius: 12px;
-  border: 1px solid var(--border-subtle);
+  padding: 0.6rem 1.25rem;
+  border-radius: 14px;
+  border: 1px solid #28375A;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.45rem;
-  transition: all 0.15s ease;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
   font-family: var(--font-sans);
-  min-height: 40px;
+  min-height: 42px;
 }
 .btn-secondary:hover {
-  background-color: var(--bg-subtle);
-  border-color: #D9CEB8;
+  background-color: #1E2B47;
+  border-color: #3B82F6;
+  color: #FFFFFF;
+  transform: translateY(-1px);
 }
 
-/* Warm Orange Highlight Button */
+/* Vibrant Saffron/Orange Accent Button */
 .btn-accent {
-  background-color: #F4A261;
-  color: #ffffff;
-  font-weight: 600;
+  background: linear-gradient(135deg, #FB923C 0%, #EA580C 100%);
+  color: #FFFFFF;
+  font-weight: 700;
   font-size: 0.875rem;
-  padding: 0.55rem 1.15rem;
-  border-radius: 12px;
+  padding: 0.6rem 1.25rem;
+  border-radius: 14px;
   border: none;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.45rem;
-  transition: all 0.15s ease;
-  min-height: 40px;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+  min-height: 42px;
+  box-shadow: 0 4px 14px rgba(249, 115, 22, 0.35);
 }
 .btn-accent:hover {
-  background-color: #E28A40;
-  box-shadow: 0 4px 12px rgba(244, 162, 97, 0.25);
+  background: linear-gradient(135deg, #FDBA74 0%, #EA580C 100%);
+  transform: translateY(-1.5px);
+  box-shadow: 0 6px 20px rgba(249, 115, 22, 0.45);
 }
 
 .btn-sm {
   font-size: 0.75rem;
-  padding: 0.35rem 0.75rem;
-  min-height: 32px;
-  border-radius: 10px;
+  padding: 0.4rem 0.85rem;
+  min-height: 34px;
+  border-radius: 11px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.97); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes bounceIn {
+  0% { transform: scale(0.85); opacity: 0; }
+  60% { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(1); }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-bounceIn {
+  animation: bounceIn 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }

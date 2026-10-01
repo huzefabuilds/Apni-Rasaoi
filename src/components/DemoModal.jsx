@@ -41,22 +41,22 @@ export default function DemoModal({ isOpen, onClose }) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center p-4 animate-fadeIn">
-      <div className="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl border border-slate-200 space-y-5 max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 z-50 bg-slate-950/75 backdrop-blur-md flex items-center justify-center p-4 animate-fadeIn">
+      <div className="bg-[#131B2E] rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-[#233252] space-y-5 max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="flex items-center justify-between border-b border-slate-100 pb-3">
-          <div className="flex items-center gap-2">
-            <div className="p-2 rounded-xl bg-slate-900 text-emerald-400">
+        <div className="flex items-center justify-between border-b border-[#233252] pb-3">
+          <div className="flex items-center gap-2.5">
+            <div className="p-2 rounded-xl bg-gradient-to-tr from-emerald-500 to-teal-500 text-slate-950 font-bold shadow-md shadow-emerald-500/20">
               <Sliders className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="text-base font-bold text-slate-900">Interactive Demo Scenarios</h3>
-              <p className="text-xs text-slate-500">Test every requirement in Apni Rasoi PRD v3.1</p>
+              <h3 className="text-base font-bold text-white font-heading">Interactive Demo Scenarios</h3>
+              <p className="text-xs text-slate-400">Test every requirement in Apni Rasoi PRD v3.1</p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="text-slate-400 hover:text-slate-700 p-1.5 rounded-lg hover:bg-slate-100"
+            className="text-slate-400 hover:text-white p-1.5 rounded-xl hover:bg-[#1C2640] transition"
           >
             <X className="w-5 h-5" />
           </button>
@@ -64,7 +64,7 @@ export default function DemoModal({ isOpen, onClose }) {
 
         {/* Persona Switcher */}
         <div>
-          <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
+          <label className="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">
             1. Switch Active Student Persona (Pseudonymous IDs)
           </label>
           <div className="space-y-1.5">
@@ -79,15 +79,15 @@ export default function DemoModal({ isOpen, onClose }) {
                   }}
                   className={`w-full flex items-center justify-between p-2.5 rounded-xl border text-xs text-left transition ${
                     isCurrent
-                      ? 'border-emerald-600 bg-emerald-50 text-emerald-900 font-bold'
-                      : 'border-slate-200 bg-slate-50 hover:bg-white text-slate-700'
+                      ? 'border-emerald-500 bg-emerald-950/40 text-emerald-200 font-bold shadow-sm'
+                      : 'border-[#233252] bg-[#0E1524] hover:bg-[#162035] text-slate-300'
                   }`}
                 >
                   <div className="flex items-center gap-2">
-                    <UserCheck className={`w-4 h-4 ${isCurrent ? 'text-emerald-600' : 'text-slate-400'}`} />
+                    <UserCheck className={`w-4 h-4 ${isCurrent ? 'text-emerald-400' : 'text-slate-500'}`} />
                     <span>{st.name} ({st.rollNo})</span>
                   </div>
-                  <span className="font-mono bg-white px-2 py-0.5 rounded border border-slate-200 text-slate-700">
+                  <span className="font-mono bg-[#162035] px-2 py-0.5 rounded border border-[#28375A] text-amber-300 font-bold">
                     {st.anonId}
                   </span>
                 </button>
@@ -96,28 +96,28 @@ export default function DemoModal({ isOpen, onClose }) {
           </div>
         </div>
 
-        {/* Quick Simulation Scenarios */}
+        {/* Quick Simulation Scenarios with Colorful Glow */}
         <div>
-          <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
+          <label className="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">
             2. Instant Traffic & Feedback Simulations
           </label>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
             <button
               onClick={() => simulateBatchRatings(15, 5, [{ code: 'taste', direction: 'positive', label: 'Delicious Taste' }], 'Gulab Jamun was outstanding today!', 'English')}
-              className="p-3 rounded-xl border border-emerald-200 bg-emerald-50/60 hover:bg-emerald-100/70 text-emerald-900 text-xs text-left transition"
+              className="p-3.5 rounded-2xl border border-emerald-500/30 bg-emerald-950/30 hover:bg-emerald-950/60 text-emerald-200 text-xs text-left transition shadow-sm"
             >
-              <Zap className="w-4 h-4 text-emerald-600 mb-1" />
-              <strong className="block">Simulate +15 Superb Ratings (5★)</strong>
-              <span className="text-[11px] text-emerald-700">Boosts taste theme & sentiment</span>
+              <Zap className="w-4 h-4 text-emerald-400 mb-1" />
+              <strong className="block text-white">Simulate +15 Superb Ratings (5★)</strong>
+              <span className="text-[11px] text-emerald-300">Boosts taste theme & sentiment</span>
             </button>
 
             <button
               onClick={() => simulateBatchRatings(10, 2, [{ code: 'temperature', direction: 'negative', label: 'Temperature' }], 'Rotis were cold at Counter 1', 'Hinglish')}
-              className="p-3 rounded-xl border border-amber-200 bg-amber-50/60 hover:bg-amber-100/70 text-amber-900 text-xs text-left transition"
+              className="p-3.5 rounded-2xl border border-amber-500/30 bg-amber-950/30 hover:bg-amber-950/60 text-amber-200 text-xs text-left transition shadow-sm"
             >
-              <Clock className="w-4 h-4 text-amber-600 mb-1" />
-              <strong className="block">Simulate +10 Cold Roti Ratings (2★)</strong>
-              <span className="text-[11px] text-amber-700">Triggers temperature alert</span>
+              <Clock className="w-4 h-4 text-amber-400 mb-1" />
+              <strong className="block text-white">Simulate +10 Cold Roti Ratings (2★)</strong>
+              <span className="text-[11px] text-amber-300">Triggers temperature alert</span>
             </button>
 
             <button
@@ -130,11 +130,11 @@ export default function DemoModal({ isOpen, onClose }) {
                 });
                 onClose();
               }}
-              className="p-3 rounded-xl border border-indigo-200 bg-indigo-50/60 hover:bg-indigo-100/70 text-indigo-900 text-xs text-left transition"
+              className="p-3.5 rounded-2xl border border-indigo-500/30 bg-indigo-950/30 hover:bg-indigo-950/60 text-indigo-200 text-xs text-left transition shadow-sm"
             >
-              <Shield className="w-4 h-4 text-indigo-600 mb-1" />
-              <strong className="block">Trigger Warden Override (+45m)</strong>
-              <span className="text-[11px] text-indigo-700">Logs window extension audit</span>
+              <Shield className="w-4 h-4 text-indigo-400 mb-1" />
+              <strong className="block text-white">Trigger Warden Override (+45m)</strong>
+              <span className="text-[11px] text-indigo-300">Logs window extension audit</span>
             </button>
 
             <button
@@ -142,16 +142,16 @@ export default function DemoModal({ isOpen, onClose }) {
                 resetDemoData();
                 onClose();
               }}
-              className="p-3 rounded-xl border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-800 text-xs text-left transition"
+              className="p-3.5 rounded-2xl border border-[#233252] bg-[#0E1524] hover:bg-[#162035] text-slate-300 text-xs text-left transition shadow-sm"
             >
-              <RotateCcw className="w-4 h-4 text-slate-500 mb-1" />
-              <strong className="block">Reset All Demo Data</strong>
-              <span className="text-[11px] text-slate-500">Restore factory PRD v3.1 baseline</span>
+              <RotateCcw className="w-4 h-4 text-slate-400 mb-1" />
+              <strong className="block text-white">Reset All Demo Data</strong>
+              <span className="text-[11px] text-slate-400">Restore factory PRD v3.1 baseline</span>
             </button>
           </div>
         </div>
 
-        <div className="pt-2 border-t border-slate-100 text-right">
+        <div className="pt-2 border-t border-[#233252] text-right">
           <button
             onClick={onClose}
             className="btn-secondary text-xs py-2 px-4"
