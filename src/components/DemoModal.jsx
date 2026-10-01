@@ -16,7 +16,7 @@ import {
   Award
 } from 'lucide-react';
 
-export default function DemoModal({ isOpen, onClose }) {
+export default function DemoModal({ isOpen, onClose, onReplaySplash }) {
   const {
     registeredStudents,
     currentStudent,
@@ -164,6 +164,17 @@ export default function DemoModal({ isOpen, onClose }) {
               </div>
               <strong className="block text-white">Reset All Demo Data</strong>
               <span className="text-[11px] text-slate-400">Restore factory PRD v3.1 baseline</span>
+            </button>
+
+            <button
+              onClick={onReplaySplash}
+              className="p-3.5 rounded-2xl border border-cyan-500/30 bg-cyan-950/30 hover:bg-cyan-950/60 text-cyan-200 text-xs text-left transition shadow-sm sm:col-span-2"
+            >
+              <div className="p-1 rounded-lg bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 w-max mb-1.5">
+                <Sparkles className="w-4 h-4" />
+              </div>
+              <strong className="block text-white">Replay Animated App Splash Screen</strong>
+              <span className="text-[11px] text-cyan-300">Displays the full-screen branding and node initialization animation</span>
             </button>
           </div>
         </div>

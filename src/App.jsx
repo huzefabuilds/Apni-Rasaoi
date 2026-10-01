@@ -7,6 +7,7 @@ import WardenDashboard from './components/WardenDashboard';
 import AdminPortal from './components/AdminPortal';
 import KioskDisplay from './components/KioskDisplay';
 import DemoModal from './components/DemoModal';
+import SplashScreen from './components/SplashScreen';
 import {
   ShieldCheck,
   CheckCircle2,
@@ -19,9 +20,13 @@ import {
 export default function App() {
   const { activeRole, isMobileFrameView, notification } = useApp();
   const [isDemoModalOpen, setIsDemoModalOpen] = useState(false);
+  const [showSplash, setShowSplash] = useState(true);
 
   return (
     <div className="min-h-screen bg-[#0B0F19] flex flex-col md:flex-row font-sans text-slate-100 selection:bg-emerald-500/30 selection:text-emerald-200">
+      {/* App Splash Screen on load or manual trigger */}
+      {showSplash && <SplashScreen onFinish={() => setShowSplash(false)} />}
+
       {/* Left Vertical Sidebar (Desktop) & Mobile Top/Bottom App Bars */}
       <Sidebar onOpenDemoModal={() => setIsDemoModalOpen(true)} />
 
@@ -101,6 +106,10 @@ export default function App() {
       <DemoModal
         isOpen={isDemoModalOpen}
         onClose={() => setIsDemoModalOpen(false)}
+        onReplaySplash={() => {
+          setIsDemoModalOpen(false);
+          setShowSplash(true);
+        }}
       />
     </div>
   );
